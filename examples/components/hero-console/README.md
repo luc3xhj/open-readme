@@ -6,6 +6,6 @@
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-compact.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-compact.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/hero-dark.svg">
-  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Designed GitHub READMEs for coding agents.
-One coherent system, from overview to license." width="960">
+  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Clear, designed READMEs.
+Made for your coding agent." width="960">
 </picture>

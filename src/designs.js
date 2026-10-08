@@ -3,7 +3,7 @@ export const designs = {
   canvas: {
     name: 'Canvas',
     description:
-      'Sans section headings, illustrated bento, a compact table and rounded diagram nodes.',
+      'Open feature columns, compact sans hierarchy, a native options table and rounded architecture nodes.',
     for: 'Developer products · agent tools',
     theme: 'minimal',
     font: 'sans',
@@ -16,7 +16,7 @@ export const designs = {
   console: {
     name: 'Console',
     description:
-      'Prompt headings, a mono feature grid, aligned references and a file-tree diagram.',
+      'Compact mono hierarchy, two-column manual entries, aligned references and a branching file tree.',
     for: 'CLI tools · local utilities',
     theme: 'terminal',
     font: 'mono',
@@ -28,7 +28,8 @@ export const designs = {
   },
   journal: {
     name: 'Journal',
-    description: 'Serif folios, connected feature partitions, definitions and unframed diagrams.',
+    description:
+      'Asymmetric serif masthead, three-column editorial entries, inline definitions and unframed diagrams.',
     for: 'Libraries · research · directories',
     theme: 'editorial',
     font: 'serif',
@@ -40,7 +41,8 @@ export const designs = {
   },
   pipeline: {
     name: 'Pipeline',
-    description: 'Numbered rails, illustrated rows, a reference matrix and orthogonal diagrams.',
+    description:
+      'Numbered technical headings, paired explanation/figure rows, a reference matrix and architecture lanes.',
     for: 'SDKs · infrastructure · data tools',
     theme: 'minimal',
     font: 'sans',

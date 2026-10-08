@@ -4,12 +4,12 @@ Design the sections first, then compose a complete README. A system defines a sh
 
 ## Four coordinated systems
 
-| System   | Overview and section headings            | Features                    | Configuration            | Architecture                          |
-| -------- | ---------------------------------------- | --------------------------- | ------------------------ | ------------------------------------- |
-| Canvas   | Open sans masthead, small accent markers | Illustrated bento cells     | Compact native table     | Rounded nodes, curved connections     |
-| Console  | Mono project name and prompt headings    | Compact terminal grid       | Aligned text reference   | File-tree diagram                     |
-| Journal  | Serif masthead and folio headings        | Connected fine-rule lattice | Definition lists         | Unframed nodes with fine connectors   |
-| Pipeline | Technical masthead and numbered rails    | Open illustrated rows       | Transposed native matrix | Sharp nodes and orthogonal connectors |
+| System   | Layout                                                           | Reference and architecture                                           |
+| -------- | ---------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Canvas   | Compact sans masthead; open feature columns on a shared baseline | Native options table; rounded nodes and a grouped artifact branch    |
+| Console  | Mono manual; numbered two-column entries                         | Aligned text reference; an indented file tree with anchored branches |
+| Journal  | Asymmetric serif masthead; three-column editorial entries        | Inline definitions; unframed file/processor relationships            |
+| Pipeline | Numbered technical headings; explanation/figure pairs            | Transposed matrix; input, process and output lanes                   |
 
 Every semantic section has four system variants. License, credits and explanatory prose use the matching section heading with selectable text. Installation, usage and API examples use the matching heading/context with native code-copy behavior. Demo, metrics and roadmap figures inherit the system's font, colors and frame treatment. Do not include a section merely to fill a template.
 
@@ -30,6 +30,23 @@ Research used components inside 21st.dev to study hierarchy, spacing and functio
 | [Animated Card Diagram](https://21st.dev/@badtzx0/components/animated-card-diagram)       | Let a real relationship carry the feature illustration      |
 
 Static relationships replace browser animation in GitHub exports. A beam always keeps its actual topology. Full commands, prose and table facts remain available in native Markdown. Explanatory feature illustrations may omit a duplicate source disclosure when the alternative text already preserves the facts.
+
+## Document-scale hierarchy
+
+The complete systems share size roles: project name 30–38 SVG units, primary section 23, supporting section 18, figure title 18, explanation 15 and annotation 11. Compact/mobile assets compensate for the narrower column without using landing-page display sizes. Native Markdown uses GitHub's own typography. Captions are italic native text, not another display headline.
+
+`section` supplies the default hierarchy: overview, features, quick start and usage lead; configuration, API, architecture, compatibility and project housekeeping are supporting. `importance: "primary"` or `"supporting"` explicitly overrides a titled section. The workbench exposes both emphasis and section design. Density changes whitespace, not project facts.
+
+## Diagram research
+
+The implementation is original SVG code. We inspected rendered examples and read the source projects' documentation:
+
+- [D2 ELK examples](https://d2lang.com/examples/elk/): align related nodes by stage, contain related outputs and route edges through clear gaps.
+- [D2 containers](https://d2lang.com/tour/containers/) and [connections](https://d2lang.com/tour/connections/): use grouping and explicit arrow endpoints to explain relationships.
+- [Mermaid architecture](https://mermaid.js.org/syntax/architecture.html): distinguish services, groups, edges and junctions; connect edges to consistent node sides.
+- [Excalidraw](https://github.com/excalidraw/excalidraw): keep labels attached to meaningful objects and connections. We did not adopt sketch styling for a technical reference document.
+
+The beam renderer measures labels before positioning nodes. Input → processor → parallel outputs is a preserved topology; output files never become a sequential chain when changing themes. Connections terminate on node boundaries, share a branch junction and stay out of unrelated node interiors. Narrow assets reflow into a tree. The small router is limited to this topology; it is not a replacement for D2 or Mermaid on arbitrary graphs. No upstream source, screenshots or artwork is bundled.
 
 ## Whole-document review
 

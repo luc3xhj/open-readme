@@ -83,7 +83,7 @@
       "title": "Quick start",
       "language": "sh",
       "filename": "terminal",
-      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.3.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
       "highlight": [
         3
       ]
@@ -97,7 +97,7 @@
         {
           "label": "Install in your project",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.3.2"
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0"
         },
         {
           "label": "Work from source",

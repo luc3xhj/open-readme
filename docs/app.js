@@ -9,8 +9,10 @@ import {
   sectionDesigns,
   styleSection,
   comparisonView,
-} from './lib/index.js?v=0.3.2';
-import { renderSvg } from './lib/svg.js?v=0.3.2';
+} from './lib/index.js?v=0.4.0';
+import { renderSvg } from './lib/svg.js?v=0.4.0';
+import { sectionImportance } from './lib/design-scale.js?v=0.4.0';
+import { sectionAnchors } from './lib/section-designs.js?v=0.4.0';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);
@@ -93,16 +95,13 @@ function prose(el, body) {
 }
 function visual(block, cfg, mode, narrow) {
   const img = node('img');
-  img.src =
-    'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(renderSvg(block, cfg, mode, narrow));
+  const source = renderSvg(block, cfg, mode, narrow);
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+  if (!['badge', 'link'].includes(block.type)) img.width = cfg.style?.width || 960;
   img.alt =
-    block.type === 'heading'
-      ? block.title
-      : block.subtitle
-        ? block.title + ' — ' + block.subtitle
-        : block.items
-          ? block.items.map((i) => i.title || `${i.label}: ${i.value}`).join('; ')
-          : block.code || block.label || 'Component';
+    new DOMParser().parseFromString(source, 'image/svg+xml').querySelector('title')?.textContent ||
+    block.title ||
+    'README figure';
   if (block.url) {
     const a = anchor(undefined, block.url);
     a.append(img);
@@ -144,23 +143,19 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
       el.clientWidth - parseFloat(padding.paddingLeft) - parseFloat(padding.paddingRight),
     variant = narrow || contentWidth < 410 ? true : contentWidth < 710 ? 'compact' : false;
   const visualBlock = (b) => visual(b, cfg, mode, variant);
+  const anchors = sectionAnchors(cfg.blocks);
   const heading = (b) => {
     if (b.title) {
       const h = node('h2');
       if (sectionDesign(cfg, b)) {
-        h.className = 'styled-heading';
-        const headingLink = anchor(
-          undefined,
-          '#' +
-            b.title
-              .toLowerCase()
-              .replace(/[^\p{L}\p{N}\s_-]/gu, '')
-              .replace(/\s/g, '-'),
-        );
+        h.className = 'styled-heading ' + sectionImportance(b);
+        const headingLink = anchor(undefined, '#' + (anchors.get(b.id) || 'contents'));
         headingLink.append(
           visualBlock({
             type: 'heading',
             title: b.title,
+            section: b.section,
+            importance: b.importance,
             design: b.design,
             style: b.style,
             ordinal:
@@ -171,10 +166,7 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
         );
         h.append(headingLink);
       } else h.textContent = b.title;
-      h.id = b.title
-        .toLowerCase()
-        .replace(/[^\p{L}\p{N}\s_-]/gu, '')
-        .replace(/\s/g, '-');
+      h.id = anchors.get(b.id) || 'contents';
       el.append(h);
     }
   };
@@ -253,9 +245,10 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
       if (view.kind === 'reference') el.append(nativeCode(view.text));
       else if (view.kind === 'definitions') {
         for (const entry of view.entries) {
-          el.append(node('p', undefined, 'definition-term'));
-          el.lastChild.append(node('strong', view.label + ': ' + entry.term));
-          el.append(node('p', entry.fields.map((f) => f.label + ': ' + f.value).join(' · ')));
+          const entryLine = node('p', undefined, 'definition-term');
+          entryLine.append(node('strong', view.label + ': ' + entry.term));
+          entryLine.append(' — ' + entry.fields.map((f) => f.label + ': ' + f.value).join(' · '));
+          el.append(entryLine);
         }
       } else {
         const table = node('table'),
@@ -339,16 +332,7 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
         (x) => x.title && x.type !== 'hero' && x.type !== 'toc',
       )) {
         const li = node('li');
-        li.append(
-          anchor(
-            item.title,
-            '#' +
-              item.title
-                .toLowerCase()
-                .replace(/[^\p{L}\p{N}\s_-]/gu, '')
-                .replace(/\s/g, '-'),
-          ),
-        );
+        li.append(anchor(item.title, '#' + anchors.get(item.id)));
         ul.append(li);
       }
       el.append(ul);
@@ -434,7 +418,7 @@ function sectionControls() {
   try {
     const draft = JSON.parse($('config-source').value);
     for (const block of draft.blocks.filter((b) => b.title || b.type === 'hero')) {
-      const row = node('label', undefined, 'section-control'),
+      const row = node('div', undefined, 'section-control'),
         text = node('span');
       text.append(
         node('strong', block.type === 'hero' ? 'Overview' : block.title),
@@ -468,7 +452,30 @@ function sectionControls() {
         next.blocks[i] = changed;
         $('config-source').value = JSON.stringify(next, null, 2);
       });
-      row.append(text, select);
+      const importance = node('select');
+      importance.setAttribute(
+        'aria-label',
+        (block.type === 'hero' ? 'Overview' : block.title) + ' emphasis',
+      );
+      for (const [value, label] of [
+        ['', 'Auto hierarchy'],
+        ['primary', 'Primary'],
+        ['supporting', 'Supporting'],
+      ]) {
+        const option = node('option', label);
+        option.value = value;
+        importance.append(option);
+      }
+      importance.value = block.importance || '';
+      importance.disabled = block.type === 'hero';
+      importance.addEventListener('change', () => {
+        const next = JSON.parse($('config-source').value),
+          changed = next.blocks.find((b) => b.id === block.id);
+        if (importance.value) changed.importance = importance.value;
+        else delete changed.importance;
+        $('config-source').value = JSON.stringify(next, null, 2);
+      });
+      row.append(text, select, importance);
       $('section-controls').append(row);
     }
   } catch {

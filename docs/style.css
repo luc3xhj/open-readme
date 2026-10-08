@@ -167,7 +167,7 @@ footer a {
   color: var(--text);
 }
 .document {
-  padding: 32px 44px 36px;
+  padding: 28px 40px 32px;
   font-size: 16px;
   line-height: 1.5;
   color: var(--text);
@@ -205,7 +205,7 @@ footer a {
 .document > img,
 .document > a:has(img) {
   display: block;
-  width: 100%;
+  width: auto;
   margin: 0 0 16px;
 }
 .document img {
@@ -242,6 +242,7 @@ footer a {
 }
 .document .caption {
   font-size: 16px;
+  font-style: italic;
 }
 .document blockquote {
   border-left: 3px solid var(--border);
@@ -521,12 +522,10 @@ textarea {
 }
 .document .styled-heading img {
   display: block;
-  width: 100%;
+  width: auto;
   margin: 0;
 }
-.document .definition-term {
-  margin-bottom: 6px;
-}
+
 .document table {
   display: block;
   overflow-x: auto;
@@ -566,4 +565,22 @@ textarea {
   padding: 6px;
   font-size: 12px;
   max-width: 160px;
+}
+
+.document h2.styled-heading.primary {
+  margin-top: 30px;
+}
+.document h2.styled-heading.supporting {
+  margin-top: 24px;
+}
+.section-control {
+  grid-template-columns: minmax(0, 1fr) 132px 132px;
+}
+@media (max-width: 560px) {
+  .section-control {
+    grid-template-columns: 1fr 1fr;
+  }
+  .section-control > span {
+    grid-column: 1 / -1;
+  }
 }

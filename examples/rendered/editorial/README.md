@@ -4,18 +4,18 @@
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/hero-dark.svg">
-  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Designed GitHub READMEs for coding agents.
-One coherent system, from overview to license." width="960">
+  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Clear, designed READMEs.
+Made for your coding agent." width="960">
 </picture>
 
-## Built for the whole README
+## What you get
 
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/features-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/features-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/features-dark.svg">
-  <img src="assets/open-readme/features-light.svg" alt="Sections that belong together: Each section has Canvas, Console, Journal and Pipeline variants. Start with one system and keep its rhythm.: Overview → Usage → Reference; Your content, your config: Change the design, accent, typography and individual section layouts in JSON.: #6657D8
-&quot;density&quot;: &quot;compact&quot;; Files you can keep: Commit the Markdown and local assets. No hosted image service is required.: README.md
+  <img src="assets/open-readme/features-light.svg" alt="Content comes first: Keep project facts, section order and design in one editable JSON file.: Project facts → JSON → README; Control every section: Choose a complete system. Adjust a section’s style, typography or density when you need to.: #6657D8
+&quot;density&quot;: &quot;compact&quot;; Files you own: Local Markdown and light/dark SVGs. Commit the files; your README needs no image service.: README.md
 open-readme.json
 assets/open-readme/" width="960">
 </picture>
@@ -23,12 +23,12 @@ assets/open-readme/" width="960">
 ## Get started
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.3.2
+npm install --save-dev github:luc3xhj/open-readme#v0.4.0
 npx open-readme init --project cli --design canvas
 npx open-readme render --out README.preview.md --json
 ```
 
-Requires Node.js 22+. Edit the starter with your project’s facts before rendering.
+_Node.js 22+. Fill in your project’s facts, then render a preview._
 
 ## Use with your agent
 
@@ -38,7 +38,7 @@ Load the [agent skill](./skills/open-readme/SKILL.md), then ask:
 
 Your agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README.
 
-## Make it yours
+## Configuration
 
 | Option | Default | Controls |
 | --- | --- | --- |
@@ -54,9 +54,9 @@ Your agent inspects the repository, edits the config and runs the CLI. Review th
 }
 ```
 
-A config fragment. Edit the ordered blocks to change your sections.
+_Override the complete system or one block. Your content stays in the same config._
 
-## How it works
+## Rendering pipeline
 
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/architecture-dark-mobile.svg">
@@ -77,7 +77,7 @@ open-readme.json → Renderer; parallel outputs: README.md, Local SVGs
 
 </details>
 
-## Use it in code
+## JavaScript API
 
 ```js
 import { render } from "@luc3xhj/open-readme";
@@ -86,13 +86,11 @@ const { markdown, assets } = render(config);
 // assets is a Map of local SVG filenames and contents.
 ```
 
-The CLI and browser use this same renderer. The output has no runtime dependency.
+_The CLI and browser use this same renderer. The output has no runtime dependency._
 
 ## Works on GitHub
 
-Commands, prose, tables and links stay selectable. GitHub switches the light and dark images automatically. Commit `README.md` and `assets/open-readme/` together.
-
-JavaScript widgets and hover animation do not run in a GitHub README. The export uses native interactions and static SVGs.
+Code, prose, references and links remain native Markdown. GitHub chooses light or dark SVGs automatically. Commit `README.md` and `assets/open-readme/` together.
 
 Read the [configuration reference](./docs/configuration.md) and [section guide](./docs/sections.md).
 

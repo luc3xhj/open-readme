@@ -59,6 +59,24 @@ export const sectionDesigns = {
 export function sectionDesign(config, block = {}) {
   return sectionDesigns[block.design || config.design];
 }
+
+export function sectionAnchors(blocks) {
+  const anchors = new Map(),
+    counts = new Map();
+  for (const block of blocks) {
+    if (!block.title || ['hero', 'toc'].includes(block.type)) continue;
+    const stem =
+      block.title
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}\s_-]/gu, '')
+        .trim()
+        .replace(/\s+/g, '-') || 'section';
+    const count = counts.get(stem) || 0;
+    counts.set(stem, count + 1);
+    anchors.set(block.id, stem + (count ? '-' + count : ''));
+  }
+  return anchors;
+}
 export function styleSection(block, design) {
   if (!sectionDesigns[design]) throw new Error('Unknown section design.');
   const styled = structuredClone(block),

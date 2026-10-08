@@ -1,5 +1,5 @@
-import { designs } from './designs.js?v=0.3.2';
-import { projects } from './sections.js?v=0.3.2';
+import { designs } from './designs.js?v=0.4.0';
+import { projects } from './sections.js?v=0.4.0';
 export function createStarter(project = 'cli', design = 'plain', name = 'Your project') {
   if (!projects[project])
     throw new Error('Unknown project type. Choose: ' + Object.keys(projects).join(', '));

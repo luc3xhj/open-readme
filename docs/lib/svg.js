@@ -1,10 +1,11 @@
-import { sectionHeading } from './section-visuals.js?v=0.3.2';
-import { designs } from './designs.js?v=0.3.2';
-import { tokens } from './themes.js?v=0.3.2';
-import { designFor } from './designs.js?v=0.3.2';
-import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.3.2';
-import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.3.2';
-export { xml, wrap } from './drawing.js?v=0.3.2';
+import { systemMetrics, systemTimeline } from './supporting-visuals.js?v=0.4.0';
+import { sectionHeading } from './section-visuals.js?v=0.4.0';
+import { designs } from './designs.js?v=0.4.0';
+import { tokens } from './themes.js?v=0.4.0';
+import { designFor } from './designs.js?v=0.4.0';
+import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.4.0';
+import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.4.0';
+export { xml, wrap } from './drawing.js?v=0.4.0';
 
 function hero(block, config, t, w, mobile) {
   const composed = compositionHero(block, t, w, mobile, designFor(config).hero);
@@ -359,8 +360,14 @@ export function renderSvg(block, config, mode = 'light', mobile = false) {
   if (block.type === 'feature')
     return features({ items: [block], layout: 'rows' }, t, w, mobile, 'rows');
   if (block.type === 'diagram' || block.type === 'steps') return diagram(block, t, w, mobile);
-  if (block.type === 'metrics') return metrics(block, t, w, mobile);
-  if (block.type === 'timeline') return rail(block, t, w);
+  if (block.type === 'metrics')
+    return ['canvas', 'console', 'journal', 'pipeline'].includes(t.designId)
+      ? systemMetrics(block, t, w, mobile)
+      : metrics(block, t, w, mobile);
+  if (block.type === 'timeline')
+    return ['canvas', 'console', 'journal', 'pipeline'].includes(t.designId)
+      ? systemTimeline(block, t, w, mobile)
+      : rail(block, t, w);
   if (block.type === 'badge' || block.type === 'link') {
     const isLink = block.type === 'link',
       str = isLink ? block.label : `${block.label} / ${block.value}`,

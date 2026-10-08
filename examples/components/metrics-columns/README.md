@@ -11,4 +11,4 @@
 
 17 component types ([source](<https://github.com/luc3xhj/open-readme/blob/main/src/variants.js>)) · 52 component variants ([source](<https://github.com/luc3xhj/open-readme/blob/main/src/variants.js>)) · 12 header designs ([source](<https://github.com/luc3xhj/open-readme/blob/main/src/designs.js>))
 
-Counts describe this release’s catalog; these are not fetched GitHub statistics.
+_Counts describe this release’s catalog; these are not fetched GitHub statistics._

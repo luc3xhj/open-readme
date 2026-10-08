@@ -47,6 +47,10 @@ const exampleLinks = (value) => {
 };
 const completeDesigns = Object.entries(compositionReferences).map(([id, info]) => {
   const composed = exampleLinks(createComposition(config, id));
+  const palette = composed.blocks
+    .find((b) => b.id === 'features')
+    ?.items.find((i) => i.visual === 'palette');
+  if (palette) palette.example = palette.example.replace(/#[0-9a-fA-F]{6}/g, designs[id].accent);
   const start = composed.blocks.find((b) => b.id === 'quickstart');
   start.code = start.code.replace('--design canvas', '--design ' + id);
   const customize = composed.blocks.find((b) => b.id === 'customize'),

@@ -2,7 +2,7 @@
   {
     "id": "canvas",
     "name": "Canvas",
-    "description": "A product README with an open masthead, illustrated feature cells, a compact options table and rounded diagram nodes.",
+    "description": "A product README with open feature columns, compact sans hierarchy, a native options table and rounded architecture nodes.",
     "references": [
       {
         "name": "Product Hero with Demo Panel",
@@ -32,36 +32,37 @@
           "type": "hero",
           "section": "overview",
           "title": "open-readme",
-          "subtitle": "Designed GitHub READMEs for coding agents.\nOne coherent system, from overview to license.",
-          "meta": "Editable JSON · Native Markdown · Local SVGs"
+          "subtitle": "Clear, designed READMEs.\nMade for your coding agent.",
+          "meta": "Node.js 22+ · MIT · No runtime dependencies"
         },
         {
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Built for the whole README",
+          "title": "What you get",
           "layout": "bento",
           "examples": "none",
           "items": [
             {
-              "title": "Sections that belong together",
-              "description": "Each section has Canvas, Console, Journal and Pipeline variants. Start with one system and keep its rhythm.",
+              "title": "Content comes first",
+              "description": "Keep project facts, section order and design in one editable JSON file.",
               "visual": "flow",
-              "example": "Overview → Usage → Reference"
+              "example": "Project facts → JSON → README"
             },
             {
-              "title": "Your content, your config",
-              "description": "Change the design, accent, typography and individual section layouts in JSON.",
+              "title": "Control every section",
+              "description": "Choose a complete system. Adjust a section’s style, typography or density when you need to.",
               "visual": "palette",
               "example": "#6657D8\n\"density\": \"compact\""
             },
             {
-              "title": "Files you can keep",
-              "description": "Commit the Markdown and local assets. No hosted image service is required.",
+              "title": "Files you own",
+              "description": "Local Markdown and light/dark SVGs. Commit the files; your README needs no image service.",
               "visual": "files",
               "example": "README.md\nopen-readme.json\nassets/open-readme/"
             }
-          ]
+          ],
+          "importance": "primary"
         },
         {
           "id": "quickstart",
@@ -70,21 +71,23 @@
           "title": "Get started",
           "layout": "native",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.3.2\nnpx open-readme init --project cli --design canvas\nnpx open-readme render --out README.preview.md --json",
-          "caption": "Requires Node.js 22+. Edit the starter with your project’s facts before rendering."
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --project cli --design canvas\nnpx open-readme render --out README.preview.md --json",
+          "caption": "Node.js 22+. Fill in your project’s facts, then render a preview.",
+          "importance": "primary"
         },
         {
           "id": "agent",
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README."
+          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README.",
+          "importance": "primary"
         },
         {
           "id": "configuration",
           "type": "comparison",
           "section": "configuration",
-          "title": "Make it yours",
+          "title": "Configuration",
           "layout": "table",
           "columns": [
             "Option",
@@ -112,7 +115,8 @@
               "Inherited",
               "One section’s design variant"
             ]
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "customize",
@@ -121,13 +125,13 @@
           "language": "json",
           "layout": "native",
           "code": "{\n  \"design\": \"canvas\",\n  \"style\": {\n    \"accent\": \"#6657D8\",\n    \"density\": \"compact\"\n  }\n}",
-          "caption": "A config fragment. Edit the ordered blocks to change your sections."
+          "caption": "Override the complete system or one block. Your content stays in the same config."
         },
         {
           "id": "architecture",
           "type": "diagram",
           "section": "architecture",
-          "title": "How it works",
+          "title": "Rendering pipeline",
           "layout": "beam",
           "items": [
             {
@@ -146,38 +150,43 @@
               "title": "Local SVGs",
               "description": "Light, dark and narrow layouts"
             }
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "api",
           "type": "code",
           "section": "api",
-          "title": "Use it in code",
+          "title": "JavaScript API",
           "language": "js",
           "layout": "native",
           "code": "import { render } from \"@luc3xhj/open-readme\";\n\nconst { markdown, assets } = render(config);\n// assets is a Map of local SVG filenames and contents.",
-          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency."
+          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency.",
+          "importance": "supporting"
         },
         {
           "id": "compatibility",
           "type": "markdown",
           "section": "compatibility",
           "title": "Works on GitHub",
-          "body": "Commands, prose, tables and links stay selectable. GitHub switches the light and dark images automatically. Commit `README.md` and `assets/open-readme/` together.\n\nJavaScript widgets and hover animation do not run in a GitHub README. The export uses native interactions and static SVGs.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md)."
+          "body": "Code, prose, references and links remain native Markdown. GitHub chooses light or dark SVGs automatically. Commit `README.md` and `assets/open-readme/` together.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md).",
+          "importance": "supporting"
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contribute",
-          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README."
+          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README.",
+          "importance": "supporting"
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License & credits",
-          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/)."
+          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/).",
+          "importance": "supporting"
         }
       ]
     }
@@ -185,7 +194,7 @@
   {
     "id": "console",
     "name": "Console",
-    "description": "A command manual with prompt headings, a mono feature grid, an aligned text reference and a file-tree diagram.",
+    "description": "A command manual with compact mono hierarchy, two-column entries, an aligned reference and a branching file tree.",
     "references": [
       {
         "name": "TerminalBentoGrid",
@@ -215,36 +224,37 @@
           "type": "hero",
           "section": "overview",
           "title": "open-readme",
-          "subtitle": "Designed GitHub READMEs for coding agents.\nOne coherent system, from overview to license.",
-          "meta": "Editable JSON · Native Markdown · Local SVGs"
+          "subtitle": "Clear, designed READMEs.\nMade for your coding agent.",
+          "meta": "Node.js 22+ · MIT · No runtime dependencies"
         },
         {
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Built for the whole README",
+          "title": "What you get",
           "layout": "terminal-grid",
           "examples": "none",
           "items": [
             {
-              "title": "Sections that belong together",
-              "description": "Each section has Canvas, Console, Journal and Pipeline variants. Start with one system and keep its rhythm.",
+              "title": "Content comes first",
+              "description": "Keep project facts, section order and design in one editable JSON file.",
               "visual": "flow",
-              "example": "Overview → Usage → Reference"
+              "example": "Project facts → JSON → README"
             },
             {
-              "title": "Your content, your config",
-              "description": "Change the design, accent, typography and individual section layouts in JSON.",
+              "title": "Control every section",
+              "description": "Choose a complete system. Adjust a section’s style, typography or density when you need to.",
               "visual": "palette",
-              "example": "#6657D8\n\"density\": \"compact\""
+              "example": "#24764C\n\"density\": \"compact\""
             },
             {
-              "title": "Files you can keep",
-              "description": "Commit the Markdown and local assets. No hosted image service is required.",
+              "title": "Files you own",
+              "description": "Local Markdown and light/dark SVGs. Commit the files; your README needs no image service.",
               "visual": "files",
               "example": "README.md\nopen-readme.json\nassets/open-readme/"
             }
-          ]
+          ],
+          "importance": "primary"
         },
         {
           "id": "quickstart",
@@ -253,21 +263,23 @@
           "title": "Get started",
           "layout": "native",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.3.2\nnpx open-readme init --project cli --design console\nnpx open-readme render --out README.preview.md --json",
-          "caption": "Requires Node.js 22+. Edit the starter with your project’s facts before rendering."
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --project cli --design console\nnpx open-readme render --out README.preview.md --json",
+          "caption": "Node.js 22+. Fill in your project’s facts, then render a preview.",
+          "importance": "primary"
         },
         {
           "id": "agent",
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README."
+          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README.",
+          "importance": "primary"
         },
         {
           "id": "configuration",
           "type": "comparison",
           "section": "configuration",
-          "title": "Make it yours",
+          "title": "Configuration",
           "layout": "reference",
           "columns": [
             "Option",
@@ -295,7 +307,8 @@
               "Inherited",
               "One section’s design variant"
             ]
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "customize",
@@ -304,13 +317,13 @@
           "language": "json",
           "layout": "native",
           "code": "{\n  \"design\": \"console\",\n  \"style\": {\n    \"accent\": \"#24764C\",\n    \"density\": \"compact\"\n  }\n}",
-          "caption": "A config fragment. Edit the ordered blocks to change your sections."
+          "caption": "Override the complete system or one block. Your content stays in the same config."
         },
         {
           "id": "architecture",
           "type": "diagram",
           "section": "architecture",
-          "title": "How it works",
+          "title": "Rendering pipeline",
           "layout": "beam",
           "items": [
             {
@@ -329,38 +342,43 @@
               "title": "Local SVGs",
               "description": "Light, dark and narrow layouts"
             }
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "api",
           "type": "code",
           "section": "api",
-          "title": "Use it in code",
+          "title": "JavaScript API",
           "language": "js",
           "layout": "native",
           "code": "import { render } from \"@luc3xhj/open-readme\";\n\nconst { markdown, assets } = render(config);\n// assets is a Map of local SVG filenames and contents.",
-          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency."
+          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency.",
+          "importance": "supporting"
         },
         {
           "id": "compatibility",
           "type": "markdown",
           "section": "compatibility",
           "title": "Works on GitHub",
-          "body": "Commands, prose, tables and links stay selectable. GitHub switches the light and dark images automatically. Commit `README.md` and `assets/open-readme/` together.\n\nJavaScript widgets and hover animation do not run in a GitHub README. The export uses native interactions and static SVGs.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md)."
+          "body": "Code, prose, references and links remain native Markdown. GitHub chooses light or dark SVGs automatically. Commit `README.md` and `assets/open-readme/` together.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md).",
+          "importance": "supporting"
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contribute",
-          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README."
+          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README.",
+          "importance": "supporting"
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License & credits",
-          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/)."
+          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/).",
+          "importance": "supporting"
         }
       ]
     }
@@ -368,7 +386,7 @@
   {
     "id": "journal",
     "name": "Journal",
-    "description": "An editorial README with serif section headings, connected feature partitions, definition lists and unframed diagrams.",
+    "description": "An editorial README with an asymmetric serif masthead, three-column feature entries, inline definitions and unframed diagrams.",
     "references": [
       {
         "name": "Feature Overview Bento",
@@ -398,36 +416,37 @@
           "type": "hero",
           "section": "overview",
           "title": "open-readme",
-          "subtitle": "Designed GitHub READMEs for coding agents.\nOne coherent system, from overview to license.",
-          "meta": "Editable JSON · Native Markdown · Local SVGs"
+          "subtitle": "Clear, designed READMEs.\nMade for your coding agent.",
+          "meta": "Node.js 22+ · MIT · No runtime dependencies"
         },
         {
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Built for the whole README",
+          "title": "What you get",
           "layout": "lattice",
           "examples": "none",
           "items": [
             {
-              "title": "Sections that belong together",
-              "description": "Each section has Canvas, Console, Journal and Pipeline variants. Start with one system and keep its rhythm.",
+              "title": "Content comes first",
+              "description": "Keep project facts, section order and design in one editable JSON file.",
               "visual": "flow",
-              "example": "Overview → Usage → Reference"
+              "example": "Project facts → JSON → README"
             },
             {
-              "title": "Your content, your config",
-              "description": "Change the design, accent, typography and individual section layouts in JSON.",
+              "title": "Control every section",
+              "description": "Choose a complete system. Adjust a section’s style, typography or density when you need to.",
               "visual": "palette",
-              "example": "#6657D8\n\"density\": \"compact\""
+              "example": "#9B583D\n\"density\": \"compact\""
             },
             {
-              "title": "Files you can keep",
-              "description": "Commit the Markdown and local assets. No hosted image service is required.",
+              "title": "Files you own",
+              "description": "Local Markdown and light/dark SVGs. Commit the files; your README needs no image service.",
               "visual": "files",
               "example": "README.md\nopen-readme.json\nassets/open-readme/"
             }
-          ]
+          ],
+          "importance": "primary"
         },
         {
           "id": "quickstart",
@@ -436,21 +455,23 @@
           "title": "Get started",
           "layout": "native",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.3.2\nnpx open-readme init --project cli --design journal\nnpx open-readme render --out README.preview.md --json",
-          "caption": "Requires Node.js 22+. Edit the starter with your project’s facts before rendering."
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --project cli --design journal\nnpx open-readme render --out README.preview.md --json",
+          "caption": "Node.js 22+. Fill in your project’s facts, then render a preview.",
+          "importance": "primary"
         },
         {
           "id": "agent",
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README."
+          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README.",
+          "importance": "primary"
         },
         {
           "id": "configuration",
           "type": "comparison",
           "section": "configuration",
-          "title": "Make it yours",
+          "title": "Configuration",
           "layout": "definitions",
           "columns": [
             "Option",
@@ -478,7 +499,8 @@
               "Inherited",
               "One section’s design variant"
             ]
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "customize",
@@ -487,13 +509,13 @@
           "language": "json",
           "layout": "native",
           "code": "{\n  \"design\": \"journal\",\n  \"style\": {\n    \"accent\": \"#9B583D\",\n    \"density\": \"compact\"\n  }\n}",
-          "caption": "A config fragment. Edit the ordered blocks to change your sections."
+          "caption": "Override the complete system or one block. Your content stays in the same config."
         },
         {
           "id": "architecture",
           "type": "diagram",
           "section": "architecture",
-          "title": "How it works",
+          "title": "Rendering pipeline",
           "layout": "beam",
           "items": [
             {
@@ -512,38 +534,43 @@
               "title": "Local SVGs",
               "description": "Light, dark and narrow layouts"
             }
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "api",
           "type": "code",
           "section": "api",
-          "title": "Use it in code",
+          "title": "JavaScript API",
           "language": "js",
           "layout": "native",
           "code": "import { render } from \"@luc3xhj/open-readme\";\n\nconst { markdown, assets } = render(config);\n// assets is a Map of local SVG filenames and contents.",
-          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency."
+          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency.",
+          "importance": "supporting"
         },
         {
           "id": "compatibility",
           "type": "markdown",
           "section": "compatibility",
           "title": "Works on GitHub",
-          "body": "Commands, prose, tables and links stay selectable. GitHub switches the light and dark images automatically. Commit `README.md` and `assets/open-readme/` together.\n\nJavaScript widgets and hover animation do not run in a GitHub README. The export uses native interactions and static SVGs.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md)."
+          "body": "Code, prose, references and links remain native Markdown. GitHub chooses light or dark SVGs automatically. Commit `README.md` and `assets/open-readme/` together.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md).",
+          "importance": "supporting"
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contribute",
-          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README."
+          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README.",
+          "importance": "supporting"
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License & credits",
-          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/)."
+          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/).",
+          "importance": "supporting"
         }
       ]
     }
@@ -551,7 +578,7 @@
   {
     "id": "pipeline",
     "name": "Pipeline",
-    "description": "A technical README with numbered rails, illustrated rows, a transposed configuration matrix and orthogonal connectors.",
+    "description": "A technical README with numbered headings, paired explanation/figure rows, a reference matrix and architecture lanes.",
     "references": [
       {
         "name": "Animated Beam",
@@ -581,36 +608,37 @@
           "type": "hero",
           "section": "overview",
           "title": "open-readme",
-          "subtitle": "Designed GitHub READMEs for coding agents.\nOne coherent system, from overview to license.",
-          "meta": "Editable JSON · Native Markdown · Local SVGs"
+          "subtitle": "Clear, designed READMEs.\nMade for your coding agent.",
+          "meta": "Node.js 22+ · MIT · No runtime dependencies"
         },
         {
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Built for the whole README",
+          "title": "What you get",
           "layout": "rows",
           "examples": "none",
           "items": [
             {
-              "title": "Sections that belong together",
-              "description": "Each section has Canvas, Console, Journal and Pipeline variants. Start with one system and keep its rhythm.",
+              "title": "Content comes first",
+              "description": "Keep project facts, section order and design in one editable JSON file.",
               "visual": "flow",
-              "example": "Overview → Usage → Reference"
+              "example": "Project facts → JSON → README"
             },
             {
-              "title": "Your content, your config",
-              "description": "Change the design, accent, typography and individual section layouts in JSON.",
+              "title": "Control every section",
+              "description": "Choose a complete system. Adjust a section’s style, typography or density when you need to.",
               "visual": "palette",
-              "example": "#6657D8\n\"density\": \"compact\""
+              "example": "#256DCE\n\"density\": \"compact\""
             },
             {
-              "title": "Files you can keep",
-              "description": "Commit the Markdown and local assets. No hosted image service is required.",
+              "title": "Files you own",
+              "description": "Local Markdown and light/dark SVGs. Commit the files; your README needs no image service.",
               "visual": "files",
               "example": "README.md\nopen-readme.json\nassets/open-readme/"
             }
-          ]
+          ],
+          "importance": "primary"
         },
         {
           "id": "quickstart",
@@ -619,21 +647,23 @@
           "title": "Get started",
           "layout": "native",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.3.2\nnpx open-readme init --project cli --design pipeline\nnpx open-readme render --out README.preview.md --json",
-          "caption": "Requires Node.js 22+. Edit the starter with your project’s facts before rendering."
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --project cli --design pipeline\nnpx open-readme render --out README.preview.md --json",
+          "caption": "Node.js 22+. Fill in your project’s facts, then render a preview.",
+          "importance": "primary"
         },
         {
           "id": "agent",
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README."
+          "body": "Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.\n\nYour agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README.",
+          "importance": "primary"
         },
         {
           "id": "configuration",
           "type": "comparison",
           "section": "configuration",
-          "title": "Make it yours",
+          "title": "Configuration",
           "layout": "matrix",
           "columns": [
             "Option",
@@ -661,7 +691,8 @@
               "Inherited",
               "One section’s design variant"
             ]
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "customize",
@@ -670,13 +701,13 @@
           "language": "json",
           "layout": "native",
           "code": "{\n  \"design\": \"pipeline\",\n  \"style\": {\n    \"accent\": \"#256DCE\",\n    \"density\": \"compact\"\n  }\n}",
-          "caption": "A config fragment. Edit the ordered blocks to change your sections."
+          "caption": "Override the complete system or one block. Your content stays in the same config."
         },
         {
           "id": "architecture",
           "type": "diagram",
           "section": "architecture",
-          "title": "How it works",
+          "title": "Rendering pipeline",
           "layout": "beam",
           "items": [
             {
@@ -695,38 +726,43 @@
               "title": "Local SVGs",
               "description": "Light, dark and narrow layouts"
             }
-          ]
+          ],
+          "importance": "supporting"
         },
         {
           "id": "api",
           "type": "code",
           "section": "api",
-          "title": "Use it in code",
+          "title": "JavaScript API",
           "language": "js",
           "layout": "native",
           "code": "import { render } from \"@luc3xhj/open-readme\";\n\nconst { markdown, assets } = render(config);\n// assets is a Map of local SVG filenames and contents.",
-          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency."
+          "caption": "The CLI and browser use this same renderer. The output has no runtime dependency.",
+          "importance": "supporting"
         },
         {
           "id": "compatibility",
           "type": "markdown",
           "section": "compatibility",
           "title": "Works on GitHub",
-          "body": "Commands, prose, tables and links stay selectable. GitHub switches the light and dark images automatically. Commit `README.md` and `assets/open-readme/` together.\n\nJavaScript widgets and hover animation do not run in a GitHub README. The export uses native interactions and static SVGs.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md)."
+          "body": "Code, prose, references and links remain native Markdown. GitHub chooses light or dark SVGs automatically. Commit `README.md` and `assets/open-readme/` together.\n\nRead the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md).",
+          "importance": "supporting"
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contribute",
-          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README."
+          "body": "[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README.",
+          "importance": "supporting"
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License & credits",
-          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/)."
+          "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/).",
+          "importance": "supporting"
         }
       ]
     }

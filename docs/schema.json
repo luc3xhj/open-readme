@@ -106,6 +106,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -248,6 +255,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -376,6 +390,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -497,6 +518,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",
@@ -661,6 +689,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -787,6 +822,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",
@@ -920,6 +962,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1043,6 +1092,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1128,6 +1184,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",
@@ -1247,6 +1310,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",
@@ -1381,6 +1451,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1473,6 +1550,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",
@@ -1597,6 +1681,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",
@@ -1732,6 +1823,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1866,6 +1964,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1996,6 +2101,13 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -2099,6 +2211,13 @@
                 "minLength": 1,
                 "maxLength": 160,
                 "pattern": "\\S"
+              },
+              "importance": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting"
+                ]
               },
               "design": {
                 "type": "string",

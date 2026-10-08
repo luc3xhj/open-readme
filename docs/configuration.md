@@ -6,7 +6,7 @@ A config contains `version: 1`, a palette (`theme`), and ordered `blocks`. `desi
 {
   "version": 1,
   "project": "cli",
-  "design": "swiss",
+  "design": "canvas",
   "theme": "minimal",
   "style": { "density": "compact" },
   "blocks": [
@@ -61,27 +61,27 @@ For an existing config, `createComposition(config, 'journal')` clones it and set
 | markdown   | Native prose                                                | body; optional title                                                                         |
 | toc        | Section links                                               | No content required; links to existing titled blocks                                         |
 
-Every component requires unique `id` and `type`. Optional `design` selects Canvas, Console, Journal or Pipeline for that section; omit it to inherit the complete system. All block types accept an optional heading `title` (required for a hero); the complete systems render accessible, themed section headings. An explicit anchor preserves navigation links. Use `section` to map it to a reader question from the [section guide](./sections.md). Unknown fields, unsafe schemes and mismatched rows produce errors with field paths. The CLI catalog returns fields and variants as JSON.
+Every component requires unique `id` and `type`. Optional `design` selects Canvas, Console, Journal or Pipeline for that section; omit it to inherit the complete system. All block types accept an optional heading `title` (required for a hero) and `importance: "primary" | "supporting"`; omit importance to derive the hierarchy from the semantic section. Main sections receive more emphasis than supporting references. The workbench exposes this control alongside each section design. The complete systems render accessible, themed section headings. An explicit anchor preserves navigation links. Use `section` to map it to a reader question from the [section guide](./sections.md). Unknown fields, unsafe schemes and mismatched rows produce errors with field paths. The CLI catalog returns fields and variants as JSON.
 
 ### Illustrated features and previews
 
-The four complete designs use a transparent, left-aligned masthead. `title` is the project name and `subtitle` is its factual introduction. Optional `eyebrow`, `headline`, `command` and `meta` add text in the same column. A supplied `preview` is shown as a single restrained source example; its exact text remains in a native disclosure. Omit it when the README already explains the same thing. These complete designs do not add previews, badges or diagrams automatically.
+The four complete designs use compact, transparent mastheads. Journal and Pipeline split the project name and introduction across two columns on wide screens; Console and Canvas use a continuous text column. `title` is the project name and `subtitle` is its factual introduction. Optional `eyebrow`, `headline`, `command` and `meta` add text in the same column. A supplied `preview` is shown as a single restrained source example; its exact text remains in a native disclosure. Omit it when the README already explains the same thing. These complete designs do not add previews, badges or diagrams automatically.
 
 A feature block may set `examples: "none"` when its illustration is explanatory and does not contain instructions to copy; otherwise exact examples appear in a native disclosure. Image alternatives keep the complete supplied facts. A feature's `visual` can be `flow`, `code`, `files`, `palette`, `preview`, `metric` or `none`. `example` supplies the actual demonstration text; `value` supplies a metric. Flow example labels are separated by `→` or newlines. Palette illustrations use six-digit hex colors found in the example. Examples remain available as exact, selectable native text even when the illustration wraps or abbreviates them.
 
-Bento emphasizes one feature with smaller supporting cells; Lattice uses connected fine-rule partitions; Terminal Grid uses compact mono cells. Rows show explanations beside supplied illustrations. No data, numbers or examples are fetched or inferred.
+The complete systems interpret `bento` as open feature columns on a shared baseline, `lattice` as editorial title/explanation/evidence rows, and `terminal-grid` as a compact two-column manual. `rows` pairs explanation with a functional illustration. These layouts share the same document-scale text roles without repeated large cards. No data, numbers or examples are fetched or inferred.
 
 A `beam` diagram has a specific relationship: item 1 is the input, item 2 the processor, and remaining items are parallel outputs. Use `flow` for a sequential chain. Changing a design never changes that relationship.
 
 ## Visual controls
 
-| Field in `style` | Values                                   |
-| ---------------- | ---------------------------------------- |
-| accent           | Six-digit hex color                      |
-| density          | compact or comfortable                   |
-| radius           | 0–24 pixels on framed components         |
-| width            | 640–1200 pixels; narrow variants use 560 |
-| font             | mono, sans or serif system fonts         |
+| Field in `style` | Values                                                                |
+| ---------------- | --------------------------------------------------------------------- |
+| accent           | Six-digit hex color                                                   |
+| density          | compact or comfortable                                                |
+| radius           | 0–24 pixels on framed components                                      |
+| width            | 640–1200 pixels; compact variants use 760 and narrow variants use 480 |
+| font             | mono, sans or serif system fonts                                      |
 
 Each component can also override `accent`, `density`, `radius` and `font` in its own `style` object. Block-level styles are preserved by the renderer. Controls apply to generated SVGs. Display fonts and SVG section spacing can be overridden in the complete designs; optional visual frames also support radius control; source code and filenames keep monospace typography. GitHub controls native Markdown typography. Fonts depend on the viewer’s system. Metrics are supplied values, with no network fetching or fabricated statistics.
 
@@ -138,7 +138,7 @@ Light/dark/mobile SVG variants use `<picture>`. Links wrap visual assets. Comman
 ## Install
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.3.2
+npm install --save-dev github:luc3xhj/open-readme#v0.4.0
 npx open-readme --help
 ```
 

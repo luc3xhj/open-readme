@@ -5,7 +5,7 @@ export const compositionReferences = {
   canvas: {
     name: 'Canvas',
     description:
-      'A product README with an open masthead, illustrated feature cells, a compact options table and rounded diagram nodes.',
+      'A product README with open feature columns, compact sans hierarchy, a native options table and rounded architecture nodes.',
     references: [
       {
         name: 'Product Hero with Demo Panel',
@@ -26,7 +26,7 @@ export const compositionReferences = {
   console: {
     name: 'Console',
     description:
-      'A command manual with prompt headings, a mono feature grid, an aligned text reference and a file-tree diagram.',
+      'A command manual with compact mono hierarchy, two-column entries, an aligned reference and a branching file tree.',
     references: [
       {
         name: 'TerminalBentoGrid',
@@ -47,7 +47,7 @@ export const compositionReferences = {
   journal: {
     name: 'Journal',
     description:
-      'An editorial README with serif section headings, connected feature partitions, definition lists and unframed diagrams.',
+      'An editorial README with an asymmetric serif masthead, three-column feature entries, inline definitions and unframed diagrams.',
     references: [
       {
         name: 'Feature Overview Bento',
@@ -68,7 +68,7 @@ export const compositionReferences = {
   pipeline: {
     name: 'Pipeline',
     description:
-      'A technical README with numbered rails, illustrated rows, a transposed configuration matrix and orthogonal connectors.',
+      'A technical README with numbered headings, paired explanation/figure rows, a reference matrix and architecture lanes.',
     references: [
       {
         name: 'Animated Beam',

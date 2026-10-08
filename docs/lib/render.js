@@ -1,8 +1,8 @@
-import { sectionDesign } from './section-designs.js?v=0.3.2';
-import { comparisonView } from './reference.js?v=0.3.2';
-import { validateConfig } from './schema.js?v=0.3.2';
-import { designFor } from './designs.js?v=0.3.2';
-import { renderSvg, xml } from './svg.js?v=0.3.2';
+import { sectionDesign, sectionAnchors } from './section-designs.js?v=0.4.0';
+import { comparisonView } from './reference.js?v=0.4.0';
+import { validateConfig } from './schema.js?v=0.4.0';
+import { designFor } from './designs.js?v=0.4.0';
+import { renderSvg, xml } from './svg.js?v=0.4.0';
 export const md = (value) =>
   String(value)
     .replace(/\\/g, '\\\\')
@@ -56,7 +56,7 @@ export function render(config, options = {}) {
       return view.entries
         .map(
           (entry) =>
-            `**${md(view.label)}: ${md(entry.term)}**\n\n` +
+            `**${md(view.label)}: ${md(entry.term)}** — ` +
             entry.fields.map((field) => `${md(field.label)}: ${md(field.value)}`).join(' · '),
         )
         .join('\n\n');
@@ -79,23 +79,12 @@ export function render(config, options = {}) {
           }`,
       )
       .join('\n\n');
-  const headingSlugs = new Map(),
-    slugCounts = new Map();
-  for (const b of config.blocks)
-    if (b.title && b.type !== 'hero' && b.type !== 'toc') {
-      const stem = b.title
-          .toLowerCase()
-          .replace(/[^\p{L}\p{N}\s_-]/gu, '')
-          .replace(/\s/g, '-'),
-        n = slugCounts.get(stem) || 0;
-      slugCounts.set(stem, n + 1);
-      headingSlugs.set(b.id, stem + (n ? '-' + n : ''));
-    }
+  const headingSlugs = sectionAnchors(config.blocks);
   for (const block of selected) {
     const heading =
       block.title && block.type !== 'hero'
         ? sectionDesign(config, block)
-          ? `<h2 id="${xml(headingSlugs.get(block.id) || 'contents')}"><a href="#${xml(headingSlugs.get(block.id) || 'contents')}">\n${picture({ type: 'heading', title: block.title, design: block.design, style: block.style, ordinal: config.blocks.filter((b) => b.title && b.type !== 'hero').findIndex((b) => b.id === block.id) + 1 }, block.id + '__heading', block.title)}\n</a></h2>\n\n`
+          ? `<h2 id="${xml(headingSlugs.get(block.id) || 'contents')}"><a href="#${xml(headingSlugs.get(block.id) || 'contents')}">\n${picture({ type: 'heading', title: block.title, section: block.section, importance: block.importance, design: block.design, style: block.style, ordinal: config.blocks.filter((b) => b.title && b.type !== 'hero').findIndex((b) => b.id === block.id) + 1 }, block.id + '__heading', block.title)}\n</a></h2>\n\n`
           : `## ${md(block.title)}\n\n`
         : '';
     switch (block.type) {
@@ -206,7 +195,7 @@ export function render(config, options = {}) {
                 '\n\n' +
                 disclosure('Copyable command / source', source)
               : source) +
-            (block.caption ? `\n\n${md(block.caption)}` : ''),
+            (block.caption ? `\n\n_${md(block.caption)}_` : ''),
         );
         break;
       }
@@ -255,7 +244,7 @@ export function render(config, options = {}) {
                 '\n\n'
               : '') +
             media(block, block.width || config.style?.width || 960) +
-            (block.caption ? '\n\n' + md(block.caption) : ''),
+            (block.caption ? '\n\n_' + md(block.caption) + '_' : ''),
         );
         break;
       case 'gallery':
@@ -273,7 +262,7 @@ export function render(config, options = {}) {
                   .map(
                     (item) =>
                       media(item, config.style?.width || 960) +
-                      (item.caption ? '\n\n' + md(item.caption) : ''),
+                      (item.caption ? '\n\n_' + md(item.caption) + '_' : ''),
                   )
                   .join('\n\n')),
         );
@@ -316,7 +305,7 @@ export function render(config, options = {}) {
                       )
                       .join('\n'),
                 )) +
-            (block.caption ? '\n\n' + md(block.caption) : ''),
+            (block.caption ? '\n\n_' + md(block.caption) + '_' : ''),
         );
         break;
       }
@@ -331,7 +320,7 @@ export function render(config, options = {}) {
                   `${md(i.value)} ${md(i.label)}${i.source ? ' (' + link('source', i.source) + ')' : ''}`,
               )
               .join(' · ') +
-            (block.caption ? '\n\n' + md(block.caption) : ''),
+            (block.caption ? '\n\n_' + md(block.caption) + '_' : ''),
         );
         break;
       case 'timeline': {

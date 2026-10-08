@@ -564,3 +564,109 @@ test('FAQ, notice and link sections expose coordinated headings with usable nati
     assert.ok(markdown.includes('<h2 id="questions"><a href="#questions">'));
   }
 });
+
+test('measured architecture layouts preserve branches without overlapping nodes or crossing unrelated nodes', async () => {
+  const { beamLayout } = await import('../src/section-visuals.js');
+  const { tokens } = await import('../src/themes.js');
+  const { designs } = await import('../src/designs.js');
+  const segmentHitsInterior = (a, b, n) => {
+    const inset = 0.01;
+    if (a[0] === b[0])
+      return (
+        a[0] > n.x + inset &&
+        a[0] < n.x + n.width - inset &&
+        Math.max(a[1], b[1]) > n.y + inset &&
+        Math.min(a[1], b[1]) < n.y + n.height - inset
+      );
+    return (
+      a[1] > n.y + inset &&
+      a[1] < n.y + n.height - inset &&
+      Math.max(a[0], b[0]) > n.x + inset &&
+      Math.min(a[0], b[0]) < n.x + n.width - inset
+    );
+  };
+  for (const design of ['canvas', 'console', 'journal', 'pipeline']) {
+    for (const width of [960, 760, 480]) {
+      for (const count of [3, 8, 24]) {
+        const t = {
+            ...tokens({ design, theme: designs[design].theme }),
+            scale: width === 760 ? 1.2 : 1,
+          },
+          block = {
+            items: Array.from({ length: count }, (_, i) => ({
+              title: i === 0 ? 'configuration-with-a-long-filename.json' : 'Actual 文件 ' + i,
+              description: i % 2 ? 'Verified source description. '.repeat(4) : 'Local artifact.',
+            })),
+          },
+          graph = beamLayout(block, t, width, width === 480);
+        assert.deepEqual(
+          graph.edges.map((e) => [e.from, e.to]),
+          [[0, 1], ...Array.from({ length: count - 2 }, (_, i) => [1, i + 2])],
+        );
+        for (const n of graph.nodes) {
+          assert.ok(n.x >= 0 && n.x + n.width <= width, design + ': horizontal bounds');
+          assert.ok(n.y >= 0 && n.y + n.height <= graph.height, design + ': vertical bounds');
+          for (const other of graph.nodes.filter((m) => m.i > n.i))
+            assert.ok(
+              n.x + n.width <= other.x ||
+                other.x + other.width <= n.x ||
+                n.y + n.height <= other.y ||
+                other.y + other.height <= n.y,
+              design + ': overlapping nodes',
+            );
+        }
+        for (const e of graph.edges) {
+          const end = e.points.at(-1),
+            target = graph.nodes[e.to];
+          assert.ok(
+            end[0] === target.x ||
+              end[0] === target.x + target.width ||
+              end[1] === target.y ||
+              end[1] === target.y + target.height,
+            design + ': endpoint must attach to target boundary',
+          );
+          for (let j = 1; j < e.points.length; j++)
+            for (const n of graph.nodes.filter((n) => n.i !== e.from && n.i !== e.to))
+              assert.ok(
+                !segmentHitsInterior(e.points[j - 1], e.points[j], n),
+                design + ': edge crosses unrelated node',
+              );
+        }
+      }
+    }
+  }
+});
+
+test('supporting sections have quieter headings and can be explicitly promoted without rewriting content', async () => {
+  const config = {
+    version: 1,
+    design: 'journal',
+    theme: 'editorial',
+    blocks: [
+      {
+        id: 'start',
+        type: 'code',
+        section: 'quickstart',
+        title: 'Start',
+        code: 'verified-command',
+      },
+      { id: 'api', type: 'code', section: 'api', title: 'API', code: 'verified-api' },
+    ],
+  };
+  const original = render(config),
+    size = (svg) =>
+      Math.max(...[...svg.matchAll(/font-size="([\d.]+)"/g)].map((m) => Number(m[1])));
+  assert.ok(
+    size(original.assets.get('api__heading-light.svg')) <
+      size(original.assets.get('start__heading-light.svg')),
+  );
+  config.blocks[1].importance = 'primary';
+  const promoted = render(config);
+  assert.equal(
+    size(promoted.assets.get('api__heading-light.svg')),
+    size(original.assets.get('start__heading-light.svg')),
+  );
+  assert.ok(promoted.markdown.includes('verified-api'));
+  config.blocks[1].importance = 'arbitrary';
+  assert.ok(validateConfig(config).some((error) => error.path.includes('importance')));
+});

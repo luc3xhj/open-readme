@@ -1,6 +1,6 @@
-import { validateConfig } from './schema.js?v=0.2.1';
-import { designFor } from './designs.js?v=0.2.1';
-import { renderSvg, xml } from './svg.js?v=0.2.1';
+import { validateConfig } from './schema.js?v=0.2.2';
+import { designFor } from './designs.js?v=0.2.2';
+import { renderSvg, xml } from './svg.js?v=0.2.2';
 export const md = (value) =>
   String(value)
     .replace(/\\/g, '\\\\')

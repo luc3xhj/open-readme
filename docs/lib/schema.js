@@ -1,5 +1,5 @@
-import { designs } from './designs.js?v=0.2.1';
-import { sections, projects } from './sections.js?v=0.2.1';
+import { designs } from './designs.js?v=0.2.2';
+import { sections, projects } from './sections.js?v=0.2.2';
 const text = { type: 'string', minLength: 1, maxLength: 10000, pattern: '\\S' };
 const short = { ...text, maxLength: 160 };
 const href = {

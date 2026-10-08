@@ -48,7 +48,7 @@ function pagePicture(source, x, y, width, t, size = 16) {
 
 export function compositionHero(block, t, w, mobile, design) {
   if (!['canvas', 'console', 'journal', 'pipeline'].includes(design)) return null;
-  const p = mobile ? 28 : 44,
+  const p = (mobile ? 28 : 44) + t.pad - 28,
     inner = w - 2 * p;
   const headline = block.headline || block.title;
   let body = '',
@@ -70,7 +70,7 @@ export function compositionHero(block, t, w, mobile, design) {
       inner - 20,
       mobile ? 44 : 58,
       t.fg,
-      'sans',
+      t.customFont || 'sans',
       650,
       1.06,
     );
@@ -99,7 +99,7 @@ export function compositionHero(block, t, w, mobile, design) {
       for (let i = 0; i < 8; i++)
         body += curve(sx, y + 30 + i * 25, sx + sw, y + 130 + i * 13, t.accent + '18', 1);
       body += rect(px + 5, py + 7, pw, stageHeight - 40, t.fg + '0A', 'none', 10);
-      body += rect(px, py, pw, stageHeight - 40, t.surface, t.border, 10);
+      body += rect(px, py, pw, stageHeight - 40, t.surface, t.border, t.customRadius ?? 10);
       body += line(px, py + 34, px + pw, py + 34, t.border);
       body +=
         circle(px + 16, py + 17, 3, t.border) +
@@ -154,7 +154,7 @@ export function compositionHero(block, t, w, mobile, design) {
       lw - 51,
       mobile ? 36 : 47,
       t.fg,
-      'mono',
+      t.customFont || 'mono',
       500,
       1.1,
     );
@@ -195,7 +195,17 @@ export function compositionHero(block, t, w, mobile, design) {
     body += label(block.eyebrow || 'OPEN SOURCE', p, y + 25, 10, t.muted, 'mono');
     if (block.meta) body += label(block.meta, w - p, y + 25, 10, t.muted, 'mono', 400, 1, 'end');
     y += 83;
-    const title = paragraph(block.title, p, y, inner, mobile ? 52 : 76, t.fg, 'serif', 400, 1.06);
+    const title = paragraph(
+      block.title,
+      p,
+      y,
+      inner,
+      mobile ? 52 : 76,
+      t.fg,
+      t.customFont || 'serif',
+      400,
+      1.06,
+    );
     body += title.body;
     y = title.bottom + 40;
     body += line(p, y - 15, w - p, y - 15, t.border);
@@ -207,7 +217,7 @@ export function compositionHero(block, t, w, mobile, design) {
         mobile ? inner : inner * 0.54,
         mobile ? 30 : 31,
         t.fg,
-        'serif',
+        t.customFont || 'serif',
         400,
         1.15,
       );
@@ -232,7 +242,17 @@ export function compositionHero(block, t, w, mobile, design) {
   } else {
     body += label(block.eyebrow || 'OPEN SOURCE', p, p + 10, 10, t.muted, 'mono');
     const lw = mobile ? inner : inner * 0.56;
-    const title = paragraph(block.title, p, p + 79, lw, mobile ? 44 : 55, t.fg, 'sans', 600, 1.1);
+    const title = paragraph(
+      block.title,
+      p,
+      p + 79,
+      lw,
+      mobile ? 44 : 55,
+      t.fg,
+      t.customFont || 'sans',
+      600,
+      1.1,
+    );
     body += title.body;
     const sub = paragraph(block.subtitle, p, title.bottom + 34, lw - 14, mobile ? 20 : 18, t.muted);
     body += sub.body;
@@ -316,7 +336,7 @@ function illustration(item, x, y, width, t, mobile, expanded = false) {
       width,
       48,
       t.fg,
-      'sans',
+      t.customFont || 'sans',
       600,
       1.1,
     );
@@ -363,7 +383,7 @@ function illustration(item, x, y, width, t, mobile, expanded = false) {
           body += `<path d="M${startX} ${cursor - 28}C${startX} ${cursor - 10} ${endX} ${cursor - 18} ${endX} ${cursor}" fill="none" stroke="${t.accent}" stroke-width="1.5"/>`;
         }
         body += rect(c.x + 4, cursor + 5, cardWidth, c.height, t.accent + '0A', 'none', 9);
-        body += rect(c.x, cursor, cardWidth, c.height, t.surface, t.border, 9);
+        body += rect(c.x, cursor, cardWidth, c.height, t.surface, t.border, t.customRadius ?? 9);
         body += rect(c.x + 17, cursor + 21, 22, 28, t.bg, t.accent, 3);
         body += label(String(i + 1), c.x + 28, cursor + 40, 11, t.accent, 'mono', 500, 1, 'middle');
         body += label(c.rows, c.x + 52, cursor + 37, size, t.fg, 'mono', 400, 1.4);
@@ -421,20 +441,38 @@ function illustration(item, x, y, width, t, mobile, expanded = false) {
   }
   const code = codePicture(item.example || '', x + 16, y + 31, width - 32, t, mobile ? 17 : 14, 5);
   const body =
-    rect(x, y, width, code.height + 44, t.surface, t.border, kind === 'files' ? 0 : 8) + code.body;
+    rect(
+      x,
+      y,
+      width,
+      code.height + 44,
+      t.surface,
+      t.border,
+      t.customRadius ?? (kind === 'files' ? 0 : 8),
+    ) + code.body;
   return { body, height: code.height + 44 };
 }
 
 export function featureBoard(block, t, w, mobile, layout) {
   if (layout === 'rows' && block.items.some((i) => i.visual)) {
-    const p = mobile ? 28 : 42,
+    const p = (mobile ? 28 : 42) + t.pad - 28,
       inner = w - p * 2;
     let body = '',
       y = p;
     block.items.forEach((item, i) => {
       const textWidth = mobile ? inner : inner * 0.44,
         size = mobile ? 26 : 23;
-      const title = paragraph(item.title, p, y + 37, textWidth, size, t.fg, 'sans', 600, 1.15);
+      const title = paragraph(
+        item.title,
+        p,
+        y + 37,
+        textWidth,
+        size,
+        t.fg,
+        t.customFont || 'sans',
+        600,
+        1.15,
+      );
       const desc = paragraph(
         item.description,
         p,
@@ -462,7 +500,7 @@ export function featureBoard(block, t, w, mobile, layout) {
     );
   }
   if (!['bento', 'lattice', 'terminal-grid'].includes(layout)) return null;
-  const p = mobile ? 22 : 28,
+  const p = (mobile ? 22 : 28) + t.pad - 28,
     gap = layout === 'lattice' ? 0 : 12,
     inner = w - 2 * p;
   const terminal = layout === 'terminal-grid',
@@ -470,10 +508,15 @@ export function featureBoard(block, t, w, mobile, layout) {
   const ts = mobile ? 26 : lattice ? 27 : 22,
     ds = mobile ? 20 : 16;
   function cell(item, x, y, width, height, index) {
-    const pad = mobile ? 23 : 26,
+    const pad = (mobile ? 23 : 26) + t.pad - 28,
       usable = width - 2 * pad;
-    const title = wrap(item.title, usable, ts, terminal ? 'mono' : lattice ? 'serif' : 'sans');
-    const desc = wrap(item.description, usable, ds, terminal ? 'mono' : 'sans');
+    const title = wrap(
+      item.title,
+      usable,
+      ts,
+      t.customFont || (terminal ? 'mono' : lattice ? 'serif' : 'sans'),
+    );
+    const desc = wrap(item.description, usable, ds, t.customFont || (terminal ? 'mono' : 'sans'));
     const contentTop = 37 + (title.length - 1) * ts * 1.15;
     const descY = contentTop + 29,
       descEnd = descY + (desc.length - 1) * ds * 1.35;
@@ -495,7 +538,7 @@ export function featureBoard(block, t, w, mobile, layout) {
       finalHeight,
       lattice ? t.bg : t.surface,
       lattice ? t.border : t.border,
-      lattice || terminal ? 0 : 14,
+      t.customRadius ?? (lattice || terminal ? 0 : 14),
     );
     body += label(
       (terminal ? '> ' : '') + String(index + 1).padStart(2, '0'),
@@ -511,7 +554,7 @@ export function featureBoard(block, t, w, mobile, layout) {
       y + pad + 37,
       ts,
       t.fg,
-      terminal ? 'mono' : lattice ? 'serif' : 'sans',
+      t.customFont || (terminal ? 'mono' : lattice ? 'serif' : 'sans'),
       lattice ? 400 : 600,
       1.15,
     );
@@ -521,7 +564,7 @@ export function featureBoard(block, t, w, mobile, layout) {
       y + pad + descY,
       ds,
       t.muted,
-      terminal ? 'mono' : 'sans',
+      t.customFont || (terminal ? 'mono' : 'sans'),
       400,
       1.35,
     );
@@ -593,22 +636,27 @@ export function beamDiagram(block, t, w, mobile) {
     items.forEach((item, i) => {
       const x = p + cw * (i + 0.5);
       if (i) body += curve(x - cw + 28, 70, x - 28, 70, t.accent, 2);
-      const title = wrap(item.title, cw - 15, 18, 'sans');
+      const title = wrap(item.title, cw - 15, 18, t.customFont || 'sans');
       height = Math.max(height, 152 + (title.length - 1) * 18 * 1.3);
       body +=
         circle(x, 70, 28, t.surface, t.border) +
         label(String(i + 1), x, 76, 17, t.accent, 'mono', 500, 1, 'middle') +
-        label(title, x, 122, 18, t.fg, 'sans', 500, 1.3, 'middle');
+        label(title, x, 122, 18, t.fg, t.customFont || 'sans', 500, 1.3, 'middle');
     });
     return svg(w, height, body, items.map((i) => i.title).join(' → '), t);
   }
   const nodeBottom = (item) => {
-    const titleRows = wrap(item.title, mobile ? 130 : 200, mobile ? 19 : 18, 'sans').length;
+    const titleRows = wrap(
+      item.title,
+      mobile ? 130 : 200,
+      mobile ? 19 : 18,
+      t.customFont || 'sans',
+    ).length;
     const titleEnd = 65 + (titleRows - 1) * (mobile ? 19 : 18) * 1.25;
     return (
       titleEnd +
       (item.description && !mobile
-        ? 24 + (wrap(item.description, 200, 13, 'sans').length - 1) * 13 * 1.35
+        ? 24 + (wrap(item.description, 200, 13, t.customFont || 'sans').length - 1) * 13 * 1.35
         : 0)
     );
   };
@@ -643,16 +691,16 @@ export function beamDiagram(block, t, w, mobile) {
     );
     const width = mobile ? 130 : 200,
       size = mobile ? 19 : 18;
-    const title = wrap(item.title, width, size, 'sans');
-    b += label(title, x, y + 65, size, t.fg, 'sans', 500, 1.25, 'middle');
+    const title = wrap(item.title, width, size, t.customFont || 'sans');
+    b += label(title, x, y + 65, size, t.fg, t.customFont || 'sans', 500, 1.25, 'middle');
     if (item.description && !mobile)
       b += label(
-        wrap(item.description, width, 13, 'sans'),
+        wrap(item.description, width, 13, t.customFont || 'sans'),
         x,
         y + 89 + (title.length - 1) * size * 1.25,
         13,
         t.muted,
-        'sans',
+        t.customFont || 'sans',
         400,
         1.35,
         'middle',

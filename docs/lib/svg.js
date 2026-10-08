@@ -1,8 +1,8 @@
-import { tokens } from './themes.js?v=0.2.1';
-import { designFor } from './designs.js?v=0.2.1';
-import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.2.1';
-import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.2.1';
-export { xml, wrap } from './drawing.js?v=0.2.1';
+import { tokens } from './themes.js?v=0.2.2';
+import { designFor } from './designs.js?v=0.2.2';
+import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.2.2';
+import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.2.2';
+export { xml, wrap } from './drawing.js?v=0.2.2';
 
 function hero(block, config, t, w, mobile) {
   const composed = compositionHero(block, t, w, mobile, designFor(config).hero);

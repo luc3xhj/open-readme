@@ -69,7 +69,7 @@
       "section": "quickstart",
       "title": "Quick start",
       "language": "sh",
-      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.1\nnpx open-readme init --project cli --design canvas\nnpx open-readme render --out README.preview.md --json",
+      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.2\nnpx open-readme init --project cli --design canvas\nnpx open-readme render --out README.preview.md --json",
       "caption": "Requires Node.js 22+. Edit the starter with your project\u2019s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published."
     },
     {

@@ -429,3 +429,19 @@ test('beam text alternatives describe parallel outputs rather than a sequential 
   assert.ok(markdown.includes('Input → Renderer; parallel outputs: Markdown, SVG'));
   assert.ok(!markdown.includes('Input → Renderer → Markdown → SVG'));
 });
+
+test('complete designs honor explicit font, density and frame customization', async () => {
+  const base = JSON.parse(await readFile(resolve(root, 'examples/designs/canvas.json'), 'utf8'));
+  const original = render(base).assets;
+  const changed = render({
+    ...base,
+    style: { ...base.style, font: 'serif', density: 'comfortable', radius: 0 },
+  }).assets;
+  const before = original.get('hero-light.svg'),
+    after = changed.get('hero-light.svg');
+  assert.ok(after.includes('Georgia, &apos;Times New Roman&apos;, serif'));
+  assert.ok(Number(after.match(/height="(\d+)"/)[1]) > Number(before.match(/height="(\d+)"/)[1]));
+  assert.notEqual(changed.get('features-light.svg'), original.get('features-light.svg'));
+  assert.ok(changed.get('features-light.svg').includes('rx="0"'));
+  assert.ok(changed.get('features-light.svg').includes('Consolas'));
+});

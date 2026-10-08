@@ -10,8 +10,8 @@ import {
   createStarter,
   createZip,
   schema,
-} from './lib/index.js?v=0.2.1';
-import { renderSvg } from './lib/svg.js?v=0.2.1';
+} from './lib/index.js?v=0.2.2';
+import { renderSvg } from './lib/svg.js?v=0.2.2';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);

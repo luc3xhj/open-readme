@@ -83,7 +83,7 @@ A `beam` diagram has a specific relationship: item 1 is the input, item 2 the pr
 | width            | 640–1200 pixels; narrow variants use 560 |
 | font             | mono, sans or serif system fonts         |
 
-Each component can also override `accent`, `density`, `radius` and `font` in its own `style` object. The composer keeps explicit component customization when you add it to a README. Controls apply to generated SVGs. GitHub controls native Markdown typography. Fonts depend on the viewer’s system. Metrics are supplied values, with no network fetching or fabricated statistics.
+Each component can also override `accent`, `density`, `radius` and `font` in its own `style` object. The composer keeps explicit component customization when you add it to a README. Controls apply to generated SVGs. Display fonts, outer spacing and framed corners can be overridden in the new compositions; source code and filenames keep monospace typography. GitHub controls native Markdown typography. Fonts depend on the viewer’s system. Metrics are supplied values, with no network fetching or fabricated statistics.
 
 ## CLI
 
@@ -138,7 +138,7 @@ Light/dark/mobile SVG variants use `<picture>`. Links wrap visual assets. Comman
 ## Install
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.2.1
+npm install --save-dev github:luc3xhj/open-readme#v0.2.2
 npx open-readme --help
 ```
 

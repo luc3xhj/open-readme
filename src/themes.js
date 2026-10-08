@@ -61,6 +61,8 @@ export function tokens(config, mode = 'light') {
     accent: config.style?.accent || (mode === 'dark' ? design.darkAccent : design.accent),
     radius: config.style?.radius ?? theme.radius,
     font: config.style?.font || design.font,
+    customFont: config.style?.font,
+    customRadius: config.style?.radius,
     width: config.style?.width || 960,
     pad: config.style?.density === 'comfortable' ? 40 : 28,
   };

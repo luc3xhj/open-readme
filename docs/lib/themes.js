@@ -1,4 +1,4 @@
-import { designFor } from './designs.js?v=0.2.1';
+import { designFor } from './designs.js?v=0.2.2';
 export const themes = {
   terminal: {
     name: 'Terminal',
@@ -61,6 +61,8 @@ export function tokens(config, mode = 'light') {
     accent: config.style?.accent || (mode === 'dark' ? design.darkAccent : design.accent),
     radius: config.style?.radius ?? theme.radius,
     font: config.style?.font || design.font,
+    customFont: config.style?.font,
+    customRadius: config.style?.radius,
     width: config.style?.width || 960,
     pad: config.style?.density === 'comfortable' ? 40 : 28,
   };

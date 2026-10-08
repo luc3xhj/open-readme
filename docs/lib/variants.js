@@ -1,0 +1,106 @@
+export const variants = {
+  hero: ['plain', 'swiss', 'editorial', 'terminal', 'blueprint', 'product', 'studio', 'atlas'],
+  badges: ['dot', 'split', 'outline'],
+  links: ['inline', 'buttons', 'index'],
+  features: ['native', 'rows', 'columns', 'index'],
+  code: ['native', 'terminal'],
+  steps: ['ordered', 'flow'],
+  comparison: ['table', 'scorecard'],
+  diagram: ['flow', 'stack', 'hub'],
+  metrics: ['strip', 'columns', 'scoreboard'],
+  timeline: ['checklist', 'rail'],
+  media: ['plain', 'window'],
+  gallery: ['stack', 'strip'],
+  details: ['disclosure'],
+  callout: ['alert'],
+  markdown: ['prose'],
+  toc: ['contents'],
+  codegroup: ['disclosures'],
+};
+export const componentInfo = {
+  hero: {
+    name: 'Headers',
+    purpose: 'Name the project and explain its use in one sentence.',
+    output: 'SVG',
+  },
+  badges: {
+    name: 'Badges',
+    purpose: 'Show a few useful facts, each optionally linked.',
+    output: 'SVG',
+  },
+  links: {
+    name: 'Navigation',
+    purpose: 'Give readers a short path to docs, demo and source.',
+    output: 'Markdown / SVG',
+  },
+  features: {
+    name: 'Features',
+    purpose: 'Make specific capabilities easy to scan and compare.',
+    output: 'Markdown / SVG',
+  },
+  code: {
+    name: 'Code',
+    purpose: 'A runnable command or example, always available as text.',
+    output: 'Markdown + optional SVG',
+  },
+  codegroup: {
+    name: 'Code groups',
+    purpose: 'Switch between installation methods using native disclosures.',
+    output: 'HTML + Markdown',
+  },
+  steps: {
+    name: 'Workflows',
+    purpose: 'Explain an ordered task with commands and context.',
+    output: 'Markdown + optional SVG',
+  },
+  comparison: {
+    name: 'Tables',
+    purpose: 'Compare options, defaults or measured results.',
+    output: 'Markdown + optional SVG',
+  },
+  diagram: {
+    name: 'Diagrams',
+    purpose: 'Show a sequence, a stack or relationships around a system.',
+    output: 'SVG + text',
+  },
+  metrics: {
+    name: 'Metrics',
+    purpose: 'Display supplied values with sources and measurement context.',
+    output: 'SVG + text',
+  },
+  timeline: {
+    name: 'Roadmaps',
+    purpose: 'Distinguish shipped, current and planned work.',
+    output: 'Markdown + optional SVG',
+  },
+  media: {
+    name: 'Demo images',
+    purpose: 'Show the real product, with an optional demo link.',
+    output: 'HTML',
+  },
+  gallery: {
+    name: 'Galleries',
+    purpose: 'Show a small set of real screenshots or examples.',
+    output: 'HTML',
+  },
+  details: {
+    name: 'FAQ / disclosures',
+    purpose: 'Keep long answers accessible without interrupting the basics.',
+    output: 'HTML + Markdown',
+  },
+  callout: {
+    name: 'Alerts',
+    purpose: 'Highlight a requirement, limitation or useful tip.',
+    output: 'GitHub alert',
+  },
+  markdown: {
+    name: 'Prose',
+    purpose: 'Keep explanation, contribution and license text editable.',
+    output: 'Markdown',
+  },
+  toc: {
+    name: 'Contents',
+    purpose: 'Link to the sections that actually exist in this composition.',
+    output: 'Markdown',
+  },
+};

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "theme": "editorial",
+  "style": { "density": "compact" },
+  "blocks": [
+    { "id": "hero", "type": "hero", "eyebrow": "Meridian Startups / open research", "title": "Startup accelerators", "subtitle": "150 accelerators and founder programs. Compare stage, eligibility, participation and published terms.", "url": "https://github.com/luc3xhj/startup-accelerators" },
+    { "id": "navigation", "type": "links", "items": [ { "label": "Browse directory", "url": "https://github.com/luc3xhj/startup-accelerators" }, { "label": "Download data", "url": "https://github.com/luc3xhj/startup-accelerators/tree/main/data" } ] },
+    { "id": "status", "type": "badges", "items": [ { "label": "programs", "value": "150" }, { "label": "networks", "value": "96" }, { "label": "snapshot", "value": "Sep 2026" } ] },
+    { "id": "formats", "type": "features", "title": "Use the research", "items": [ { "title": "Browse in English or Chinese", "description": "Read the directory and individual program profiles, with official source links.", "url": "https://github.com/luc3xhj/startup-accelerators" }, { "title": "Build with the data", "description": "Use JSON, JSONL or CSV for your own search, shortlist or research workflow.", "url": "https://github.com/luc3xhj/startup-accelerators/tree/main/data" } ] },
+    { "id": "scope", "type": "details", "summary": "Research scope", "markdown": "This dataset is a September 2026 research snapshot. Verify deadlines and offer terms on the linked official pages before applying. Corrections and contributions are welcome." }
+  ]
+}

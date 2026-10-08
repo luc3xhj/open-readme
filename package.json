@@ -1,0 +1,55 @@
+{
+  "name": "@luc3xhj/open-readme",
+  "version": "0.1.0",
+  "description": "A component library for GitHub READMEs, built for coding agents. Composable sections, 41 variants, Markdown + SVG.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Lucas Jin",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "open-readme": "bin/open-readme.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./schema": "./schema.json"
+  },
+  "files": [
+    "bin",
+    "src",
+    "schema.json",
+    "skills",
+    "examples/*.json",
+    "README.md",
+    "LICENSE",
+    "assets/open-readme",
+    "open-readme.json",
+    "docs/configuration.md",
+    "docs/sections.md",
+    "docs/design-notes.md",
+    "CONTRIBUTING.md",
+    "assets/*.svg"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.js",
+    "check": "node bin/open-readme.js check --config open-readme.json --readme README.md",
+    "prepack": "node scripts/schema.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luc3xhj/open-readme.git"
+  },
+  "homepage": "https://luc3xhj.github.io/open-readme/",
+  "bugs": "https://github.com/luc3xhj/open-readme/issues",
+  "keywords": [
+    "readme",
+    "github",
+    "agent",
+    "skill",
+    "svg",
+    "design-system",
+    "markdown"
+  ]
+}

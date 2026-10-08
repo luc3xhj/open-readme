@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Readme"
+  short_description: "Style READMEs with themes and reusable components"
+  default_prompt: "Use $open-readme to style this README while preserving its content. Render a preview with local assets."

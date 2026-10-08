@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "project": "cli",
+  "design": "plain",
+  "theme": "minimal",
+  "style": {
+    "density": "compact"
+  },
+  "blocks": [
+    {
+      "id": "overview",
+      "type": "hero",
+      "section": "overview",
+      "title": "Your project",
+      "subtitle": "Replace with one factual sentence: what the project does and who uses it.",
+      "eyebrow": "OPEN SOURCE"
+    },
+    {
+      "id": "quickstart",
+      "type": "code",
+      "section": "quickstart",
+      "title": "Quick start",
+      "language": "sh",
+      "code": "# Replace with verified installation and first-run commands."
+    },
+    {
+      "id": "usage",
+      "type": "code",
+      "section": "usage",
+      "title": "Usage",
+      "language": "sh",
+      "code": "# Replace with a real task and its expected result."
+    },
+    {
+      "id": "license",
+      "type": "markdown",
+      "section": "license",
+      "title": "License",
+      "body": "State the repository’s actual license and link to its LICENSE file. Do not assume a license."
+    }
+  ]
+}

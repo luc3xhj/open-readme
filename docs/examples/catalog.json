@@ -1,0 +1,1393 @@
+[
+  {
+    "id": "hero-plain",
+    "type": "hero",
+    "variant": "plain",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-swiss",
+    "type": "hero",
+    "variant": "swiss",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "swiss",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-editorial",
+    "type": "hero",
+    "variant": "editorial",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "editorial",
+      "theme": "editorial",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-terminal",
+    "type": "hero",
+    "variant": "terminal",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "terminal",
+      "theme": "terminal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-blueprint",
+    "type": "hero",
+    "variant": "blueprint",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "blueprint",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-product",
+    "type": "hero",
+    "variant": "product",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "product",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-studio",
+    "type": "hero",
+    "variant": "studio",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "studio",
+      "theme": "editorial",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-atlas",
+    "type": "hero",
+    "variant": "atlas",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "atlas",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "A component library for GitHub READMEs. Built for coding agents.",
+          "eyebrow": "MERIDIAN STARTUPS / OPEN SOURCE",
+          "mark": "or",
+          "command": "open-readme render --out README.preview.md",
+          "meta": "Markdown + SVG"
+        }
+      ]
+    }
+  },
+  {
+    "id": "badges-dot",
+    "type": "badges",
+    "variant": "dot",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "status",
+          "type": "badges",
+          "items": [
+            {
+              "label": "license",
+              "value": "MIT",
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
+            },
+            {
+              "label": "runtime",
+              "value": "Node 22+"
+            },
+            {
+              "label": "deps",
+              "value": "0"
+            }
+          ],
+          "layout": "dot"
+        }
+      ]
+    }
+  },
+  {
+    "id": "badges-split",
+    "type": "badges",
+    "variant": "split",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "status",
+          "type": "badges",
+          "items": [
+            {
+              "label": "license",
+              "value": "MIT",
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
+            },
+            {
+              "label": "runtime",
+              "value": "Node 22+"
+            },
+            {
+              "label": "deps",
+              "value": "0"
+            }
+          ],
+          "layout": "split"
+        }
+      ]
+    }
+  },
+  {
+    "id": "badges-outline",
+    "type": "badges",
+    "variant": "outline",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "status",
+          "type": "badges",
+          "items": [
+            {
+              "label": "license",
+              "value": "MIT",
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
+            },
+            {
+              "label": "runtime",
+              "value": "Node 22+"
+            },
+            {
+              "label": "deps",
+              "value": "0"
+            }
+          ],
+          "layout": "outline"
+        }
+      ]
+    }
+  },
+  {
+    "id": "links-inline",
+    "type": "links",
+    "variant": "inline",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "navigation",
+          "type": "links",
+          "items": [
+            {
+              "label": "Playground",
+              "url": "https://luc3xhj.github.io/open-readme/"
+            },
+            {
+              "label": "Agent skill",
+              "url": "https://github.com/luc3xhj/open-readme/tree/main/skills/open-readme"
+            },
+            {
+              "label": "Docs",
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
+            }
+          ],
+          "layout": "inline"
+        }
+      ]
+    }
+  },
+  {
+    "id": "links-buttons",
+    "type": "links",
+    "variant": "buttons",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "navigation",
+          "type": "links",
+          "items": [
+            {
+              "label": "Playground",
+              "url": "https://luc3xhj.github.io/open-readme/"
+            },
+            {
+              "label": "Agent skill",
+              "url": "https://github.com/luc3xhj/open-readme/tree/main/skills/open-readme"
+            },
+            {
+              "label": "Docs",
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
+            }
+          ],
+          "layout": "buttons"
+        }
+      ]
+    }
+  },
+  {
+    "id": "links-index",
+    "type": "links",
+    "variant": "index",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "navigation",
+          "type": "links",
+          "items": [
+            {
+              "label": "Playground",
+              "url": "https://luc3xhj.github.io/open-readme/"
+            },
+            {
+              "label": "Agent skill",
+              "url": "https://github.com/luc3xhj/open-readme/tree/main/skills/open-readme"
+            },
+            {
+              "label": "Docs",
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
+            }
+          ],
+          "layout": "index"
+        }
+      ]
+    }
+  },
+  {
+    "id": "features-native",
+    "type": "features",
+    "variant": "native",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "Choose what helps the reader",
+          "items": [
+            {
+              "title": "Compose",
+              "description": "Choose components for the sections your project actually needs."
+            },
+            {
+              "title": "Customize",
+              "description": "Edit layout, accent, density and content in one JSON config."
+            },
+            {
+              "title": "Export",
+              "description": "Keep Markdown and SVG assets in your own repository."
+            }
+          ],
+          "layout": "native"
+        }
+      ]
+    }
+  },
+  {
+    "id": "features-rows",
+    "type": "features",
+    "variant": "rows",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "Choose what helps the reader",
+          "items": [
+            {
+              "title": "Compose",
+              "description": "Choose components for the sections your project actually needs."
+            },
+            {
+              "title": "Customize",
+              "description": "Edit layout, accent, density and content in one JSON config."
+            },
+            {
+              "title": "Export",
+              "description": "Keep Markdown and SVG assets in your own repository."
+            }
+          ],
+          "layout": "rows"
+        }
+      ]
+    }
+  },
+  {
+    "id": "features-columns",
+    "type": "features",
+    "variant": "columns",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "Choose what helps the reader",
+          "items": [
+            {
+              "title": "Compose",
+              "description": "Choose components for the sections your project actually needs."
+            },
+            {
+              "title": "Customize",
+              "description": "Edit layout, accent, density and content in one JSON config."
+            },
+            {
+              "title": "Export",
+              "description": "Keep Markdown and SVG assets in your own repository."
+            }
+          ],
+          "layout": "columns"
+        }
+      ]
+    }
+  },
+  {
+    "id": "features-index",
+    "type": "features",
+    "variant": "index",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "Choose what helps the reader",
+          "items": [
+            {
+              "title": "Compose",
+              "description": "Choose components for the sections your project actually needs."
+            },
+            {
+              "title": "Customize",
+              "description": "Edit layout, accent, density and content in one JSON config."
+            },
+            {
+              "title": "Export",
+              "description": "Keep Markdown and SVG assets in your own repository."
+            }
+          ],
+          "layout": "index"
+        }
+      ]
+    }
+  },
+  {
+    "id": "code-native",
+    "type": "code",
+    "variant": "native",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "quickstart",
+          "type": "code",
+          "section": "quickstart",
+          "title": "Quick start",
+          "language": "sh",
+          "filename": "terminal",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+          "highlight": [
+            3
+          ],
+          "layout": "native"
+        }
+      ]
+    }
+  },
+  {
+    "id": "code-terminal",
+    "type": "code",
+    "variant": "terminal",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "quickstart",
+          "type": "code",
+          "section": "quickstart",
+          "title": "Quick start",
+          "language": "sh",
+          "filename": "terminal",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+          "highlight": [
+            3
+          ],
+          "layout": "terminal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "steps-ordered",
+    "type": "steps",
+    "variant": "ordered",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "workflow",
+          "type": "steps",
+          "section": "usage",
+          "title": "From your project to a README",
+          "items": [
+            {
+              "title": "Inspect",
+              "description": "Read the repository and keep verified facts."
+            },
+            {
+              "title": "Compose",
+              "description": "Choose sections, components and variants."
+            },
+            {
+              "title": "Render",
+              "description": "Export a preview with local assets."
+            }
+          ],
+          "layout": "ordered"
+        }
+      ]
+    }
+  },
+  {
+    "id": "steps-flow",
+    "type": "steps",
+    "variant": "flow",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "workflow",
+          "type": "steps",
+          "section": "usage",
+          "title": "From your project to a README",
+          "items": [
+            {
+              "title": "Inspect",
+              "description": "Read the repository and keep verified facts."
+            },
+            {
+              "title": "Compose",
+              "description": "Choose sections, components and variants."
+            },
+            {
+              "title": "Render",
+              "description": "Export a preview with local assets."
+            }
+          ],
+          "layout": "flow"
+        }
+      ]
+    }
+  },
+  {
+    "id": "comparison-table",
+    "type": "comparison",
+    "variant": "table",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "formats",
+          "type": "comparison",
+          "section": "compatibility",
+          "title": "Pick the output that fits",
+          "columns": [
+            "Format",
+            "Best for",
+            "Interaction"
+          ],
+          "rows": [
+            [
+              "Markdown",
+              "Commands, prose and tables",
+              "Copy, search, anchor links"
+            ],
+            [
+              "SVG",
+              "Headers, diagrams and visual data",
+              "Links and automatic light / dark"
+            ],
+            [
+              "HTML",
+              "Screenshots and FAQ",
+              "Images and expandable details"
+            ]
+          ],
+          "layout": "table"
+        }
+      ]
+    }
+  },
+  {
+    "id": "comparison-scorecard",
+    "type": "comparison",
+    "variant": "scorecard",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "formats",
+          "type": "comparison",
+          "section": "compatibility",
+          "title": "Pick the output that fits",
+          "columns": [
+            "Format",
+            "Best for",
+            "Interaction"
+          ],
+          "rows": [
+            [
+              "Markdown",
+              "Commands, prose and tables",
+              "Copy, search, anchor links"
+            ],
+            [
+              "SVG",
+              "Headers, diagrams and visual data",
+              "Links and automatic light / dark"
+            ],
+            [
+              "HTML",
+              "Screenshots and FAQ",
+              "Images and expandable details"
+            ]
+          ],
+          "layout": "scorecard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "diagram-flow",
+    "type": "diagram",
+    "variant": "flow",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "architecture",
+          "type": "diagram",
+          "section": "architecture",
+          "title": "How the output is built",
+          "center": "README",
+          "items": [
+            {
+              "title": "Config",
+              "description": "Project facts + components"
+            },
+            {
+              "title": "Renderer",
+              "description": "Validate and compose"
+            },
+            {
+              "title": "Markdown",
+              "description": "Readable, copyable content"
+            },
+            {
+              "title": "SVG assets",
+              "description": "Local visual components"
+            }
+          ],
+          "layout": "flow"
+        }
+      ]
+    }
+  },
+  {
+    "id": "diagram-stack",
+    "type": "diagram",
+    "variant": "stack",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "architecture",
+          "type": "diagram",
+          "section": "architecture",
+          "title": "How the output is built",
+          "center": "README",
+          "items": [
+            {
+              "title": "Config",
+              "description": "Project facts + components"
+            },
+            {
+              "title": "Renderer",
+              "description": "Validate and compose"
+            },
+            {
+              "title": "Markdown",
+              "description": "Readable, copyable content"
+            },
+            {
+              "title": "SVG assets",
+              "description": "Local visual components"
+            }
+          ],
+          "layout": "stack"
+        }
+      ]
+    }
+  },
+  {
+    "id": "diagram-hub",
+    "type": "diagram",
+    "variant": "hub",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "architecture",
+          "type": "diagram",
+          "section": "architecture",
+          "title": "A reader’s route through the README",
+          "center": "README",
+          "items": [
+            {
+              "title": "Demo",
+              "description": "Show the result"
+            },
+            {
+              "title": "Quick start",
+              "description": "Get running"
+            },
+            {
+              "title": "Usage",
+              "description": "Complete a task"
+            },
+            {
+              "title": "License",
+              "description": "Know the terms"
+            }
+          ],
+          "layout": "hub"
+        }
+      ]
+    }
+  },
+  {
+    "id": "metrics-strip",
+    "type": "metrics",
+    "variant": "strip",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "catalog-size",
+          "type": "metrics",
+          "section": "benchmarks",
+          "title": "The component catalog",
+          "items": [
+            {
+              "value": "17",
+              "label": "component types",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
+            },
+            {
+              "value": "41",
+              "label": "component variants",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
+            },
+            {
+              "value": "8",
+              "label": "header designs",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
+            }
+          ],
+          "caption": "Counts describe this release’s catalog; these are not fetched GitHub statistics.",
+          "layout": "strip"
+        }
+      ]
+    }
+  },
+  {
+    "id": "metrics-columns",
+    "type": "metrics",
+    "variant": "columns",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "catalog-size",
+          "type": "metrics",
+          "section": "benchmarks",
+          "title": "The component catalog",
+          "items": [
+            {
+              "value": "17",
+              "label": "component types",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
+            },
+            {
+              "value": "41",
+              "label": "component variants",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
+            },
+            {
+              "value": "8",
+              "label": "header designs",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
+            }
+          ],
+          "caption": "Counts describe this release’s catalog; these are not fetched GitHub statistics.",
+          "layout": "columns"
+        }
+      ]
+    }
+  },
+  {
+    "id": "metrics-scoreboard",
+    "type": "metrics",
+    "variant": "scoreboard",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "catalog-size",
+          "type": "metrics",
+          "section": "benchmarks",
+          "title": "The component catalog",
+          "items": [
+            {
+              "value": "17",
+              "label": "component types",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
+            },
+            {
+              "value": "41",
+              "label": "component variants",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
+            },
+            {
+              "value": "8",
+              "label": "header designs",
+              "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
+            }
+          ],
+          "caption": "Counts describe this release’s catalog; these are not fetched GitHub statistics.",
+          "layout": "scoreboard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "timeline-checklist",
+    "type": "timeline",
+    "variant": "checklist",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "roadmap",
+          "type": "timeline",
+          "section": "roadmap",
+          "title": "Build status",
+          "items": [
+            {
+              "title": "Local renderer & CLI",
+              "description": "JSON validation and portable export are implemented.",
+              "status": "shipped"
+            },
+            {
+              "title": "Component gallery",
+              "description": "Preview, customize and export individual components.",
+              "status": "shipped"
+            },
+            {
+              "title": "Dynamic data adapters",
+              "description": "A future extension; not included in this release.",
+              "status": "planned"
+            }
+          ],
+          "layout": "checklist"
+        }
+      ]
+    }
+  },
+  {
+    "id": "timeline-rail",
+    "type": "timeline",
+    "variant": "rail",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "roadmap",
+          "type": "timeline",
+          "section": "roadmap",
+          "title": "Build status",
+          "items": [
+            {
+              "title": "Local renderer & CLI",
+              "description": "JSON validation and portable export are implemented.",
+              "status": "shipped"
+            },
+            {
+              "title": "Component gallery",
+              "description": "Preview, customize and export individual components.",
+              "status": "shipped"
+            },
+            {
+              "title": "Dynamic data adapters",
+              "description": "A future extension; not included in this release.",
+              "status": "planned"
+            }
+          ],
+          "layout": "rail"
+        }
+      ]
+    }
+  },
+  {
+    "id": "media-plain",
+    "type": "media",
+    "variant": "plain",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "demo",
+          "type": "media",
+          "section": "demo",
+          "title": "A component, rendered",
+          "src": "./assets/demo.svg",
+          "alt": "A Blueprint header generated by open-readme",
+          "url": "https://luc3xhj.github.io/open-readme/",
+          "caption": "Replace this example with your real screenshot, GIF or demo image.",
+          "layout": "plain"
+        }
+      ]
+    }
+  },
+  {
+    "id": "media-window",
+    "type": "media",
+    "variant": "window",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "demo",
+          "type": "media",
+          "section": "demo",
+          "title": "A component, rendered",
+          "src": "./assets/demo.svg",
+          "alt": "A Blueprint header generated by open-readme",
+          "url": "https://luc3xhj.github.io/open-readme/",
+          "caption": "Replace this example with your real screenshot, GIF or demo image.",
+          "layout": "window"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gallery-stack",
+    "type": "gallery",
+    "variant": "stack",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "screenshots",
+          "type": "gallery",
+          "section": "demo",
+          "title": "Two header compositions",
+          "items": [
+            {
+              "src": "./assets/demo.svg",
+              "alt": "Blueprint header"
+            },
+            {
+              "src": "./assets/demo-editorial.svg",
+              "alt": "Editorial header"
+            }
+          ],
+          "layout": "stack"
+        }
+      ]
+    }
+  },
+  {
+    "id": "gallery-strip",
+    "type": "gallery",
+    "variant": "strip",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "screenshots",
+          "type": "gallery",
+          "section": "demo",
+          "title": "Two header compositions",
+          "items": [
+            {
+              "src": "./assets/demo.svg",
+              "alt": "Blueprint header"
+            },
+            {
+              "src": "./assets/demo-editorial.svg",
+              "alt": "Editorial header"
+            }
+          ],
+          "layout": "strip"
+        }
+      ]
+    }
+  },
+  {
+    "id": "details-disclosure",
+    "type": "details",
+    "variant": "disclosure",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "faq",
+          "type": "details",
+          "section": "faq",
+          "summary": "Do I need a hosted image service?",
+          "markdown": "No. Generated SVG assets live in your repository alongside README.md. Commit both together."
+        }
+      ]
+    }
+  },
+  {
+    "id": "callout-alert",
+    "type": "callout",
+    "variant": "alert",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "requirements",
+          "type": "callout",
+          "section": "compatibility",
+          "kind": "note",
+          "body": "Requires Node.js 22 or newer. The renderer has no runtime dependencies."
+        }
+      ]
+    }
+  },
+  {
+    "id": "markdown-prose",
+    "type": "markdown",
+    "variant": "prose",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "license",
+          "type": "markdown",
+          "section": "license",
+          "title": "License",
+          "body": "MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE)."
+        }
+      ]
+    }
+  },
+  {
+    "id": "toc-contents",
+    "type": "toc",
+    "variant": "contents",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "contents",
+          "type": "toc",
+          "title": "On this page"
+        },
+        {
+          "id": "quickstart",
+          "type": "code",
+          "section": "quickstart",
+          "title": "Quick start",
+          "language": "sh",
+          "filename": "terminal",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+          "highlight": [
+            3
+          ]
+        },
+        {
+          "id": "license",
+          "type": "markdown",
+          "section": "license",
+          "title": "License",
+          "body": "MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE)."
+        }
+      ]
+    }
+  },
+  {
+    "id": "codegroup-disclosures",
+    "type": "codegroup",
+    "variant": "disclosures",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "install-methods",
+          "type": "codegroup",
+          "section": "quickstart",
+          "title": "Choose an installation method",
+          "items": [
+            {
+              "label": "Install in your project",
+              "language": "sh",
+              "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.0"
+            },
+            {
+              "label": "Work from source",
+              "language": "sh",
+              "code": "git clone https://github.com/luc3xhj/open-readme.git\ncd open-readme\nnode bin/open-readme.js --help"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

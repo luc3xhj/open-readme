@@ -113,7 +113,8 @@ export function render(config, options = {}) {
         break;
       case 'badges':
         output.push(
-          '<p>\n' +
+          heading +
+            '<p>\n' +
             block.items
               .map((item, i) =>
                 picture(
@@ -128,8 +129,9 @@ export function render(config, options = {}) {
         break;
       case 'links':
         output.push(
-          block.layout === 'buttons'
-            ? '<p>\n' +
+          heading +
+            (block.layout === 'buttons'
+              ? '<p>\n' +
                 block.items
                   .map((item, i) =>
                     picture(
@@ -140,9 +142,9 @@ export function render(config, options = {}) {
                   )
                   .join('\n') +
                 '\n</p>'
-            : block.layout === 'index'
-              ? block.items.map((item, i) => `${i + 1}. ${link(item.label, item.url)}`).join('\n')
-              : block.items.map((item) => link(item.label, item.url)).join(' · '),
+              : block.layout === 'index'
+                ? block.items.map((item, i) => `${i + 1}. ${link(item.label, item.url)}`).join('\n')
+                : block.items.map((item) => link(item.label, item.url)).join(' · ')),
         );
         break;
       case 'features': {

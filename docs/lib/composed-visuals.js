@@ -1,5 +1,5 @@
-import { systemBeam } from './section-visuals.js?v=0.3.0';
-import { xml, wrap, label, line, rect, circle, svg } from './drawing.js?v=0.3.0';
+import { systemBeam } from './section-visuals.js?v=0.3.1';
+import { xml, wrap, label, line, rect, circle, svg } from './drawing.js?v=0.3.1';
 
 const paragraph = (text, x, y, width, size, color, font = 'sans', weight = 400, leading = 1.35) => {
   const rows = wrap(text, width, size, font);

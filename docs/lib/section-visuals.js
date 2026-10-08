@@ -1,4 +1,4 @@
-import { wrap, label, line, rect, svg } from './drawing.js?v=0.3.0';
+import { wrap, label, line, rect, svg } from './drawing.js?v=0.3.1';
 
 export function sectionHeading(block, t, w, mobile) {
   const design = t.designId,

@@ -521,3 +521,45 @@ test('section heading assets cannot collide with a valid block filename', () => 
   assert.ok(assets.get('guide__heading-light.svg').includes('<title id="title">Guide</title>'));
   assert.ok(markdown.includes('guide__heading-light.svg'));
 });
+
+test('FAQ, notice and link sections expose coordinated headings with usable native bodies', async () => {
+  const { createComposition } = await import('../src/index.js');
+  const base = {
+    version: 1,
+    theme: 'minimal',
+    blocks: [
+      {
+        id: 'faq',
+        type: 'details',
+        section: 'faq',
+        title: 'Questions',
+        summary: 'Can I update one section?',
+        markdown: 'Yes. Use the documented section command.',
+      },
+      {
+        id: 'notice',
+        type: 'callout',
+        section: 'compatibility',
+        title: 'Requirements',
+        kind: 'note',
+        body: 'Node.js 22+.',
+      },
+      {
+        id: 'links',
+        type: 'links',
+        section: 'credits',
+        title: 'Credits',
+        items: [{ label: 'Source', url: 'https://github.com/luc3xhj/open-readme' }],
+      },
+    ],
+  };
+  for (const design of ['canvas', 'console', 'journal', 'pipeline']) {
+    const config = createComposition(base, design);
+    assert.deepEqual(validateConfig(config), []);
+    const { markdown, assets } = render(config);
+    assert.ok(markdown.includes('<summary>Can I update one section?</summary>'));
+    assert.ok(markdown.includes('Node.js 22+.'));
+    for (const id of ['faq', 'notice', 'links']) assert.ok(assets.has(id + '__heading-light.svg'));
+    assert.ok(markdown.includes('links__heading-light.svg'));
+  }
+});

@@ -1,4 +1,4 @@
-import { fonts } from './themes.js?v=0.3.0';
+import { fonts } from './themes.js?v=0.3.1';
 export const xml = (value) =>
   String(value).replace(
     /[&<>"']/g,

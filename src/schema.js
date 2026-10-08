@@ -20,6 +20,7 @@ const block = (type, properties, required) =>
     {
       id: { ...short, maxLength: 48, pattern: '^[a-z][a-z0-9-]*$' },
       type: { const: type },
+      title: short,
       design: { type: 'string', enum: ['canvas', 'console', 'journal', 'pipeline'] },
       section: { type: 'string', enum: Object.keys(sections) },
       style: object(

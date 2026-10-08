@@ -1,4 +1,4 @@
-import { designs } from './designs.js?v=0.3.0';
+import { designs } from './designs.js?v=0.3.1';
 
 // One coordinated system for every section. Functional code stays native on
 // GitHub; these presets control its masthead, context and surrounding layout.

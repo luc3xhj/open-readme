@@ -1,8 +1,8 @@
-import { sectionDesign } from './section-designs.js?v=0.3.0';
-import { comparisonView } from './reference.js?v=0.3.0';
-import { validateConfig } from './schema.js?v=0.3.0';
-import { designFor } from './designs.js?v=0.3.0';
-import { renderSvg, xml } from './svg.js?v=0.3.0';
+import { sectionDesign } from './section-designs.js?v=0.3.1';
+import { comparisonView } from './reference.js?v=0.3.1';
+import { validateConfig } from './schema.js?v=0.3.1';
+import { designFor } from './designs.js?v=0.3.1';
+import { renderSvg, xml } from './svg.js?v=0.3.1';
 export const md = (value) =>
   String(value)
     .replace(/\\/g, '\\\\')
@@ -113,7 +113,8 @@ export function render(config, options = {}) {
         break;
       case 'badges':
         output.push(
-          '<p>\n' +
+          heading +
+            '<p>\n' +
             block.items
               .map((item, i) =>
                 picture(
@@ -128,8 +129,9 @@ export function render(config, options = {}) {
         break;
       case 'links':
         output.push(
-          block.layout === 'buttons'
-            ? '<p>\n' +
+          heading +
+            (block.layout === 'buttons'
+              ? '<p>\n' +
                 block.items
                   .map((item, i) =>
                     picture(
@@ -140,9 +142,9 @@ export function render(config, options = {}) {
                   )
                   .join('\n') +
                 '\n</p>'
-            : block.layout === 'index'
-              ? block.items.map((item, i) => `${i + 1}. ${link(item.label, item.url)}`).join('\n')
-              : block.items.map((item) => link(item.label, item.url)).join(' · '),
+              : block.layout === 'index'
+                ? block.items.map((item, i) => `${i + 1}. ${link(item.label, item.url)}`).join('\n')
+                : block.items.map((item) => link(item.label, item.url)).join(' · ')),
         );
         break;
       case 'features': {

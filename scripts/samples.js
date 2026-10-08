@@ -56,7 +56,7 @@ export const sampleBlocks = {
     title: 'Quick start',
     language: 'sh',
     filename: 'terminal',
-    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.3.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
+    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.3.1\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
     highlight: [3],
   },
   codegroup: {
@@ -68,7 +68,7 @@ export const sampleBlocks = {
       {
         label: 'Install in your project',
         language: 'sh',
-        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.3.0',
+        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.3.1',
       },
       {
         label: 'Work from source',

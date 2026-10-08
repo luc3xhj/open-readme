@@ -100,6 +100,12 @@
               "type": {
                 "const": "hero"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -160,12 +166,6 @@
                 },
                 "required": [],
                 "additionalProperties": false
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
               },
               "subtitle": {
                 "type": "string",
@@ -241,6 +241,12 @@
               },
               "type": {
                 "const": "badges"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -364,6 +370,12 @@
               "type": {
                 "const": "links"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -480,6 +492,12 @@
               "type": {
                 "const": "features"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -547,12 +565,6 @@
                   "details",
                   "none"
                 ]
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
               },
               "layout": {
                 "type": "string",
@@ -643,6 +655,12 @@
               "type": {
                 "const": "code"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -727,12 +745,6 @@
                   "terminal"
                 ]
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "language": {
                 "type": "string",
                 "maxLength": 30,
@@ -769,6 +781,12 @@
               },
               "type": {
                 "const": "steps"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -838,12 +856,6 @@
                   "flow"
                 ]
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "items": {
                 "type": "array",
                 "minItems": 1,
@@ -901,6 +913,12 @@
               },
               "type": {
                 "const": "comparison"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -973,12 +991,6 @@
                   "matrix"
                 ]
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "columns": {
                 "type": "array",
                 "minItems": 1,
@@ -1025,6 +1037,12 @@
               "type": {
                 "const": "toc"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1085,12 +1103,6 @@
                 },
                 "required": [],
                 "additionalProperties": false
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
               }
             },
             "required": [
@@ -1111,6 +1123,12 @@
               "type": {
                 "const": "codegroup"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1171,12 +1189,6 @@
                 },
                 "required": [],
                 "additionalProperties": false
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
               },
               "items": {
                 "type": "array",
@@ -1230,6 +1242,12 @@
               "type": {
                 "const": "gallery"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1290,12 +1308,6 @@
                 },
                 "required": [],
                 "additionalProperties": false
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
               },
               "layout": {
                 "type": "string",
@@ -1363,6 +1375,12 @@
               "type": {
                 "const": "markdown"
               },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
               "design": {
                 "type": "string",
                 "enum": [
@@ -1424,12 +1442,6 @@
                 "required": [],
                 "additionalProperties": false
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "body": {
                 "type": "string",
                 "minLength": 1,
@@ -1455,6 +1467,12 @@
               },
               "type": {
                 "const": "media"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -1524,12 +1542,6 @@
                   "window"
                 ]
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "src": {
                 "type": "string",
                 "minLength": 1,
@@ -1579,6 +1591,12 @@
               },
               "type": {
                 "const": "diagram"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -1656,12 +1674,6 @@
                 "maxLength": 160,
                 "pattern": "\\S"
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "items": {
                 "type": "array",
                 "minItems": 1,
@@ -1713,6 +1725,12 @@
               },
               "type": {
                 "const": "metrics"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -1783,12 +1801,6 @@
                   "scoreboard"
                 ]
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "items": {
                 "type": "array",
                 "minItems": 1,
@@ -1847,6 +1859,12 @@
               },
               "type": {
                 "const": "timeline"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -1916,12 +1934,6 @@
                   "rail"
                 ]
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "items": {
                 "type": "array",
                 "minItems": 1,
@@ -1977,6 +1989,12 @@
               },
               "type": {
                 "const": "callout"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",
@@ -2039,12 +2057,6 @@
                 "required": [],
                 "additionalProperties": false
               },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 160,
-                "pattern": "\\S"
-              },
               "kind": {
                 "type": "string",
                 "enum": [
@@ -2081,6 +2093,12 @@
               },
               "type": {
                 "const": "details"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
               },
               "design": {
                 "type": "string",

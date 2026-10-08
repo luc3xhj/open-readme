@@ -1,4 +1,4 @@
-import { sectionVariants } from './section-designs.js?v=0.3.0';
+import { sectionVariants } from './section-designs.js?v=0.3.1';
 export const sections = {
   overview: {
     name: 'Overview',

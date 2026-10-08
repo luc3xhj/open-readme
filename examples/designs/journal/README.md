@@ -47,7 +47,7 @@ assets/open-readme/" width="960">
 </h2>
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.3.0
+npm install --save-dev github:luc3xhj/open-readme#v0.3.1
 npx open-readme init --project cli --design journal
 npx open-readme render --out README.preview.md --json
 ```

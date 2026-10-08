@@ -9,8 +9,8 @@ import {
   sectionDesigns,
   styleSection,
   comparisonView,
-} from './lib/index.js?v=0.3.0';
-import { renderSvg } from './lib/svg.js?v=0.3.0';
+} from './lib/index.js?v=0.3.1';
+import { renderSvg } from './lib/svg.js?v=0.3.1';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);

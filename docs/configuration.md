@@ -61,7 +61,7 @@ For an existing config, `createComposition(config, 'journal')` clones it and set
 | markdown   | Native prose                                                | body; optional title                                                                         |
 | toc        | Section links                                               | No content required; links to existing titled blocks                                         |
 
-Every component requires unique `id` and `type`. Optional `design` selects Canvas, Console, Journal or Pipeline for that section; omit it to inherit the complete system. Most components accept a heading `title`; the complete systems render accessible, themed section headings. An explicit anchor preserves navigation links. Use `section` to map it to a reader question from the [section guide](./sections.md). Unknown fields, unsafe schemes and mismatched rows produce errors with field paths. The CLI catalog returns fields and variants as JSON.
+Every component requires unique `id` and `type`. Optional `design` selects Canvas, Console, Journal or Pipeline for that section; omit it to inherit the complete system. All block types accept an optional heading `title` (required for a hero); the complete systems render accessible, themed section headings. An explicit anchor preserves navigation links. Use `section` to map it to a reader question from the [section guide](./sections.md). Unknown fields, unsafe schemes and mismatched rows produce errors with field paths. The CLI catalog returns fields and variants as JSON.
 
 ### Illustrated features and previews
 
@@ -138,7 +138,7 @@ Light/dark/mobile SVG variants use `<picture>`. Links wrap visual assets. Comman
 ## Install
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.3.0
+npm install --save-dev github:luc3xhj/open-readme#v0.3.1
 npx open-readme --help
 ```
 
@@ -160,3 +160,5 @@ The [workbench](https://luc3xhj.github.io/open-readme/) previews complete docume
 | Pipeline | Numbered accent rail  | Open illustrated rows | Transposed matrix      | Sharp nodes and orthogonal connectors |
 
 `styleSection(block, 'journal')` returns a styled clone without changing its facts. `createComposition(config, 'journal')` applies the whole system. Blocks with an explicit `design` keep their override. Native prose, source code and FAQ disclosures stay readable and usable rather than becoming screenshots.
+
+Give each semantic section a title for the coordinated heading. Blocks that continue the same section can omit it. FAQ, notices, credit links and license prose support the same four heading variants while retaining their native interactions.

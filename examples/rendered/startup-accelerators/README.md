@@ -4,6 +4,7 @@
 
 [Browse directory](<https://github.com/luc3xhj/startup-accelerators>) · [Download data](<https://github.com/luc3xhj/startup-accelerators/tree/main/data>)
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg">
@@ -22,6 +23,7 @@
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-3-dark.svg">
   <img src="assets/open-readme/status-3-light.svg" alt="snapshot: Sep 2026">
 </picture>
+</p>
 
 ## Use the research
 

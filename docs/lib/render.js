@@ -34,9 +34,7 @@ export function render(config, options = {}) {
         ? ''
         : ` width="${config.style?.width || 960}"`;
     const image = `<picture>\n  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="${url('dark', true)}">\n  <source media="(max-width: 840px)" srcset="${url('light', true)}">\n  <source media="(prefers-color-scheme: dark)" srcset="${url('dark')}">\n  <img src="${url('light')}" alt="${xml(alt)}"${dimension}>\n</picture>`;
-    return block.url
-      ? `<a href="${xml(block.url)}">${image.replace(/>\n\s*</g, '><')}</a>`
-      : image;
+    return block.url ? `<a href="${xml(block.url)}">${image.replace(/>\n\s*</g, '><')}</a>` : image;
   }
   const disclosure = (summary, body) =>
     `<details>\n<summary>${xml(summary)}</summary>\n\n${body}\n\n</details>`;
@@ -83,29 +81,33 @@ export function render(config, options = {}) {
         break;
       case 'badges':
         output.push(
-          block.items
-            .map((item, i) =>
-              picture(
-                { ...item, type: 'badge', layout: block.layout, style: block.style },
-                `${block.id}-${i + 1}`,
-                `${item.label}: ${item.value}`,
-              ),
-            )
-            .join('\n'),
+          '<p>\n' +
+            block.items
+              .map((item, i) =>
+                picture(
+                  { ...item, type: 'badge', layout: block.layout, style: block.style },
+                  `${block.id}-${i + 1}`,
+                  `${item.label}: ${item.value}`,
+                ),
+              )
+              .join('\n') +
+            '\n</p>',
         );
         break;
       case 'links':
         output.push(
           block.layout === 'buttons'
-            ? block.items
-                .map((item, i) =>
-                  picture(
-                    { ...item, type: 'link', layout: 'outline', style: block.style },
-                    `${block.id}-${i + 1}`,
-                    item.label,
-                  ),
-                )
-                .join('\n')
+            ? '<p>\n' +
+                block.items
+                  .map((item, i) =>
+                    picture(
+                      { ...item, type: 'link', layout: 'outline', style: block.style },
+                      `${block.id}-${i + 1}`,
+                      item.label,
+                    ),
+                  )
+                  .join('\n') +
+                '\n</p>'
             : block.layout === 'index'
               ? block.items.map((item, i) => `${i + 1}. ${link(item.label, item.url)}`).join('\n')
               : block.items.map((item) => link(item.label, item.url)).join(' · '),

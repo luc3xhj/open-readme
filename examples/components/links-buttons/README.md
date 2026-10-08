@@ -1,5 +1,7 @@
 <!-- Generated with open-readme. Edit the JSON configuration to regenerate. -->
 
+<p>
 <a href="https://luc3xhj.github.io/open-readme/"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/navigation-1-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/navigation-1-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/navigation-1-dark.svg"><img src="assets/open-readme/navigation-1-light.svg" alt="Playground"></picture></a>
 <a href="https://github.com/luc3xhj/open-readme/tree/main/skills/open-readme"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/navigation-2-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/navigation-2-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/navigation-2-dark.svg"><img src="assets/open-readme/navigation-2-light.svg" alt="Agent skill"></picture></a>
 <a href="https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/navigation-3-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/navigation-3-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/navigation-3-dark.svg"><img src="assets/open-readme/navigation-3-light.svg" alt="Docs"></picture></a>
+</p>

@@ -9,8 +9,8 @@ import {
   sectionDesigns,
   styleSection,
   comparisonView,
-} from './lib/index.js?v=0.3.1';
-import { renderSvg } from './lib/svg.js?v=0.3.1';
+} from './lib/index.js?v=0.3.2';
+import { renderSvg } from './lib/svg.js?v=0.3.2';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);
@@ -149,7 +149,15 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
       const h = node('h2');
       if (sectionDesign(cfg, b)) {
         h.className = 'styled-heading';
-        h.append(
+        const headingLink = anchor(
+          undefined,
+          '#' +
+            b.title
+              .toLowerCase()
+              .replace(/[^\p{L}\p{N}\s_-]/gu, '')
+              .replace(/\s/g, '-'),
+        );
+        headingLink.append(
           visualBlock({
             type: 'heading',
             title: b.title,
@@ -161,6 +169,7 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
                 .findIndex((x) => x.id === b.id) + 1,
           }),
         );
+        h.append(headingLink);
       } else h.textContent = b.title;
       h.id = b.title
         .toLowerCase()

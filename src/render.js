@@ -95,7 +95,7 @@ export function render(config, options = {}) {
     const heading =
       block.title && block.type !== 'hero'
         ? sectionDesign(config, block)
-          ? `<a id="${xml(headingSlugs.get(block.id) || 'contents')}"></a>\n<h2>\n${picture({ type: 'heading', title: block.title, design: block.design, style: block.style, ordinal: config.blocks.filter((b) => b.title && b.type !== 'hero').findIndex((b) => b.id === block.id) + 1 }, block.id + '__heading', block.title)}\n</h2>\n\n`
+          ? `<h2 id="${xml(headingSlugs.get(block.id) || 'contents')}"><a href="#${xml(headingSlugs.get(block.id) || 'contents')}">\n${picture({ type: 'heading', title: block.title, design: block.design, style: block.style, ordinal: config.blocks.filter((b) => b.title && b.type !== 'hero').findIndex((b) => b.id === block.id) + 1 }, block.id + '__heading', block.title)}\n</a></h2>\n\n`
           : `## ${md(block.title)}\n\n`
         : '';
     switch (block.type) {
@@ -376,7 +376,7 @@ export function render(config, options = {}) {
         );
         break;
       case 'details':
-        output.push(disclosure(block.summary, block.markdown.trim()));
+        output.push(heading + disclosure(block.summary, block.markdown.trim()));
         break;
     }
   }

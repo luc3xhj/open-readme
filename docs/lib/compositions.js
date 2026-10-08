@@ -1,5 +1,5 @@
-import { sectionDesigns } from './section-designs.js?v=0.3.1';
-import { designs } from './designs.js?v=0.3.1';
+import { sectionDesigns } from './section-designs.js?v=0.3.2';
+import { designs } from './designs.js?v=0.3.2';
 
 export const compositionReferences = {
   canvas: {

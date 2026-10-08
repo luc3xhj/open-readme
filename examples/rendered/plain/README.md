@@ -23,7 +23,7 @@ assets/open-readme/" width="960">
 ## Get started
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.3.1
+npm install --save-dev github:luc3xhj/open-readme#v0.3.2
 npx open-readme init --project cli --design canvas
 npx open-readme render --out README.preview.md --json
 ```

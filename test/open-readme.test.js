@@ -561,5 +561,6 @@ test('FAQ, notice and link sections expose coordinated headings with usable nati
     assert.ok(markdown.includes('Node.js 22+.'));
     for (const id of ['faq', 'notice', 'links']) assert.ok(assets.has(id + '__heading-light.svg'));
     assert.ok(markdown.includes('links__heading-light.svg'));
+    assert.ok(markdown.includes('<h2 id="questions"><a href="#questions">'));
   }
 });

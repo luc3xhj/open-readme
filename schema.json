@@ -13,6 +13,10 @@
     "design": {
       "type": "string",
       "enum": [
+        "canvas",
+        "console",
+        "journal",
+        "pipeline",
         "plain",
         "swiss",
         "editorial",
@@ -185,6 +189,24 @@
                 "pattern": "\\S"
               },
               "meta": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "\\S"
+              },
+              "headline": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\S"
+              },
+              "preview": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "\\S"
+              },
+              "previewLabel": {
                 "type": "string",
                 "minLength": 1,
                 "maxLength": 160,
@@ -492,6 +514,9 @@
               "layout": {
                 "type": "string",
                 "enum": [
+                  "bento",
+                  "lattice",
+                  "terminal-grid",
                   "native",
                   "rows",
                   "columns",
@@ -522,6 +547,30 @@
                       "minLength": 1,
                       "maxLength": 2048,
                       "pattern": "^(https?://|mailto:|#|\\.?\\.?/|[a-zA-Z0-9_-]+[/\\.])[^\\s<>\"\\x00-\\x1f]*$"
+                    },
+                    "visual": {
+                      "type": "string",
+                      "enum": [
+                        "code",
+                        "flow",
+                        "files",
+                        "palette",
+                        "metric",
+                        "preview",
+                        "none"
+                      ]
+                    },
+                    "example": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2000,
+                      "pattern": "\\S"
+                    },
+                    "value": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160,
+                      "pattern": "\\S"
                     }
                   },
                   "required": [
@@ -1468,6 +1517,7 @@
               "layout": {
                 "type": "string",
                 "enum": [
+                  "beam",
                   "flow",
                   "stack",
                   "hub"

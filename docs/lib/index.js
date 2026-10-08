@@ -1,9 +1,10 @@
-export { render, updateSection, fence } from './render.js';
-export { validateConfig, schema, catalog } from './schema.js';
-export { themes } from './themes.js';
-export { createZip } from './zip.js';
+export { render, updateSection, fence } from './render.js?v=0.2.0';
+export { validateConfig, schema, catalog } from './schema.js?v=0.2.0';
+export { themes } from './themes.js?v=0.2.0';
+export { createZip } from './zip.js?v=0.2.0';
 
-export { designs, designFor } from './designs.js';
-export { sections, projects, auditConfig } from './sections.js';
-export { variants, componentInfo } from './variants.js';
-export { createStarter } from './starters.js';
+export { designs, designFor } from './designs.js?v=0.2.0';
+export { sections, projects, auditConfig } from './sections.js?v=0.2.0';
+export { variants, componentInfo } from './variants.js?v=0.2.0';
+export { createStarter } from './starters.js?v=0.2.0';
+export { createComposition, compositionReferences } from './compositions.js?v=0.2.0';

@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>open-readme — Components for GitHub READMEs</title>
+    <title>open-readme — Designed GitHub READMEs for agents</title>
     <meta
       name="description"
       content="An open-source README component library for coding agents. Browse, customize and compose headers, badges, code, diagrams, metrics, timelines and more."
     />
     <meta name="theme-color" content="#fafaf8" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css?v=0.2.0" />
   </head>
   <body>
     <header class="masthead">
@@ -18,8 +18,8 @@
         ><span class="brand-icon" aria-hidden="true">↗</span> open-readme</a
       >
       <nav aria-label="Main navigation">
-        <button data-page="components" aria-pressed="true">
-          Components <span id="component-count"></span></button
+        <button data-page="designs" aria-pressed="true">README designs</button>
+        <button data-page="components">Components <span id="component-count"></span></button
         ><button data-page="compose">Compose <span id="basket-count"></span></button
         ><button data-page="sections">Sections</button>
       </nav>
@@ -38,7 +38,44 @@
         </div>
       </aside>
       <main>
-        <section id="page-components">
+        <section id="page-designs">
+          <div class="design-heading">
+            <div>
+              <p class="eyebrow">COMPLETE READMES / SAME PROJECT FACTS</p>
+              <h1>Choose a design.</h1>
+            </div>
+            <p>Preview the entire README, then make it yours.</p>
+          </div>
+          <div id="design-picker" class="design-picker" aria-label="Complete README designs"></div>
+          <div class="design-workspace">
+            <aside class="design-context">
+              <p class="eyebrow">THE DESIGN</p>
+              <h2 id="design-name"></h2>
+              <p id="design-description"></p>
+              <p class="eyebrow">COMPONENTS STUDIED</p>
+              <div id="design-references"></div>
+              <button id="use-design" class="primary">Customize this README ↗</button>
+              <p class="hint">
+                The export contains Markdown and local SVGs. Code, links and disclosures remain
+                usable on GitHub.
+              </p>
+            </aside>
+            <section class="design-result">
+              <div class="design-result-toolbar">
+                <span>README.md</span>
+                <div class="segmented">
+                  <button data-design-mode="light" aria-pressed="true">Light</button
+                  ><button data-design-mode="dark">Dark</button>
+                </div>
+                <button id="design-phone" aria-pressed="false">Phone</button>
+                <button id="export-design">Export README ↓</button>
+              </div>
+              <article id="design-preview" class="document"></article>
+              <p id="design-status" role="status"></p>
+            </section>
+          </div>
+        </section>
+        <section id="page-components" hidden>
           <div class="page-heading">
             <p class="eyebrow">MERIDIAN STARTUPS / OPEN SOURCE</p>
             <h1>The parts of a<br />better README.</h1>
@@ -174,8 +211,8 @@
           </div>
           <div class="command">
             <code
-              >npm install --save-dev github:luc3xhj/open-readme#v0.1.2<br />npx open-readme catalog
-              --json<br />npx open-readme init --project cli --design swiss<br />npx open-readme
+              >npm install --save-dev github:luc3xhj/open-readme#v0.2.0<br />npx open-readme catalog
+              --json<br />npx open-readme init --project cli --design canvas<br />npx open-readme
               render --out README.preview.md --json</code
             >
           </div>
@@ -228,6 +265,6 @@
         </div>
       </div>
     </dialog>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=0.2.0"></script>
   </body>
 </html>

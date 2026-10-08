@@ -180,9 +180,9 @@ test('ZIP export uses UTF-8 filenames and refuses traversal', async (t) => {
   // checked by the release workflow's Python standard-library smoke test.
 });
 
-test('all 41 component variants validate and export deterministic assets', async () => {
+test('all public component variants validate and export deterministic assets', async () => {
   const { samples } = await import('../scripts/samples.js');
-  assert.equal(samples.length, 41);
+  assert.equal(samples.length, 49);
   const seen = new Set();
   for (const sample of samples) {
     assert.deepEqual(validateConfig(sample.config), [], sample.id);
@@ -258,7 +258,7 @@ test('contents links distinguish duplicate headings and support CJK', () => {
 test('CLI exposes component variants and creates a project-specific starter', async (t) => {
   const dir = await workspace(t),
     result = cli(dir, 'catalog', '--json');
-  assert.equal(JSON.parse(result.stdout).data.diagram.variants.length, 3);
+  assert.equal(JSON.parse(result.stdout).data.diagram.variants.length, 4);
   const created = cli(
     dir,
     'init',
@@ -299,4 +299,116 @@ test('component styling overrides the composition without changing siblings', ()
   assert.ok(assets.get('a-light.svg').includes('#cc5533'));
   assert.ok(assets.get('b-light.svg').includes('#113355'));
   assert.ok(!assets.get('b-light.svg').includes('#cc5533'));
+});
+
+test('complete compositions preserve facts, source code and diagram relationships', async () => {
+  const { createComposition, compositionReferences } = await import('../src/index.js');
+  const base = JSON.parse(await readFile(resolve(root, 'open-readme.json'), 'utf8'));
+  const before = structuredClone(base);
+  for (const id of Object.keys(compositionReferences)) {
+    const composed = createComposition(base, id);
+    assert.deepEqual(validateConfig(composed), []);
+    assert.deepEqual(
+      composed.blocks.map((b) => b.id),
+      base.blocks.map((b) => b.id),
+    );
+    for (let i = 0; i < base.blocks.length; i++) {
+      const { layout: a, ...original } = base.blocks[i];
+      const { layout: b, ...changed } = composed.blocks[i];
+      assert.deepEqual(changed, original);
+      if (original.type === 'diagram') assert.equal(b, a);
+    }
+    assert.notEqual(render(composed).assets.get('hero-light.svg'), '');
+  }
+  assert.deepEqual(base, before);
+});
+
+test('illustrated previews preserve exact full source in native disclosures', () => {
+  const preview = '# A real project\n' + 'Exact source with `ticks` and <tags>.\n'.repeat(30);
+  const command = 'node tool.js --output ./README.preview.md --format markdown';
+  const config = {
+    version: 1,
+    theme: 'minimal',
+    design: 'canvas',
+    blocks: [
+      { id: 'hero', type: 'hero', title: 'Project', subtitle: 'A real demo.', preview },
+      {
+        id: 'features',
+        type: 'features',
+        layout: 'bento',
+        items: [{ title: 'Run', description: 'Actual command.', visual: 'code', example: command }],
+      },
+    ],
+  };
+  const { markdown } = render(config);
+  assert.ok(markdown.includes(preview));
+  assert.ok(markdown.includes(command));
+  assert.ok(markdown.includes('<summary>Preview source</summary>'));
+  assert.ok(markdown.includes('<summary>Feature examples</summary>'));
+});
+
+test('long composed previews and beam labels remain inside SVG height', () => {
+  const config = {
+    version: 1,
+    theme: 'minimal',
+    design: 'canvas',
+    style: { width: 640 },
+    blocks: [
+      {
+        id: 'hero',
+        type: 'hero',
+        title: 'Project',
+        subtitle: 'Actual project.',
+        preview: 'A very long preview line '.repeat(35),
+      },
+      {
+        id: 'features',
+        type: 'features',
+        layout: 'bento',
+        items: [
+          {
+            title: 'Flow',
+            description: 'Actual ordered labels.',
+            visual: 'flow',
+            example: Array(3).fill('给开发者使用的实际输入和输出文件'.repeat(4)).join(' → '),
+          },
+          {
+            title: 'Palette',
+            description: 'Actual config.',
+            visual: 'palette',
+            example: '#6657D8\n' + 'a very long configuration line '.repeat(15),
+          },
+          {
+            title: 'Output',
+            description: 'Actual files.',
+            visual: 'files',
+            example: 'README.md\nassets/open-readme/hero.svg',
+          },
+        ],
+      },
+      {
+        id: 'diagram',
+        type: 'diagram',
+        layout: 'beam',
+        items: Array.from({ length: 6 }, (_, i) => ({
+          title: 'Output ' + i + ' ' + '实际文件名称'.repeat(12),
+          description: 'Actual source description. '.repeat(5),
+        })),
+      },
+    ],
+  };
+  for (const [name, svg] of render(config).assets) {
+    const height = Number(svg.match(/height="([\d.]+)"/)[1]);
+    for (const text of svg.matchAll(/<text\b([^>]*)>(.*?)<\/text>/gs)) {
+      const baseline = Number(text[1].match(/\by="([\d.]+)"/)[1]);
+      const offset = [...text[2].matchAll(/\bdy="([\d.]+)"/g)].reduce(
+        (n, m) => n + Number(m[1]),
+        0,
+      );
+      assert.ok(
+        baseline + offset < height,
+        `${name}: text at ${baseline + offset} outside ${height}`,
+      );
+    }
+  }
 });

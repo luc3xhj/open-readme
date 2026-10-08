@@ -1,7 +1,7 @@
 {
   "name": "@luc3xhj/open-readme",
-  "version": "0.1.2",
-  "description": "A component library for GitHub READMEs, built for coding agents. Composable sections, 41 variants, Markdown + SVG.",
+  "version": "0.2.0",
+  "description": "Designed GitHub READMEs for coding agents. Complete compositions, editable JSON, Markdown and local SVG.",
   "type": "module",
   "license": "MIT",
   "author": "Lucas Jin",
@@ -29,7 +29,8 @@
     "docs/sections.md",
     "docs/design-notes.md",
     "CONTRIBUTING.md",
-    "assets/*.svg"
+    "assets/*.svg",
+    "examples/designs/*.json"
   ],
   "scripts": {
     "test": "node --test",

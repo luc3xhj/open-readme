@@ -1,10 +1,18 @@
 import { readFile, writeFile, mkdir, copyFile, readdir, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { render, schema, designs, createStarter } from '../src/index.js';
+import {
+  render,
+  schema,
+  designs,
+  createStarter,
+  createComposition,
+  compositionReferences,
+} from '../src/index.js';
 import { renderSvg } from '../src/svg.js';
 import { samples, sampleBlocks } from './samples.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
+const packageVersion = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8')).version;
 async function output(config, folder) {
   const result = render(config);
   await rm(resolve(folder, 'assets/open-readme'), { recursive: true, force: true });
@@ -17,6 +25,26 @@ async function output(config, folder) {
       await copyFile(resolve(root, 'assets', file), resolve(folder, 'assets', file));
 }
 const config = JSON.parse(await readFile(resolve(root, 'open-readme.json'), 'utf8'));
+const completeDesigns = Object.entries(compositionReferences).map(([id, info]) => {
+  const composed = createComposition(config, id),
+    hero = composed.blocks.find((b) => b.type === 'hero');
+  const start = composed.blocks.find((b) => b.id === 'quickstart');
+  start.code = start.code.replace('--design canvas', '--design ' + id);
+  if (id === 'console') {
+    hero.previewLabel = 'FILES AFTER RENDER';
+    hero.preview = 'README.preview.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg';
+    hero.command = 'open-readme render --out README.preview.md';
+  } else if (id === 'journal') {
+    delete hero.preview;
+    delete hero.previewLabel;
+    hero.headline = 'The useful parts.\nCarefully composed.';
+    hero.meta = 'An open-source field guide';
+  } else if (id === 'pipeline') {
+    hero.preview = 'open-readme.json\nREADME.md\nSVG assets';
+    hero.previewLabel = 'INPUT / OUTPUT';
+  }
+  return { id, ...info, config: composed };
+});
 await mkdir(resolve(root, 'docs/lib'), { recursive: true });
 await mkdir(resolve(root, 'docs/examples'), { recursive: true });
 await mkdir(resolve(root, 'docs/assets'), { recursive: true });
@@ -31,14 +59,31 @@ for (const [file, design] of [
   await writeFile(resolve(root, 'docs/assets', file), data);
 }
 await output(config, root);
+await mkdir(resolve(root, 'examples/designs'), { recursive: true });
+for (const design of completeDesigns) {
+  await writeFile(
+    resolve(root, 'examples/designs', design.id + '.json'),
+    JSON.stringify(design.config, null, 2) + '\n',
+  );
+  await output(design.config, resolve(root, 'examples/designs', design.id));
+}
 for (const file of await readdir(resolve(root, 'src')))
-  if (file.endsWith('.js'))
-    await copyFile(resolve(root, 'src', file), resolve(root, 'docs/lib', file));
+  if (file.endsWith('.js')) {
+    const source = await readFile(resolve(root, 'src', file), 'utf8');
+    await writeFile(
+      resolve(root, 'docs/lib', file),
+      source.replace(/(from\s+['"])(\.\/[^'"]+\.js)(['"])/g, `$1$2?v=${packageVersion}$3`),
+    );
+  }
 await writeFile(resolve(root, 'schema.json'), JSON.stringify(schema, null, 2) + '\n');
 await copyFile(resolve(root, 'schema.json'), resolve(root, 'docs/schema.json'));
 await writeFile(
   resolve(root, 'docs/examples/catalog.json'),
   JSON.stringify(samples, null, 2) + '\n',
+);
+await writeFile(
+  resolve(root, 'docs/examples/designs.json'),
+  JSON.stringify(completeDesigns, null, 2) + '\n',
 );
 const sampler = {
   version: 1,
@@ -77,5 +122,5 @@ await output(
 );
 await writeFile(resolve(root, 'docs/.nojekyll'), '');
 console.log(
-  `Built ${samples.length} component examples, 8 compositions, README, schema and browser library.`,
+  `Built ${samples.length} component examples, ${completeDesigns.length} complete README designs, README, schema and browser library.`,
 );

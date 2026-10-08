@@ -4,10 +4,23 @@
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/hero-dark.svg">
-  <img src="assets/open-readme/hero-light.svg" alt="open-readme — A component library for GitHub READMEs. Built for coding agents." width="960">
+  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Design your README.
+Keep every file. — Clear GitHub READMEs, composed by your coding agent." width="960">
 </picture>
 
-[Component library](<https://luc3xhj.github.io/open-readme/>) · [Agent skill](<./skills/open-readme/SKILL.md>) · [Section guide](<./docs/sections.md>) · [Configuration](<./docs/configuration.md>)
+<details>
+<summary>Preview source</summary>
+
+```text
+# open-readme
+Markdown + SVG. Local files.
+## Quick start
+npx open-readme render
+```
+
+</details>
+
+[README designs](<https://luc3xhj.github.io/open-readme/>) · [Agent skill](<./skills/open-readme/SKILL.md>) · [Section guide](<./docs/sections.md>) · [Configuration](<./docs/configuration.md>)
 
 <p>
 <a href="./LICENSE"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-1-dark.svg"><img src="assets/open-readme/status-1-light.svg" alt="license: MIT"></picture></a>
@@ -25,30 +38,63 @@
 </picture>
 </p>
 
-## Choose the parts that help
+## Quick start
+
+```sh
+npm install --save-dev github:luc3xhj/open-readme#v0.2.0
+npx open-readme init --project cli --design canvas
+npx open-readme render --out README.preview.md --json
+```
+
+Requires Node.js 22+. Edit the starter with your project’s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published.
+
+## What your agent can build
 
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/features-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/features-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/features-dark.svg">
-  <img src="assets/open-readme/features-light.svg" alt="17 components: Headers, badges, code, navigation, features, diagrams, metrics, timelines, galleries, FAQ and more.; 41 variants: Compose a real section: numbered features, relationship diagrams, source-linked metrics or a copyable quick start.; Files you own: Customize in JSON. Export Markdown and local SVGs, with automatic light, dark and narrow-screen variants." width="960">
+  <img src="assets/open-readme/features-light.svg" alt="Compose for your project: Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.; Edit the design in JSON: Change layout, accent and density in a versioned configuration.; Keep commands copyable: Installation and usage examples export as real Markdown code.; Own the result: Commit your Markdown and local SVGs together. No hosted image service is required." width="960">
 </picture>
 
-## Quick start
+<details>
+<summary>Feature examples</summary>
 
-```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.1.2
-npx open-readme init --project cli --design swiss
-npx open-readme render --out README.preview.md --json
+**Compose for your project** — Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.
+
+```text
+project facts → useful sections → README
 ```
 
-Replace the starter’s instructions with verified project content. Review the preview, then commit the Markdown and assets together. Installation is from GitHub; the npm package is not published yet.
+**Edit the design in JSON** — Change layout, accent and density in a versioned configuration.
+
+```text
+"design": "canvas"
+"style": {"accent": "#6657D8"}
+```
+
+**Keep commands copyable** — Installation and usage examples export as real Markdown code.
+
+```text
+npx open-readme render --out README.preview.md
+```
+
+**Own the result** — Commit your Markdown and local SVGs together. No hosted image service is required.
+
+```text
+README.md
+assets/open-readme/
+  hero-light.svg
+  hero-dark.svg
+```
+
+</details>
 
 ## Use with your agent
 
 Load [skills/open-readme/SKILL.md](./skills/open-readme/SKILL.md), then ask:
 
-> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two component compositions. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.
+> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.
 
 The agent can inspect the catalog and section guide through the CLI:
 
@@ -66,15 +112,16 @@ npx open-readme render --block hero --section header --out README.md
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/architecture-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/architecture-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/architecture-dark.svg">
-  <img src="assets/open-readme/architecture-light.svg" alt="Project facts → Composition → Export" width="960">
+  <img src="assets/open-readme/architecture-light.svg" alt="Project config → Renderer → README.md → SVG assets" width="960">
 </picture>
 
 <details>
 <summary>Diagram description</summary>
 
-- **Project facts** — The agent inspects your repo
-- **Composition** — Sections + component config
-- **Export** — README.md + local SVGs
+- **Project config** — Facts + chosen sections
+- **Renderer** — Validate and compose
+- **README.md** — Readable, copyable Markdown
+- **SVG assets** — Local light / dark visuals
 
 </details>
 

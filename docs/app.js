@@ -10,8 +10,8 @@ import {
   createStarter,
   createZip,
   schema,
-} from './lib/index.js';
-import { renderSvg } from './lib/svg.js';
+} from './lib/index.js?v=0.2.0';
+import { renderSvg } from './lib/svg.js?v=0.2.0';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);
@@ -19,15 +19,21 @@ const $ = (id) => document.getElementById(id),
     if (cls) el.className = cls;
     return el;
   };
-const [samples, examples] = await Promise.all([
-  fetch('./examples/catalog.json').then((r) => r.json()),
+const [samples, examples, completeDesigns] = await Promise.all([
+  fetch('./examples/catalog.json', { cache: 'no-cache' }).then((r) => r.json()),
   Promise.all(
     ['repository', 'directory', 'components'].map(async (name) => [
       name,
-      await (await fetch('./examples/' + name + '.json')).json(),
+      await (await fetch('./examples/' + name + '.json', { cache: 'no-cache' })).json(),
     ]),
   ).then(Object.fromEntries),
+  fetch('./examples/designs.json', { cache: 'no-cache' }).then((r) => r.json()),
 ]);
+let selectedDesign =
+    completeDesigns.find((d) => d.id === new URLSearchParams(location.search).get('design')) ||
+    completeDesigns[0],
+  designMode = 'light',
+  designPhone = false;
 let category = 'all',
   galleryMode = 'light',
   config = structuredClone(examples.repository),
@@ -150,6 +156,7 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
   for (const b of cfg.blocks) {
     if (b.type === 'hero') {
       el.append(visualBlock(b));
+      if (b.preview && !thumbnail) el.append(details('Preview source', nativeCode(b.preview)));
       continue;
     }
     heading(b);
@@ -188,6 +195,14 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
         }
         el.append(ul);
       } else el.append(visualBlock({ ...b, layout }));
+      if (b.items.some((item) => item.example) && !thumbnail) {
+        const examples = node('div');
+        for (const item of b.items) {
+          examples.append(node('strong', item.title), node('p', item.description));
+          if (item.example) examples.append(nativeCode(item.example));
+        }
+        el.append(details('Feature examples', examples));
+      }
     }
     if (b.type === 'code') {
       if (b.layout === 'terminal')
@@ -306,14 +321,75 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
   }
 }
 function showPage(name) {
-  for (const key of ['components', 'compose', 'sections']) $('page-' + key).hidden = key !== name;
+  document.body.dataset.page = name;
+  for (const key of ['designs', 'components', 'compose', 'sections'])
+    $('page-' + key).hidden = key !== name;
   document
     .querySelectorAll('[data-page]')
     .forEach((button) => button.setAttribute('aria-pressed', button.dataset.page === name));
   if (name === 'compose') update();
   if (name === 'sections') sectionGuide();
+  if (name === 'designs') designPreview();
   window.scrollTo(0, 0);
 }
+function designPreview() {
+  $('design-name').textContent = selectedDesign.name;
+  $('design-description').textContent = selectedDesign.description;
+  $('design-references').replaceChildren();
+  for (const ref of selectedDesign.references) {
+    const item = node('div', undefined, 'design-reference');
+    item.append(
+      anchor(ref.name + ' ↗', ref.url),
+      node('small', ref.section),
+      node('p', ref.studied),
+    );
+    $('design-references').append(item);
+  }
+  document
+    .querySelectorAll('[data-readme-design]')
+    .forEach((button) =>
+      button.setAttribute('aria-pressed', button.dataset.readmeDesign === selectedDesign.id),
+    );
+  document
+    .querySelectorAll('[data-design-mode]')
+    .forEach((button) =>
+      button.setAttribute('aria-pressed', button.dataset.designMode === designMode),
+    );
+  $('design-phone').setAttribute('aria-pressed', designPhone);
+  renderDocument($('design-preview'), selectedDesign.config, designMode, designPhone);
+}
+for (const design of completeDesigns) {
+  const button = node('button', design.name);
+  button.dataset.readmeDesign = design.id;
+  button.addEventListener('click', () => {
+    selectedDesign = design;
+    const url = new URL(location.href);
+    url.searchParams.set('design', design.id);
+    history.replaceState(null, '', url);
+    designPreview();
+  });
+  $('design-picker').append(button);
+}
+document.querySelectorAll('[data-design-mode]').forEach((button) =>
+  button.addEventListener('click', () => {
+    designMode = button.dataset.designMode;
+    designPreview();
+  }),
+);
+$('design-phone').addEventListener('click', () => {
+  designPhone = !designPhone;
+  designPreview();
+});
+$('use-design').addEventListener('click', () => {
+  config = structuredClone(selectedDesign.config);
+  disabled = new Set();
+  composeMode = designMode;
+  blockControls();
+  showPage('compose');
+});
+$('export-design').addEventListener('click', () =>
+  download(selectedDesign.config, 'design-status'),
+);
 function categories() {
   const all = node('button', 'All components');
   all.dataset.category = 'all';
@@ -334,6 +410,14 @@ function categories() {
   );
 }
 const first = [
+  'hero-canvas',
+  'features-bento',
+  'hero-console',
+  'features-terminal-grid',
+  'hero-journal',
+  'features-lattice',
+  'hero-pipeline',
+  'diagram-beam',
   'hero-swiss',
   'code-terminal',
   'badges-dot',
@@ -732,7 +816,10 @@ gallery();
 blockControls();
 update();
 sectionGuide();
+showPage('designs');
 window.addEventListener('resize', () => {
+  if (!$('page-designs').hidden)
+    renderDocument($('design-preview'), selectedDesign.config, designMode, designPhone);
   if (!$('page-compose').hidden && current)
     renderDocument($('preview'), current.config, composeMode, phone);
   if ($('component-dialog').open) renderDocument($('component-preview'), modalConfig, modalMode);

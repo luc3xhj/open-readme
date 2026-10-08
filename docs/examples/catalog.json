@@ -1,5 +1,123 @@
 [
   {
+    "id": "hero-canvas",
+    "type": "hero",
+    "variant": "canvas",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "canvas",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "Clear GitHub READMEs, composed by your coding agent.",
+          "eyebrow": "open-readme / MERIDIAN STARTUPS",
+          "mark": "or",
+          "command": "open-readme render",
+          "meta": "Markdown + SVG",
+          "headline": "Design your README.\nKeep every file.",
+          "previewLabel": "README.md · example",
+          "preview": "# open-readme\nMarkdown + SVG. Local files.\n## Quick start\nnpx open-readme render"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-console",
+    "type": "hero",
+    "variant": "console",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "console",
+      "theme": "terminal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "Clear GitHub READMEs, composed by your coding agent.",
+          "eyebrow": "open-readme / MERIDIAN STARTUPS",
+          "mark": "or",
+          "command": "open-readme render",
+          "meta": "Markdown + SVG",
+          "headline": "Design your README.\nKeep every file.",
+          "previewLabel": "FILES AFTER RENDER",
+          "preview": "README.preview.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-journal",
+    "type": "hero",
+    "variant": "journal",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "journal",
+      "theme": "editorial",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "Clear GitHub READMEs, composed by your coding agent.",
+          "eyebrow": "open-readme / MERIDIAN STARTUPS",
+          "mark": "or",
+          "command": "open-readme render",
+          "meta": "Markdown + SVG",
+          "headline": "Design your README.\nKeep every file."
+        }
+      ]
+    }
+  },
+  {
+    "id": "hero-pipeline",
+    "type": "hero",
+    "variant": "pipeline",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "pipeline",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "hero",
+          "type": "hero",
+          "section": "overview",
+          "title": "open-readme",
+          "subtitle": "Clear GitHub READMEs, composed by your coding agent.",
+          "eyebrow": "open-readme / MERIDIAN STARTUPS",
+          "mark": "or",
+          "command": "open-readme render",
+          "meta": "Markdown + SVG",
+          "headline": "Design your README.\nKeep every file.",
+          "previewLabel": "README.md · example",
+          "preview": "open-readme.json\nREADME.md\nSVG assets"
+        }
+      ]
+    }
+  },
+  {
     "id": "hero-plain",
     "type": "hero",
     "variant": "plain",
@@ -429,6 +547,153 @@
     }
   },
   {
+    "id": "features-bento",
+    "type": "features",
+    "variant": "bento",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "What your agent can build",
+          "items": [
+            {
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
+            },
+            {
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
+            },
+            {
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
+            }
+          ],
+          "layout": "bento"
+        }
+      ]
+    }
+  },
+  {
+    "id": "features-lattice",
+    "type": "features",
+    "variant": "lattice",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "What your agent can build",
+          "items": [
+            {
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
+            },
+            {
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
+            },
+            {
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
+            }
+          ],
+          "layout": "lattice"
+        }
+      ]
+    }
+  },
+  {
+    "id": "features-terminal-grid",
+    "type": "features",
+    "variant": "terminal-grid",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "features",
+          "type": "features",
+          "section": "features",
+          "title": "What your agent can build",
+          "items": [
+            {
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
+            },
+            {
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
+            },
+            {
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
+            }
+          ],
+          "layout": "terminal-grid"
+        }
+      ]
+    }
+  },
+  {
     "id": "features-native",
     "type": "features",
     "variant": "native",
@@ -445,19 +710,31 @@
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Choose what helps the reader",
+          "title": "What your agent can build",
           "items": [
             {
-              "title": "Compose",
-              "description": "Choose components for the sections your project actually needs."
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
             },
             {
-              "title": "Customize",
-              "description": "Edit layout, accent, density and content in one JSON config."
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
             },
             {
-              "title": "Export",
-              "description": "Keep Markdown and SVG assets in your own repository."
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
             }
           ],
           "layout": "native"
@@ -482,19 +759,31 @@
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Choose what helps the reader",
+          "title": "What your agent can build",
           "items": [
             {
-              "title": "Compose",
-              "description": "Choose components for the sections your project actually needs."
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
             },
             {
-              "title": "Customize",
-              "description": "Edit layout, accent, density and content in one JSON config."
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
             },
             {
-              "title": "Export",
-              "description": "Keep Markdown and SVG assets in your own repository."
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
             }
           ],
           "layout": "rows"
@@ -519,19 +808,31 @@
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Choose what helps the reader",
+          "title": "What your agent can build",
           "items": [
             {
-              "title": "Compose",
-              "description": "Choose components for the sections your project actually needs."
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
             },
             {
-              "title": "Customize",
-              "description": "Edit layout, accent, density and content in one JSON config."
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
             },
             {
-              "title": "Export",
-              "description": "Keep Markdown and SVG assets in your own repository."
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
             }
           ],
           "layout": "columns"
@@ -556,19 +857,31 @@
           "id": "features",
           "type": "features",
           "section": "features",
-          "title": "Choose what helps the reader",
+          "title": "What your agent can build",
           "items": [
             {
-              "title": "Compose",
-              "description": "Choose components for the sections your project actually needs."
+              "title": "Compose for your project",
+              "description": "Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.",
+              "visual": "flow",
+              "example": "project facts → useful sections → README"
             },
             {
-              "title": "Customize",
-              "description": "Edit layout, accent, density and content in one JSON config."
+              "title": "Edit the design in JSON",
+              "description": "Change layout, accent and density in a versioned configuration.",
+              "visual": "palette",
+              "example": "\"design\": \"canvas\"\n\"style\": {\"accent\": \"#6657D8\"}"
             },
             {
-              "title": "Export",
-              "description": "Keep Markdown and SVG assets in your own repository."
+              "title": "Keep commands copyable",
+              "description": "Installation and usage examples export as real Markdown code.",
+              "visual": "code",
+              "example": "npx open-readme render --out README.preview.md"
+            },
+            {
+              "title": "Own the result",
+              "description": "Commit your Markdown and local SVGs together. No hosted image service is required.",
+              "visual": "files",
+              "example": "README.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg"
             }
           ],
           "layout": "index"
@@ -596,7 +909,7 @@
           "title": "Quick start",
           "language": "sh",
           "filename": "terminal",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
           "highlight": [
             3
           ],
@@ -625,7 +938,7 @@
           "title": "Quick start",
           "language": "sh",
           "filename": "terminal",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
           "highlight": [
             3
           ],
@@ -799,6 +1112,48 @@
     }
   },
   {
+    "id": "diagram-beam",
+    "type": "diagram",
+    "variant": "beam",
+    "config": {
+      "version": 1,
+      "project": "cli",
+      "design": "plain",
+      "theme": "minimal",
+      "style": {
+        "density": "compact"
+      },
+      "blocks": [
+        {
+          "id": "architecture",
+          "type": "diagram",
+          "section": "architecture",
+          "title": "How the output is built",
+          "center": "README",
+          "items": [
+            {
+              "title": "Config",
+              "description": "Project facts + components"
+            },
+            {
+              "title": "Renderer",
+              "description": "Validate and compose"
+            },
+            {
+              "title": "Markdown",
+              "description": "Readable, copyable content"
+            },
+            {
+              "title": "SVG assets",
+              "description": "Local visual components"
+            }
+          ],
+          "layout": "beam"
+        }
+      ]
+    }
+  },
+  {
     "id": "diagram-flow",
     "type": "diagram",
     "variant": "flow",
@@ -949,12 +1304,12 @@
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
             },
             {
-              "value": "41",
+              "value": "49",
               "label": "component variants",
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
             },
             {
-              "value": "8",
+              "value": "12",
               "label": "header designs",
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
             }
@@ -990,12 +1345,12 @@
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
             },
             {
-              "value": "41",
+              "value": "49",
               "label": "component variants",
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
             },
             {
-              "value": "8",
+              "value": "12",
               "label": "header designs",
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
             }
@@ -1031,12 +1386,12 @@
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
             },
             {
-              "value": "41",
+              "value": "49",
               "label": "component variants",
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
             },
             {
-              "value": "8",
+              "value": "12",
               "label": "header designs",
               "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
             }
@@ -1341,7 +1696,7 @@
           "title": "Quick start",
           "language": "sh",
           "filename": "terminal",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
           "highlight": [
             3
           ]
@@ -1378,7 +1733,7 @@
             {
               "label": "Install in your project",
               "language": "sh",
-              "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.2"
+              "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0"
             },
             {
               "label": "Work from source",

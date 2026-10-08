@@ -83,7 +83,7 @@
       "title": "Quick start",
       "language": "sh",
       "filename": "terminal",
-      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
+      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md",
       "highlight": [
         3
       ]
@@ -97,7 +97,7 @@
         {
           "label": "Install in your project",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.1.2"
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0"
         },
         {
           "label": "Work from source",
@@ -192,12 +192,12 @@
           "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
         },
         {
-          "value": "41",
+          "value": "49",
           "label": "component variants",
           "source": "https://github.com/luc3xhj/open-readme/blob/main/src/variants.js"
         },
         {
-          "value": "8",
+          "value": "12",
           "label": "header designs",
           "source": "https://github.com/luc3xhj/open-readme/blob/main/src/designs.js"
         }

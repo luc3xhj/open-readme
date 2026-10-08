@@ -46,6 +46,9 @@ export const blocks = {
       mark: { ...short, maxLength: 8 },
       command: { ...text, maxLength: 240 },
       meta: short,
+      headline: { ...short, maxLength: 240 },
+      preview: { ...text, maxLength: 2000 },
+      previewLabel: short,
     },
     ['title', 'subtitle'],
   ),
@@ -69,12 +72,25 @@ export const blocks = {
     'features',
     {
       title: short,
-      layout: { type: 'string', enum: ['native', 'rows', 'columns', 'index'] },
+      layout: {
+        type: 'string',
+        enum: ['bento', 'lattice', 'terminal-grid', 'native', 'rows', 'columns', 'index'],
+      },
       items: array(
-        item({ title: short, description: { ...text, maxLength: 800 }, url: href }, [
-          'title',
-          'description',
-        ]),
+        item(
+          {
+            title: short,
+            description: { ...text, maxLength: 800 },
+            url: href,
+            visual: {
+              type: 'string',
+              enum: ['code', 'flow', 'files', 'palette', 'metric', 'preview', 'none'],
+            },
+            example: { ...text, maxLength: 2000 },
+            value: short,
+          },
+          ['title', 'description'],
+        ),
         12,
       ),
     },
@@ -168,7 +184,7 @@ export const blocks = {
   diagram: block(
     'diagram',
     {
-      layout: { type: 'string', enum: ['flow', 'stack', 'hub'] },
+      layout: { type: 'string', enum: ['beam', 'flow', 'stack', 'hub'] },
       center: short,
       title: short,
       items: array(item({ title: short, description: short }, ['title']), 8),

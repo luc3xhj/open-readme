@@ -1,4 +1,6 @@
 import { variants, designs } from '../src/index.js';
+import { readFile } from 'node:fs/promises';
+const project = JSON.parse(await readFile(new URL('../open-readme.json', import.meta.url), 'utf8'));
 const repo = 'https://github.com/luc3xhj/open-readme';
 export const sampleBlocks = {
   hero: {
@@ -54,7 +56,7 @@ export const sampleBlocks = {
     title: 'Quick start',
     language: 'sh',
     filename: 'terminal',
-    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.1.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
+    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
     highlight: [3],
   },
   codegroup: {
@@ -66,7 +68,7 @@ export const sampleBlocks = {
       {
         label: 'Install in your project',
         language: 'sh',
-        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.1.2',
+        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.2.0',
       },
       {
         label: 'Work from source',
@@ -205,6 +207,22 @@ export const sampleBlocks = {
 export const samples = Object.entries(variants).flatMap(([type, layouts]) =>
   layouts.map((layout) => {
     const block = structuredClone(sampleBlocks[type]);
+    if (type === 'features')
+      Object.assign(block, structuredClone(project.blocks.find((b) => b.type === 'features')));
+    if (type === 'hero' && ['canvas', 'console', 'journal', 'pipeline'].includes(layout)) {
+      Object.assign(block, structuredClone(project.blocks.find((b) => b.type === 'hero')));
+      if (layout === 'console') {
+        block.preview = 'README.preview.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg';
+        block.previewLabel = 'FILES AFTER RENDER';
+      }
+      if (layout === 'journal') {
+        delete block.preview;
+        delete block.previewLabel;
+      }
+      if (layout === 'pipeline') {
+        block.preview = 'open-readme.json\nREADME.md\nSVG assets';
+      }
+    }
     if (type === 'diagram' && layout === 'hub') {
       block.title = 'A reader’s route through the README';
       block.center = 'README';

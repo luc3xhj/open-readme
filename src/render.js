@@ -77,7 +77,16 @@ export function render(config, options = {}) {
     const heading = block.title ? `## ${md(block.title)}\n\n` : '';
     switch (block.type) {
       case 'hero':
-        output.push(picture(block, block.id, block.title + ' — ' + block.subtitle));
+        output.push(
+          picture(
+            block,
+            block.id,
+            [block.title, block.headline, block.subtitle].filter(Boolean).join(' — '),
+          ) +
+            (block.preview
+              ? '\n\n' + disclosure('Preview source', fence(block.preview, 'text'))
+              : ''),
+        );
         break;
       case 'badges':
         output.push(
@@ -115,6 +124,19 @@ export function render(config, options = {}) {
         break;
       case 'features': {
         const layout = block.layout || designFor(config).features;
+        const examples = block.items.some((item) => item.example)
+          ? '\n\n' +
+            disclosure(
+              'Feature examples',
+              block.items
+                .map(
+                  (item) =>
+                    `**${md(item.title)}** — ${md(item.description)}` +
+                    (item.example ? '\n\n' + fence(item.example, 'text') : ''),
+                )
+                .join('\n\n'),
+            )
+          : '';
         if (layout === 'native')
           output.push(
             heading +
@@ -123,7 +145,8 @@ export function render(config, options = {}) {
                   (item) =>
                     `- **${item.url ? link(item.title, item.url) : md(item.title)}** — ${md(item.description)}`,
                 )
-                .join('\n'),
+                .join('\n') +
+              examples,
           );
         else
           output.push(
@@ -139,7 +162,8 @@ export function render(config, options = {}) {
                     .filter((i) => i.url)
                     .map((i) => link(i.title, i.url))
                     .join(' · ')
-                : ''),
+                : '') +
+              examples,
           );
         break;
       }

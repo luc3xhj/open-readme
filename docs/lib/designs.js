@@ -1,5 +1,52 @@
 // Compositions, not color skins. Native Markdown stays native on GitHub.
 export const designs = {
+  canvas: {
+    name: 'Canvas',
+    description:
+      'A layered README demonstration, with illustrated feature cells and a branching workflow.',
+    for: 'Developer products · agent tools',
+    theme: 'minimal',
+    font: 'sans',
+    accent: '#6657D8',
+    darkAccent: '#B5AAFF',
+    features: 'bento',
+    hero: 'canvas',
+  },
+  console: {
+    name: 'Console',
+    description: 'A compact terminal masthead, command examples and a file-oriented feature grid.',
+    for: 'CLI tools · local utilities',
+    theme: 'terminal',
+    font: 'mono',
+    accent: '#24764C',
+    darkAccent: '#A4E7BE',
+    features: 'terminal-grid',
+    hero: 'console',
+  },
+  journal: {
+    name: 'Journal',
+    description:
+      'An editorial masthead and a fine-rule lattice, with a clear hierarchy of facts and examples.',
+    for: 'Libraries · research · directories',
+    theme: 'editorial',
+    font: 'serif',
+    accent: '#9B583D',
+    darkAccent: '#DBA185',
+    features: 'lattice',
+    hero: 'journal',
+  },
+  pipeline: {
+    name: 'Pipeline',
+    description:
+      'A technical cover with a real input/output path and open, annotated feature rows.',
+    for: 'SDKs · infrastructure · data tools',
+    theme: 'minimal',
+    font: 'sans',
+    accent: '#256DCE',
+    darkAccent: '#90BAFF',
+    features: 'rows',
+    hero: 'pipeline',
+  },
   plain: {
     darkAccent: '#D2D8CD',
     name: 'Plain',

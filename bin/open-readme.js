@@ -25,7 +25,7 @@ const help = `open-readme ${pkg.version}
   render     Generate Markdown and local SVG assets
   check      Validate configuration and local image references
   catalog    List components, variants and their configuration fields
-  designs    List the eight header / composition designs
+  designs    List available header / composition designs
   sections   List README sections and reader questions
   projects   List project types and essential sections
   audit      Report missing essential / recommended sections

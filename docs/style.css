@@ -1198,3 +1198,229 @@ dialog::backdrop {
     width: 100%;
   }
 }
+
+/* The design view shows the exported document, with source references beside it. */
+body[data-page='designs'] .library-nav {
+  display: none;
+}
+body[data-page='designs'] .layout {
+  grid-template-columns: 1fr;
+}
+body[data-page='designs'] main {
+  max-width: 1400px;
+  width: 100%;
+  margin: auto;
+  padding: 30px 40px;
+}
+.design-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 0 0 24px;
+  gap: 20px;
+}
+.design-heading h1 {
+  margin: 4px 0 0;
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+.design-heading > p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 4px;
+}
+.design-picker {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.design-picker button {
+  padding: 8px 22px;
+  border-radius: 6px;
+}
+.design-picker [aria-pressed='true'] {
+  color: white;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.design-workspace {
+  display: grid;
+  grid-template-columns: 215px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.design-context {
+  position: sticky;
+  top: 95px;
+}
+.design-context h2 {
+  font-size: 20px;
+  margin: 4px 0 8px;
+  letter-spacing: -0.5px;
+}
+.design-context > p:not(.eyebrow) {
+  font-size: 12px;
+  color: #666c64;
+  line-height: 1.55;
+}
+.design-context .eyebrow {
+  font-size: 9px;
+  margin: 26px 0 8px;
+}
+.design-context .eyebrow:first-child {
+  margin-top: 0;
+}
+.design-reference {
+  border-top: 1px solid var(--line);
+  padding: 12px 0;
+}
+.design-reference a {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+}
+.design-reference small {
+  display: block;
+  font: 9px/1.5 var(--mono);
+  color: var(--muted);
+  margin-top: 5px;
+}
+.design-reference p {
+  font-size: 11px;
+  color: #85867f;
+  margin: 6px 0 0;
+  line-height: 1.55;
+}
+.design-context > button {
+  width: 100%;
+  margin-top: 14px;
+  font-size: 11px;
+  padding: 10px 6px;
+}
+.design-result {
+  background: white;
+  border: 1px solid var(--line);
+  min-width: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.design-result-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.design-result-toolbar > span {
+  flex: 1;
+  font: 11px/1.5 var(--mono);
+}
+.design-result-toolbar button {
+  font-size: 10px;
+  padding: 5px 8px;
+}
+#design-preview {
+  padding: 24px;
+  width: 100%;
+  max-width: 100%;
+}
+#design-preview.phone {
+  width: min(390px, 100%);
+  margin: auto;
+  padding: 16px;
+}
+#design-preview > img:first-child {
+  display: block;
+  width: 100%;
+  margin: 0 0 14px;
+}
+#design-status {
+  padding: 0 16px;
+  font-size: 11px;
+}
+@media (max-width: 1050px) {
+  body[data-page='designs'] main {
+    padding: 22px;
+  }
+  .design-workspace {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .design-context {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+  }
+  .design-context > .eyebrow,
+  .design-context > .hint {
+    display: none;
+  }
+  .design-context h2,
+  .design-context > p {
+    grid-column: 1;
+  }
+  .design-context > button {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    margin: 0;
+    width: auto;
+    justify-self: end;
+    padding: 10px 14px;
+  }
+  #design-references {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 18px;
+  }
+  .design-reference {
+    flex: 1;
+    padding: 8px 0 0;
+  }
+  .design-reference p {
+    display: none;
+  }
+  #design-preview {
+    padding: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .design-heading > p {
+    display: none;
+  }
+  .design-picker button {
+    flex: 1;
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+  .design-picker {
+    gap: 5px;
+    margin-bottom: 15px;
+  }
+  .design-context {
+    grid-template-columns: 1fr;
+  }
+  .design-context > button {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+  #design-references {
+    display: none;
+  }
+  .design-context > p {
+    margin-top: 0;
+  }
+  .design-result-toolbar {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  #design-preview {
+    padding: 12px;
+  }
+  body[data-page='designs'] main {
+    padding: 18px 12px;
+  }
+}

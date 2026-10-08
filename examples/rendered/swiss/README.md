@@ -9,14 +9,7 @@
 
 [Component library](<https://luc3xhj.github.io/open-readme/>) · [Agent skill](<./skills/open-readme/SKILL.md>) · [Section guide](<./docs/sections.md>) · [Configuration](<./docs/configuration.md>)
 
-<a href="./LICENSE">
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-1-dark.svg">
-  <img src="assets/open-readme/status-1-light.svg" alt="license: MIT">
-</picture>
-</a>
+<a href="./LICENSE"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-1-dark.svg"><img src="assets/open-readme/status-1-light.svg" alt="license: MIT"></picture></a>
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-2-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/status-2-light-mobile.svg">
@@ -42,7 +35,7 @@
 ## Quick start
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.1.0
+npm install --save-dev github:luc3xhj/open-readme#v0.1.1
 npx open-readme init --project cli --design swiss
 npx open-readme render --out README.preview.md --json
 ```

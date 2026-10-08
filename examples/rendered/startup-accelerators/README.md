@@ -1,13 +1,6 @@
 <!-- Generated with open-readme. Edit the JSON configuration to regenerate. -->
 
-<a href="https://github.com/luc3xhj/startup-accelerators">
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/hero-dark.svg">
-  <img src="assets/open-readme/hero-light.svg" alt="Startup accelerators — 150 accelerators and founder programs. Compare stage, eligibility, participation and published terms." width="960">
-</picture>
-</a>
+<a href="https://github.com/luc3xhj/startup-accelerators"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/hero-dark.svg"><img src="assets/open-readme/hero-light.svg" alt="Startup accelerators — 150 accelerators and founder programs. Compare stage, eligibility, participation and published terms." width="960"></picture></a>
 
 [Browse directory](<https://github.com/luc3xhj/startup-accelerators>) · [Download data](<https://github.com/luc3xhj/startup-accelerators/tree/main/data>)
 

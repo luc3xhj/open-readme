@@ -34,7 +34,9 @@ export function render(config, options = {}) {
         ? ''
         : ` width="${config.style?.width || 960}"`;
     const image = `<picture>\n  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="${url('dark', true)}">\n  <source media="(max-width: 840px)" srcset="${url('light', true)}">\n  <source media="(prefers-color-scheme: dark)" srcset="${url('dark')}">\n  <img src="${url('light')}" alt="${xml(alt)}"${dimension}>\n</picture>`;
-    return block.url ? `<a href="${xml(block.url)}">\n${image}\n</a>` : image;
+    return block.url
+      ? `<a href="${xml(block.url)}">${image.replace(/>\n\s*</g, '><')}</a>`
+      : image;
   }
   const disclosure = (summary, body) =>
     `<details>\n<summary>${xml(summary)}</summary>\n\n${body}\n\n</details>`;

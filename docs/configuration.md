@@ -97,7 +97,7 @@ Light/dark/mobile SVG variants use `<picture>`. Links wrap visual assets. Comman
 ## Install
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.1.0
+npm install --save-dev github:luc3xhj/open-readme#v0.1.1
 npx open-readme --help
 ```
 

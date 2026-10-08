@@ -58,8 +58,10 @@ export function tokens(config, mode = 'light') {
     design = designFor(config);
   return {
     ...theme[mode],
+    designId: config.design,
+    surface: mode === 'dark' ? '#161b22' : '#f6f8fa',
     accent: config.style?.accent || (mode === 'dark' ? design.darkAccent : design.accent),
-    radius: config.style?.radius ?? theme.radius,
+    radius: config.style?.radius ?? design.radius ?? theme.radius,
     font: config.style?.font || design.font,
     customFont: config.style?.font,
     customRadius: config.style?.radius,

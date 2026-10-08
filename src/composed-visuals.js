@@ -1,3 +1,4 @@
+import { systemBeam } from './section-visuals.js';
 import { xml, wrap, label, line, rect, circle, svg } from './drawing.js';
 
 const paragraph = (text, x, y, width, size, color, font = 'sans', weight = 400, leading = 1.35) => {
@@ -12,6 +13,7 @@ const curve = (x1, y1, x2, y2, color, width = 1.5) => {
   return `<path d="M${x1} ${y1}C${mid} ${y1} ${mid} ${y2} ${x2} ${y2}" fill="none" stroke="${color}" stroke-width="${width}"/>`;
 };
 function codePicture(source, x, y, width, t, size = 14, maxLines = 7) {
+  size *= t.scale || 1;
   const rows = source.split('\n').flatMap((s) => wrap(s, width, size, 'mono'));
   let body = '';
   rows.slice(0, maxLines).forEach((s, i) => {
@@ -46,283 +48,119 @@ function pagePicture(source, x, y, width, t, size = 16) {
   return { body, height: bottom - y };
 }
 
+// A masthead belongs to the document's text column. Keep it transparent and
+// aligned with native Markdown; a demo is opt-in, never a second UI inside it.
 export function compositionHero(block, t, w, mobile, design) {
   if (!['canvas', 'console', 'journal', 'pipeline'].includes(design)) return null;
-  const p = (mobile ? 28 : 44) + t.pad - 28,
-    inner = w - 2 * p;
-  const headline = block.headline || block.title;
+  const space = t.pad - 28,
+    font =
+      t.customFont || (design === 'console' ? 'mono' : design === 'journal' ? 'serif' : 'sans'),
+    inset = design === 'pipeline' ? 24 : 0,
+    width = w - inset - 2,
+    size = mobile ? 40 : design === 'journal' ? 60 : 48;
   let body = '',
-    y = p,
-    h;
-  const alt = [block.title, block.headline, block.subtitle, block.preview]
-    .filter(Boolean)
-    .join(' — ');
-  if (design === 'canvas') {
-    const eyebrow = block.eyebrow || block.title;
-    const ew = Math.min(inner, eyebrow.length * 7 + 30);
-    body += rect((w - ew) / 2, y, ew, 25, t.surface, t.border, 13);
-    body += label(eyebrow, w / 2, y + 17, 10, t.muted, 'mono', 400, 1, 'middle');
-    y += 79;
-    const title = paragraph(
-      headline,
-      w / 2,
+    y = 17 + space;
+  if (block.eyebrow) {
+    const eyebrow = paragraph(block.eyebrow, inset, y, width, mobile ? 17 : 12, t.muted, 'mono');
+    body += eyebrow.body;
+    y = eyebrow.bottom + 54;
+  } else y = size + 5 + space;
+  if (design === 'journal') {
+    body += line(0, 1 + space, w, 1 + space, t.border);
+  }
+  const name = (design === 'console' ? '> ' : '') + block.title;
+  const title = paragraph(
+    name,
+    inset,
+    y,
+    width,
+    size,
+    t.fg,
+    font,
+    design === 'journal' ? 400 : 600,
+    1.12,
+  );
+  body += title.body;
+  y = title.bottom + 34;
+  if (block.headline && block.headline !== block.title) {
+    const headline = paragraph(
+      block.headline,
+      inset,
       y,
-      inner - 20,
-      mobile ? 44 : 58,
+      width,
+      mobile ? 22 : 24,
       t.fg,
-      t.customFont || 'sans',
-      650,
-      1.06,
+      font,
+      400,
+      1.3,
     );
-    body += title.body.replaceAll(`text-anchor="start"`, `text-anchor="middle"`);
-    y = title.bottom + 36;
-    const sub = paragraph(
-      block.subtitle,
-      w / 2,
+    body += headline.body;
+    y = headline.bottom + 32;
+  }
+  const sub = paragraph(
+    block.subtitle,
+    inset,
+    y,
+    width,
+    mobile ? 23 : 20 * (t.scale || 1),
+    t.muted,
+    design === 'console' ? 'mono' : 'sans',
+    400,
+    1.45,
+  );
+  body += sub.body;
+  y = sub.bottom + 28;
+  if (block.command) {
+    const command = paragraph(
+      '$ ' + block.command,
+      inset,
       y,
-      Math.min(inner - 20, 690),
-      mobile ? 20 : 18,
-      t.muted,
-    );
-    body += sub.body.replaceAll(`text-anchor="start"`, `text-anchor="middle"`);
-    y = sub.bottom + 34;
-    if (block.preview) {
-      const sx = p,
-        sw = inner;
-      const pw = mobile ? sw - 42 : sw * 0.64,
-        px = mobile ? sx + 21 : sx + sw * 0.29,
-        py = y + 25;
-      const page = pagePicture(block.preview, px + 24, py + 69, pw - 48, t, mobile ? 18 : 15);
-      const stageHeight = Math.max(mobile ? 270 : 236, page.height + 123);
-      body += `<defs><linearGradient id="wash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${t.accent}" stop-opacity=".17"/><stop offset=".5" stop-color="${t.accent}" stop-opacity=".04"/><stop offset="1" stop-color="${t.accent}" stop-opacity=".20"/></linearGradient></defs>`;
-      body += rect(sx, y, sw, stageHeight, 'url(#wash)', 'none', 20);
-      for (let i = 0; i < 8; i++)
-        body += curve(sx, y + 30 + i * 25, sx + sw, y + 130 + i * 13, t.accent + '18', 1);
-      body += rect(px + 5, py + 7, pw, stageHeight - 40, t.fg + '0A', 'none', 10);
-      body += rect(px, py, pw, stageHeight - 40, t.surface, t.border, t.customRadius ?? 10);
-      body += line(px, py + 34, px + pw, py + 34, t.border);
-      body +=
-        circle(px + 16, py + 17, 3, t.border) +
-        circle(px + 27, py + 17, 3, t.border) +
-        circle(px + 38, py + 17, 3, t.border);
-      body += label(
-        block.previewLabel || 'README.md',
-        px + pw - 16,
-        py + 21,
-        10,
-        t.muted,
-        'mono',
-        400,
-        1,
-        'end',
-      );
-      body += page.body;
-      if (!mobile && block.command) {
-        const cx = sx + 18,
-          cy = y + 129,
-          cw = sw * 0.4;
-        body += rect(cx + 4, cy + 5, cw, 87, t.fg + '0C', 'none', 10);
-        body += rect(cx, cy, cw, 87, t.fg, 'none', 10);
-        body += label('AGENT → LOCAL FILES', cx + 16, cy + 23, 9, t.bg + 'AA', 'mono');
-        const rows = wrap('$ ' + block.command, cw - 32, 11, 'mono');
-        body += label(rows.slice(0, 3), cx + 16, cy + 47, 11, t.bg, 'mono', 400, 1.4);
-      }
-      y += stageHeight + 14;
-    }
-    h = y + p / 2;
-  } else if (design === 'console') {
-    body += rect(p, p, inner, 27, t.surface, t.border, 0);
-    body += label(block.eyebrow || 'README', p + 14, p + 18, 10, t.muted, 'mono');
-    body += label(
-      block.meta || 'MARKDOWN + SVG',
-      w - p - 14,
-      p + 18,
-      10,
+      width,
+      mobile ? 18 : 16,
       t.accent,
       'mono',
-      400,
-      1,
-      'end',
     );
-    y = p + 86;
-    const lw = mobile ? inner : inner * 0.58;
-    body += label('>_', p, y, 30, t.accent, 'mono', 500);
-    const title = paragraph(
-      block.title,
-      p + 51,
-      y,
-      lw - 51,
-      mobile ? 36 : 47,
-      t.fg,
-      t.customFont || 'mono',
-      500,
-      1.1,
-    );
-    body += title.body;
-    y = title.bottom + 35;
-    const sub = paragraph(
-      block.subtitle,
-      p,
-      y,
-      lw - (mobile ? 0 : 25),
-      mobile ? 20 : 17,
-      t.muted,
-      'mono',
-      400,
-      1.4,
-    );
-    body += sub.body;
-    y = sub.bottom + 34;
-    if (block.command) {
-      body += codePicture('$ ' + block.command, p, y, lw - 16, t, mobile ? 17 : 14, 4).body;
-      y +=
-        wrap('$ ' + block.command, lw - 16, mobile ? 17 : 14, 'mono').length * (mobile ? 25.5 : 21);
-    }
-    if (block.preview) {
-      const px = mobile ? p : p + inner * 0.64,
-        py = mobile ? y + 17 : p + 77,
-        pw = mobile ? inner : inner * 0.36;
-      const code = codePicture(block.preview, px + 15, py + 49, pw - 30, t, mobile ? 18 : 14, 6);
-      body += rect(px, py, pw, code.height + 68, 'none', t.border, 0);
-      body += label(block.previewLabel || 'OUTPUT FILES', px + 15, py + 23, 10, t.muted, 'mono');
-      body += line(px, py + 32, px + pw, py + 32, t.border) + code.body;
-      y = Math.max(y, py + code.height + 68);
-    }
-    h = y + p;
-    body += line(p, h - 7, w - p, h - 7, t.border);
-  } else if (design === 'journal') {
-    body += line(p, y, w - p, y, t.fg, 1.5);
-    body += label(block.eyebrow || 'OPEN SOURCE', p, y + 25, 10, t.muted, 'mono');
-    if (block.meta) body += label(block.meta, w - p, y + 25, 10, t.muted, 'mono', 400, 1, 'end');
-    y += 83;
-    const title = paragraph(
-      block.title,
-      p,
-      y,
-      inner,
-      mobile ? 52 : 76,
-      t.fg,
-      t.customFont || 'serif',
-      400,
-      1.06,
-    );
-    body += title.body;
-    y = title.bottom + 40;
-    body += line(p, y - 15, w - p, y - 15, t.border);
-    if (block.headline) {
-      const main = paragraph(
-        block.headline,
-        p,
-        y + 15,
-        mobile ? inner : inner * 0.54,
-        mobile ? 30 : 31,
-        t.fg,
-        t.customFont || 'serif',
-        400,
-        1.15,
-      );
-      body += main.body;
-      const sub = paragraph(
-        block.subtitle,
-        mobile ? p : p + inner * 0.62,
-        mobile ? main.bottom + 32 : y + 13,
-        mobile ? inner : inner * 0.38,
-        mobile ? 20 : 17,
-        t.muted,
-      );
-      body += sub.body;
-      y = Math.max(main.bottom, sub.bottom) + 32;
-    } else {
-      const sub = paragraph(block.subtitle, p, y + 15, inner, mobile ? 20 : 19, t.muted);
-      body += sub.body;
-      y = sub.bottom + 32;
-    }
-    body += line(p, y, w - p, y, t.border);
-    h = y + 15;
-  } else {
-    body += label(block.eyebrow || 'OPEN SOURCE', p, p + 10, 10, t.muted, 'mono');
-    const lw = mobile ? inner : inner * 0.56;
-    const title = paragraph(
-      block.title,
-      p,
-      p + 79,
-      lw,
-      mobile ? 44 : 55,
-      t.fg,
-      t.customFont || 'sans',
-      600,
-      1.1,
-    );
-    body += title.body;
-    const sub = paragraph(block.subtitle, p, title.bottom + 34, lw - 14, mobile ? 20 : 18, t.muted);
-    body += sub.body;
-    y = sub.bottom + 30;
-    if (block.preview) {
-      const names = block.preview.split('\n').filter(Boolean).slice(0, 3);
-      const dx = mobile ? p : p + inner * 0.62,
-        dy = mobile ? y + 30 : p + 36,
-        dw = mobile ? inner : inner * 0.38;
-      const left = dx + (mobile ? 70 : 23),
-        mid = dx + dw * 0.47,
-        right = dx + dw - (mobile ? 70 : 25),
-        cy = dy + 66;
-      body += curve(left + 18, cy, mid - 23, cy, t.border, 2);
-      for (const offset of [-44, 44])
-        body += curve(mid + 23, cy, right - 18, cy + offset, t.border, 2);
-      body += curve(left + 18, cy, mid - 23, cy, t.accent, 1.2);
-      for (const offset of [-44, 44])
-        body += curve(mid + 23, cy, right - 18, cy + offset, t.accent, 1.2);
-      body +=
-        circle(left, cy, 18, t.surface, t.border) +
-        label('{ }', left, cy + 5, 13, t.accent, 'mono', 500, 1, 'middle');
-      body +=
-        circle(mid, cy, 25, t.surface, t.accent) +
-        label(block.mark || '↗', mid, cy + 6, 17, t.accent, 'mono', 500, 1, 'middle');
-      for (const [i, offset] of [-44, 44].entries()) {
-        body += rect(right - 18, cy + offset - 18, 36, 36, t.surface, t.border, 7);
-        body += label(
-          i ? 'SVG' : 'MD',
-          right,
-          cy + offset + 4,
-          9,
-          t.accent,
-          'mono',
-          500,
-          1,
-          'middle',
-        );
-      }
-      const captionSize = mobile ? 17 : 11;
-      const inputRows = wrap(names[0] || '', Math.min(130, dw * 0.44), captionSize, 'mono').slice(
-        0,
-        3,
-      );
-      let diagramBottom = cy + 44 + (inputRows.length - 1) * captionSize * 1.3;
-      body += label(inputRows, left, cy + 44, captionSize, t.muted, 'mono', 400, 1.3, 'middle');
-      names.slice(1).forEach((name, i) => {
-        const rows = wrap(name, 130, captionSize, 'mono').slice(0, 3);
-        diagramBottom = Math.max(
-          diagramBottom,
-          cy + [-44, 44][i] + 36 + (rows.length - 1) * captionSize * 1.3,
-        );
-        body += label(
-          rows,
-          right,
-          cy + [-44, 44][i] + 36,
-          captionSize,
-          t.muted,
-          'mono',
-          400,
-          1.3,
-          'middle',
-        );
-      });
-      y = Math.max(y, dy + 185, diagramBottom + 22);
-    }
-    h = y + p / 2;
-    body += line(p, h - 5, w - p, h - 5, t.border);
+    body += command.body;
+    y = command.bottom + 26;
   }
-  return svg(w, h, body, alt, t);
+  if (block.meta) {
+    const meta = paragraph(block.meta, inset, y, width, 13 * (t.scale || 1), t.muted, 'mono');
+    body += meta.body;
+    y = meta.bottom + 24;
+  }
+  // When provided, render a single restrained example. The Markdown renderer
+  // preserves its complete, exact source as selectable text.
+  if (block.preview) {
+    const offset = block.previewLabel ? 60 : 38;
+    const example = codePicture(
+      block.preview,
+      inset + 18,
+      y + offset,
+      width - 36,
+      t,
+      mobile ? 18 : 16,
+      8,
+    );
+    const height = example.height + offset + 20;
+    body += rect(inset, y, width, height, t.surface, t.border, t.customRadius ?? 4);
+    if (block.previewLabel)
+      body += label(block.previewLabel, inset + 18, y + 24, 12, t.muted, 'mono');
+    body += example.body;
+    y += height + 24;
+  }
+  if (design === 'pipeline') body += line(1, 4 + space, 1, y - 18, t.accent, 3);
+  if (design === 'canvas') body += line(0, y - 5, 38, y - 5, t.accent, 3);
+  if (design === 'console' || design === 'journal') body += line(0, y - 5, w, y - 5, t.border);
+  return svg(
+    w,
+    y + 5 + space,
+    body,
+    [block.title, block.headline, block.subtitle, block.meta, block.preview]
+      .filter(Boolean)
+      .join(' — '),
+    t,
+    false,
+  );
 }
 
 function illustration(item, x, y, width, t, mobile, expanded = false) {
@@ -336,7 +174,7 @@ function illustration(item, x, y, width, t, mobile, expanded = false) {
       width,
       48,
       t.fg,
-      t.customFont || 'sans',
+      t.customFont || t.font,
       600,
       1.1,
     );
@@ -455,7 +293,7 @@ function illustration(item, x, y, width, t, mobile, expanded = false) {
 
 export function featureBoard(block, t, w, mobile, layout) {
   if (layout === 'rows' && block.items.some((i) => i.visual)) {
-    const p = (mobile ? 28 : 42) + t.pad - 28,
+    const p = 1,
       inner = w - p * 2;
     let body = '',
       y = p;
@@ -469,7 +307,7 @@ export function featureBoard(block, t, w, mobile, layout) {
         textWidth,
         size,
         t.fg,
-        t.customFont || 'sans',
+        t.customFont || t.font,
         600,
         1.15,
       );
@@ -478,7 +316,7 @@ export function featureBoard(block, t, w, mobile, layout) {
         p,
         title.bottom + 30,
         textWidth,
-        mobile ? 20 : 16,
+        mobile ? 21 : 16 * (t.scale || 1),
         t.muted,
       );
       const vx = mobile ? p : p + inner * 0.53,
@@ -497,16 +335,17 @@ export function featureBoard(block, t, w, mobile, layout) {
         .map((i) => [i.title, i.description, i.example].filter(Boolean).join(': '))
         .join('; '),
       t,
+      false,
     );
   }
   if (!['bento', 'lattice', 'terminal-grid'].includes(layout)) return null;
-  const p = (mobile ? 22 : 28) + t.pad - 28,
+  const p = 1,
     gap = layout === 'lattice' ? 0 : 12,
     inner = w - 2 * p;
   const terminal = layout === 'terminal-grid',
     lattice = layout === 'lattice';
-  const ts = mobile ? 26 : lattice ? 27 : 22,
-    ds = mobile ? 20 : 16;
+  const ts = mobile ? 26 : (lattice ? 27 : 22) * (t.scale || 1),
+    ds = mobile ? 21 : 16 * (t.scale || 1);
   function cell(item, x, y, width, height, index) {
     const pad = (mobile ? 23 : 26) + t.pad - 28,
       usable = width - 2 * pad;
@@ -538,7 +377,7 @@ export function featureBoard(block, t, w, mobile, layout) {
       finalHeight,
       lattice ? t.bg : t.surface,
       lattice ? t.border : t.border,
-      t.customRadius ?? (lattice || terminal ? 0 : 14),
+      t.customRadius ?? (lattice || terminal ? 0 : t.radius),
     );
     body += label(
       (terminal ? '> ' : '') + String(index + 1).padStart(2, '0'),
@@ -600,7 +439,7 @@ export function featureBoard(block, t, w, mobile, layout) {
       y += height + gap;
     }
   } else {
-    for (let start = 0; start < block.items.length;) {
+    for (let start = 0; start < block.items.length; ) {
       const count = terminal && start === 0 ? 1 : Math.min(2, block.items.length - start),
         cw = (inner - gap * (count - 1)) / count;
       const row = Array.from({ length: count }, (_, c) =>
@@ -622,10 +461,13 @@ export function featureBoard(block, t, w, mobile, layout) {
       .map((i) => [i.title, i.description, i.example, i.value].filter(Boolean).join(': '))
       .join('; '),
     t,
+    false,
   );
 }
 
 export function beamDiagram(block, t, w, mobile) {
+  const styled = systemBeam(block, t, w, mobile);
+  if (styled) return styled;
   const items = block.items,
     p = mobile ? 30 : 50,
     inner = w - 2 * p;
@@ -636,12 +478,12 @@ export function beamDiagram(block, t, w, mobile) {
     items.forEach((item, i) => {
       const x = p + cw * (i + 0.5);
       if (i) body += curve(x - cw + 28, 70, x - 28, 70, t.accent, 2);
-      const title = wrap(item.title, cw - 15, 18, t.customFont || 'sans');
+      const title = wrap(item.title, cw - 15, 18, t.customFont || t.font);
       height = Math.max(height, 152 + (title.length - 1) * 18 * 1.3);
       body +=
         circle(x, 70, 28, t.surface, t.border) +
         label(String(i + 1), x, 76, 17, t.accent, 'mono', 500, 1, 'middle') +
-        label(title, x, 122, 18, t.fg, t.customFont || 'sans', 500, 1.3, 'middle');
+        label(title, x, 122, 18, t.fg, t.customFont || t.font, 500, 1.3, 'middle');
     });
     return svg(w, height, body, items.map((i) => i.title).join(' → '), t);
   }
@@ -650,13 +492,13 @@ export function beamDiagram(block, t, w, mobile) {
       item.title,
       mobile ? 130 : 200,
       mobile ? 19 : 18,
-      t.customFont || 'sans',
+      t.customFont || t.font,
     ).length;
     const titleEnd = 65 + (titleRows - 1) * (mobile ? 19 : 18) * 1.25;
     return (
       titleEnd +
       (item.description && !mobile
-        ? 24 + (wrap(item.description, 200, 13, t.customFont || 'sans').length - 1) * 13 * 1.35
+        ? 24 + (wrap(item.description, 200, 13, t.customFont || t.font).length - 1) * 13 * 1.35
         : 0)
     );
   };
@@ -691,16 +533,16 @@ export function beamDiagram(block, t, w, mobile) {
     );
     const width = mobile ? 130 : 200,
       size = mobile ? 19 : 18;
-    const title = wrap(item.title, width, size, t.customFont || 'sans');
-    b += label(title, x, y + 65, size, t.fg, t.customFont || 'sans', 500, 1.25, 'middle');
+    const title = wrap(item.title, width, size, t.customFont || t.font);
+    b += label(title, x, y + 65, size, t.fg, t.customFont || t.font, 500, 1.25, 'middle');
     if (item.description && !mobile)
       b += label(
-        wrap(item.description, width, 13, t.customFont || 'sans'),
+        wrap(item.description, width, 13, t.customFont || t.font),
         x,
         y + 89 + (title.length - 1) * size * 1.25,
         13,
         t.muted,
-        t.customFont || 'sans',
+        t.customFont || t.font,
         400,
         1.35,
         'middle',

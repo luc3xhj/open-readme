@@ -1,3 +1,4 @@
+import { sectionVariants } from './section-designs.js?v=0.3.0';
 export const sections = {
   overview: {
     name: 'Overview',
@@ -96,6 +97,8 @@ export const sections = {
     priority: 'essential for open source',
   },
 };
+for (const [id, section] of Object.entries(sections)) section.designs = sectionVariants(id);
+
 export const projects = {
   cli: {
     name: 'CLI / developer tool',

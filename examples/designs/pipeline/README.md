@@ -1,146 +1,190 @@
 <!-- Generated with open-readme. Edit the JSON configuration to regenerate. -->
 
 <picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/hero-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/hero-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/hero-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/hero-light-compact.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/hero-dark.svg">
-  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Design your README.
-Keep every file. — Clear GitHub READMEs, composed by your coding agent." width="960">
+  <img src="assets/open-readme/hero-light.svg" alt="open-readme — Designed GitHub READMEs for coding agents.
+One coherent system, from overview to license." width="960">
 </picture>
 
-<details>
-<summary>Preview source</summary>
+<a id="built-for-the-whole-readme"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/features__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/features__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/features__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/features__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/features__heading-dark.svg">
+  <img src="assets/open-readme/features__heading-light.svg" alt="Built for the whole README" width="960">
+</picture>
+</h2>
 
-```text
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/features-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/features-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/features-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/features-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/features-dark.svg">
+  <img src="assets/open-readme/features-light.svg" alt="Sections that belong together: Each section has Canvas, Console, Journal and Pipeline variants. Start with one system and keep its rhythm.: Overview → Usage → Reference; Your content, your config: Change the design, accent, typography and individual section layouts in JSON.: #6657D8
+&quot;density&quot;: &quot;compact&quot;; Files you can keep: Commit the Markdown and local assets. No hosted image service is required.: README.md
 open-readme.json
-README.md
-SVG assets
-```
-
-</details>
-
-[README designs](<https://luc3xhj.github.io/open-readme/>) · [Agent skill](<https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md>) · [Section guide](<https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md>) · [Configuration](<https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md>)
-
-<p>
-<a href="https://github.com/luc3xhj/open-readme/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-1-dark.svg"><img src="assets/open-readme/status-1-light.svg" alt="license: MIT"></picture></a>
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-2-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/status-2-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-2-dark.svg">
-  <img src="assets/open-readme/status-2-light.svg" alt="runtime: Node 22+">
+assets/open-readme/" width="960">
 </picture>
-<picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-3-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/status-3-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-3-dark.svg">
-  <img src="assets/open-readme/status-3-light.svg" alt="dependencies: 0">
-</picture>
-</p>
 
-## Quick start
+<a id="get-started"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/quickstart__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/quickstart__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/quickstart__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/quickstart__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/quickstart__heading-dark.svg">
+  <img src="assets/open-readme/quickstart__heading-light.svg" alt="Get started" width="960">
+</picture>
+</h2>
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.2.2
+npm install --save-dev github:luc3xhj/open-readme#v0.3.0
 npx open-readme init --project cli --design pipeline
 npx open-readme render --out README.preview.md --json
 ```
 
-Requires Node.js 22+. Edit the starter with your project’s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published.
+Requires Node.js 22+. Edit the starter with your project’s facts before rendering.
 
-## What your agent can build
-
+<a id="use-with-your-agent"></a>
+<h2>
 <picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/features-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/features-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/features-dark.svg">
-  <img src="assets/open-readme/features-light.svg" alt="Compose for your project: Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.; Edit the design in JSON: Change layout, accent and density in a versioned configuration.; Keep commands copyable: Installation and usage examples export as real Markdown code.; Own the result: Commit your Markdown and local SVGs together. No hosted image service is required." width="960">
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/agent__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/agent__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/agent__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/agent__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/agent__heading-dark.svg">
+  <img src="assets/open-readme/agent__heading-light.svg" alt="Use with your agent" width="960">
 </picture>
+</h2>
 
-<details>
-<summary>Feature examples</summary>
+Load the [agent skill](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:
 
-**Compose for your project** — Choose sections for a CLI, library, app or dataset. Keep the facts your reader needs.
+> Design this repository’s README with open-readme. Verify the install and usage commands. Choose the useful sections, show me two complete design systems, and render to README.preview.md first.
 
-```text
-project facts → useful sections → README
+Your agent inspects the repository, edits the config and runs the CLI. Review the result before replacing your README.
+
+<a id="make-it-yours"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/configuration__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/configuration__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/configuration__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/configuration__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/configuration__heading-dark.svg">
+  <img src="assets/open-readme/configuration__heading-light.svg" alt="Make it yours" width="960">
+</picture>
+</h2>
+
+| Option | design | style.accent | style.density | block.design |
+| --- | --- | --- | --- | --- |
+| Default | plain | Design default | compact | Inherited |
+| Controls | The complete design system | Color across sections | Spacing in SVG sections | One section’s design variant |
+
+```json
+{
+  "design": "pipeline",
+  "style": {
+    "accent": "#256DCE",
+    "density": "compact"
+  }
+}
 ```
 
-**Edit the design in JSON** — Change layout, accent and density in a versioned configuration.
+A config fragment. Edit the ordered blocks to change your sections.
 
-```text
-"design": "canvas"
-"style": {"accent": "#6657D8"}
-```
-
-**Keep commands copyable** — Installation and usage examples export as real Markdown code.
-
-```text
-npx open-readme render --out README.preview.md
-```
-
-**Own the result** — Commit your Markdown and local SVGs together. No hosted image service is required.
-
-```text
-README.md
-assets/open-readme/
-  hero-light.svg
-  hero-dark.svg
-```
-
-</details>
-
-## Use with your agent
-
-Load [skills/open-readme/SKILL.md](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:
-
-> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.
-
-The agent can inspect the catalog and section guide through the CLI:
-
-```sh
-npx open-readme catalog --json
-npx open-readme sections --json
-npx open-readme audit --config open-readme.json --json
-# Update one marked region while preserving manual content:
-npx open-readme render --block hero --section header --out README.md
-```
-
-## How it fits together
+<a id="how-it-works"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/architecture__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/architecture__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/architecture__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/architecture__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/architecture__heading-dark.svg">
+  <img src="assets/open-readme/architecture__heading-light.svg" alt="How it works" width="960">
+</picture>
+</h2>
 
 <picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/architecture-dark-mobile.svg">
-  <source media="(max-width: 840px)" srcset="assets/open-readme/architecture-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/architecture-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/architecture-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/architecture-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/architecture-light-compact.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/architecture-dark.svg">
-  <img src="assets/open-readme/architecture-light.svg" alt="Project config → Renderer; parallel outputs: README.md, SVG assets" width="960">
+  <img src="assets/open-readme/architecture-light.svg" alt="open-readme.json → Renderer; parallel outputs: README.md, Local SVGs; open-readme.json: Project facts + chosen sections; Renderer: Validate and compose; README.md: Copyable native Markdown; Local SVGs: Light, dark and narrow layouts" width="960">
 </picture>
 
-<details>
-<summary>Diagram description</summary>
+<a id="use-it-in-code"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/api__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/api__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/api__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/api__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/api__heading-dark.svg">
+  <img src="assets/open-readme/api__heading-light.svg" alt="Use it in code" width="960">
+</picture>
+</h2>
 
-Project config → Renderer; parallel outputs: README.md, SVG assets
+```js
+import { render } from "@luc3xhj/open-readme";
 
-- **Project config** — Facts + chosen sections
-- **Renderer** — Validate and compose
-- **README.md** — Readable, copyable Markdown
-- **SVG assets** — Local light / dark visuals
+const { markdown, assets } = render(config);
+// assets is a Map of local SVG filenames and contents.
+```
 
-</details>
+The CLI and browser use this same renderer. The output has no runtime dependency.
 
-<details>
-<summary>What works inside a GitHub README?</summary>
+<a id="works-on-github"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/compatibility__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/compatibility__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/compatibility__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/compatibility__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/compatibility__heading-dark.svg">
+  <img src="assets/open-readme/compatibility__heading-light.svg" alt="Works on GitHub" width="960">
+</picture>
+</h2>
 
-Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.
+Commands, prose, tables and links stay selectable. GitHub switches the light and dark images automatically. Commit `README.md` and `assets/open-readme/` together.
 
-Designed SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.
+JavaScript widgets and hover animation do not run in a GitHub README. The export uses native interactions and static SVGs.
 
-The [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](https://github.com/luc3xhj/open-readme/blob/main/docs/design-notes.md) document the inspiration and GitHub adaptations.
+Read the [configuration reference](https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md) and [section guide](https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md).
 
-</details>
+<a id="contribute"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/contributing__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/contributing__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/contributing__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/contributing__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/contributing__heading-dark.svg">
+  <img src="assets/open-readme/contributing__heading-light.svg" alt="Contribute" width="960">
+</picture>
+</h2>
 
-## Contributing
+[Report an issue](https://github.com/luc3xhj/open-readme/issues) or read the [contribution guide](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). Design a section around a reader’s task, then check it within the complete README.
 
-[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README.
+<a id="license--credits"></a>
+<h2>
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="assets/open-readme/license__heading-dark-mobile.svg">
+  <source media="(max-width: 520px)" srcset="assets/open-readme/license__heading-light-mobile.svg">
+  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/license__heading-dark-compact.svg">
+  <source media="(max-width: 840px)" srcset="assets/open-readme/license__heading-light-compact.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/license__heading-dark.svg">
+  <img src="assets/open-readme/license__heading-light.svg" alt="License &amp; credits" width="960">
+</picture>
+</h2>
 
-## License
-
-MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com).
+[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/).

@@ -18,7 +18,7 @@ export const variants = {
   features: ['bento', 'lattice', 'terminal-grid', 'native', 'rows', 'columns', 'index'],
   code: ['native', 'terminal'],
   steps: ['ordered', 'flow'],
-  comparison: ['table', 'scorecard'],
+  comparison: ['table', 'definitions', 'reference', 'matrix', 'scorecard'],
   diagram: ['beam', 'flow', 'stack', 'hub'],
   metrics: ['strip', 'columns', 'scoreboard'],
   timeline: ['checklist', 'rail'],

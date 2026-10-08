@@ -46,23 +46,14 @@ const exampleLinks = (value) => {
   return value;
 };
 const completeDesigns = Object.entries(compositionReferences).map(([id, info]) => {
-  const composed = exampleLinks(createComposition(config, id)),
-    hero = composed.blocks.find((b) => b.type === 'hero');
+  const composed = exampleLinks(createComposition(config, id));
   const start = composed.blocks.find((b) => b.id === 'quickstart');
   start.code = start.code.replace('--design canvas', '--design ' + id);
-  if (id === 'console') {
-    hero.previewLabel = 'FILES AFTER RENDER';
-    hero.preview = 'README.preview.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg';
-    hero.command = 'open-readme render --out README.preview.md';
-  } else if (id === 'journal') {
-    delete hero.preview;
-    delete hero.previewLabel;
-    hero.headline = 'The useful parts.\nCarefully composed.';
-    hero.meta = 'An open-source field guide';
-  } else if (id === 'pipeline') {
-    hero.preview = 'open-readme.json\nREADME.md\nSVG assets';
-    hero.previewLabel = 'INPUT / OUTPUT';
-  }
+  const customize = composed.blocks.find((b) => b.id === 'customize'),
+    fragment = JSON.parse(customize.code);
+  fragment.design = id;
+  fragment.style.accent = designs[id].accent;
+  customize.code = JSON.stringify(fragment, null, 2);
   return { id, ...info, config: composed };
 });
 await mkdir(resolve(root, 'docs/lib'), { recursive: true });
@@ -98,10 +89,6 @@ for (const file of await readdir(resolve(root, 'src')))
 await writeFile(resolve(root, 'schema.json'), JSON.stringify(schema, null, 2) + '\n');
 await copyFile(resolve(root, 'schema.json'), resolve(root, 'docs/schema.json'));
 await writeFile(
-  resolve(root, 'docs/examples/catalog.json'),
-  JSON.stringify(samples, null, 2) + '\n',
-);
-await writeFile(
   resolve(root, 'docs/examples/designs.json'),
   JSON.stringify(completeDesigns, null, 2) + '\n',
 );
@@ -121,13 +108,8 @@ await writeFile(
   resolve(root, 'examples/starter.json'),
   JSON.stringify(createStarter(), null, 2) + '\n',
 );
-const examples = {
-  repository: 'open-readme.json',
-  directory: 'examples/startup-accelerators.json',
-  components: 'examples/components.json',
-};
-for (const [name, path] of Object.entries(examples))
-  await copyFile(resolve(root, path), resolve(root, 'docs/examples', name + '.json'));
+for (const name of ['catalog', 'repository', 'directory', 'components'])
+  await rm(resolve(root, 'docs/examples', name + '.json'), { force: true });
 await rm(resolve(root, 'examples/rendered'), { recursive: true, force: true });
 for (const design of Object.keys(designs))
   await output(
@@ -142,5 +124,5 @@ await output(
 );
 await writeFile(resolve(root, 'docs/.nojekyll'), '');
 console.log(
-  `Built ${samples.length} component examples, ${completeDesigns.length} complete README designs, README, schema and browser library.`,
+  `Built ${samples.length} component examples, ${completeDesigns.length} complete README designs, README, schema and README workbench.`,
 );

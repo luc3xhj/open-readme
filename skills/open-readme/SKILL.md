@@ -1,24 +1,26 @@
 ---
 name: open-readme
-description: Compose and design GitHub READMEs with open-readme’s component library. Use for README sections, headers, badges, code examples, diagrams, metrics, timelines, galleries and FAQ. Choose useful components and export GitHub-compatible Markdown with local SVG assets while preserving verified project facts.
+description: Design clear, coherent GitHub READMEs for coding agents. Inspect repository facts, choose only useful sections, apply a consistent whole-document layout and export native Markdown with local SVG assets. Use when creating, simplifying or redesigning a README, or changing its content and visual configuration.
 ---
 
 # Open Readme
 
-Use `open-readme` from an installed package or `node <checkout>/bin/open-readme.js`. Requires Node 22+. Package files, examples and schema live under `node_modules/@luc3xhj/open-readme/`.
+Use `open-readme` from the installed package or `node <checkout>/bin/open-readme.js`. Requires Node 22+. Package files, examples and schema live under `node_modules/@luc3xhj/open-readme/`.
 
-## Inspect, choose, compose
+## Inspect and compose the document
 
-1. Read the current README, package metadata, commands, public API, license and relevant docs. Keep the author’s useful content and preferences. Verify claims, install instructions, requirements and demo paths in the repository. Do not turn placeholders into claims.
-2. Choose a project type: cli, library, application, directory, research or profile. Run `open-readme sections --json` and `open-readme projects --json`. Overview, a working start, real usage and license are essentials for software. Applications benefit from a real demo; libraries need API examples; datasets need sources, method and a snapshot date. Skip sections that add no information.
-3. Run `open-readme catalog --json` and `open-readme designs --json`. Review the complete compositions in the bundled design examples and the specific component references in `docs/design-notes.md`. Choose components by their purpose, then select their variants. A README does not need all 17 types. Do not repeat framed cards as the only visual language. Use feature indices/columns, relationship diagrams, source-linked metrics, real media or compact native text when they fit.
-4. Use `open-readme init --project <type> --design <design>`, then edit `open-readme.json`. Assign stable ids and semantic `section` values. Component `layout` overrides the composition default. Refer to the bundled schema and `docs/configuration.md` for fields.
+1. Read the current README, package metadata, commands, public API, license and relevant docs. Preserve useful content and the author's preferences. Verify claims, install instructions, requirements and demo paths. Do not turn placeholders into claims.
+2. Choose a project type: cli, library, application, directory, research or profile. Use `open-readme sections --json` and `open-readme projects --json`. A software README needs an overview, a working start, actual usage and a license. Applications benefit from a real demo; libraries need API examples; datasets need sources, method and a snapshot date. Skip sections that add no information.
+3. Start with a complete design from `examples/designs/`: Canvas (open sans masthead), Console (restrained mono), Journal (serif and fine rules) or Pipeline (technical title and accent rail). Each supplies coordinated section headings, feature layouts, configuration/data formats and diagrams. Prose and code remain native and selectable. Those example configs describe open-readme; replace their content with the target project's verified facts. `open-readme init --project <type> --design <design>` creates an essential-section starter.
+4. Edit `open-readme.json`. Use stable ids and semantic `section` values. Apply the same system to every useful section, not just the cover. Keep one alignment grid, heading rhythm, accent, frame treatment and code presentation across the document. Every semantic section exposes four design variants through `sections --json`. Use `block.design` only for a deliberate section override. Consult `docs/configuration.md` and the bundled schema for exact fields. Offer two materially different designs with the same facts when a visual redesign needs comparison.
 
-Start with the four complete compositions: Canvas (layered demonstration + illustrated bento), Console (compact mono + commands/files), Journal (serif hierarchy + connected fine rules) and Pipeline (input/processor/output diagrams + illustrated rows). Their example configs are bundled in `examples/designs/`. Those configs describe open-readme; replace their content with the target project's verified facts. Eight additional cover styles remain available: plain, swiss, editorial, terminal, blueprint, product, studio and atlas.
+## Use visual primitives selectively
 
-For visual features, supply `visual` and an exact `example`: flow, code, files, palette, preview or a sourced metric. Show the capability itself, not an icon over generic text. A Canvas hero can illustrate a real `preview` with `previewLabel`; Console can show real output files. Pipeline's cover represents one input and Markdown/SVG outputs, so use it only when that relationship is true. A `beam` diagram means item 1 → item 2 → parallel outputs; a `flow` is a sequence. Preserve the actual relationships when changing designs. A visual redesign should usually offer two materially different compositions using the same facts. Do not add decorative statistics, generic badges, empty roadmaps or a technical stack list with no explanatory value.
+`open-readme catalog --json` exposes advanced primitives to agents. Use them only when a reader needs a real demo, comparison, relationship diagram or sourced result. Do not assemble a sampler of unrelated styles. Prefer native feature lists, copyable commands and ordinary links. Avoid duplicate preview/source sections, decorative badges, fake terminal windows, generic statistics, empty roadmaps and repeated framed cards.
 
-## Render and verify
+The four complete designs use matching mastheads, accessible SVG section headings, feature layouts, reference formats and diagrams. These align with native Markdown. `createComposition` applies a complete system; `styleSection` styles one section without rewriting facts. Add `preview` only for exact, useful source not already explained below. An optional visual feature takes a real `example`, not a generic icon. A `beam` diagram means input → processor → parallel outputs; `flow` means a sequence. Changing a design must preserve the actual relationship. Eight additional cover styles remain in the API for specific needs.
+
+## Render and review the whole README
 
 ```sh
 open-readme audit --config open-readme.json --json
@@ -27,16 +29,16 @@ open-readme render --config open-readme.json --out README.preview.md --json
 open-readme check --config open-readme.json --readme README.preview.md --json
 ```
 
-Audit checks section coverage, not truth. Review the preview, light/dark/mobile assets and referenced media. Keep instructions and source code copyable. SVGs must have meaningful alternatives. Local media paths are relative to the config file; the CLI rewrites output references without copying source media.
+Audit checks section coverage, not truth. Review the document as a whole: masthead-to-body transition, adjacent sections, consistent spacing and code treatment. Check light/dark/compact/mobile assets and actual media paths. Keep commands, prose and reference tables selectable. SVGs need meaningful text alternatives. Font/density controls apply to SVGs; GitHub controls native Markdown typography.
 
-For one component or a targeted region:
+For a targeted region:
 
 ```sh
 open-readme render --block hero --section header --out README.md --json
 ```
 
-Section mode preserves surrounding text. Broken markers are rejected. Conflicting assets and whole-file output require `--force`; review before using it. Commit referenced SVGs and original media with the Markdown. Publishing, committing or pushing follows the user’s task authorization; loading this skill alone does not authorize it.
+Section mode preserves surrounding text and rejects broken markers. Conflicting assets and whole-file output require `--force`; review before using it. Commit referenced SVGs and original media with Markdown. Local media paths are relative to the config; the CLI rewrites output references without copying source media. Publishing, committing or pushing follows the user's task authorization; loading this skill alone does not authorize it.
 
-## Real GitHub behavior
+## GitHub behavior
 
-Links, anchor navigation, expandable details, native code-copy and automatic light/dark images work. JavaScript tabs, hover animations, forms and embedded apps need an external page. Code groups export as disclosures. Static supplied metrics need actual sources/date; the renderer does not fetch repository statistics, analyze code or invent content. The browser library previews components, edits config and exports bundles using the same renderer.
+Native links, code-copy controls, details and automatic light/dark images work. Browser JavaScript tabs, hover animation and forms need an external page. Code groups export as disclosures; use them only when multiple alternatives are useful. Supplied metrics need actual sources and dates. The renderer does not fetch statistics, analyze code or invent content. The browser workbench previews complete READMEs, edits section variants and config and exports bundles with the same renderer.

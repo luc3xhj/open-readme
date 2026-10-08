@@ -8,7 +8,7 @@ export const sampleBlocks = {
     type: 'hero',
     section: 'overview',
     title: 'open-readme',
-    subtitle: 'A component library for GitHub READMEs. Built for coding agents.',
+    subtitle: 'A README design system for coding agents.',
     eyebrow: 'MERIDIAN STARTUPS / OPEN SOURCE',
     mark: 'or',
     command: 'open-readme render --out README.preview.md',
@@ -56,7 +56,7 @@ export const sampleBlocks = {
     title: 'Quick start',
     language: 'sh',
     filename: 'terminal',
-    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.2.2\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
+    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.3.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
     highlight: [3],
   },
   codegroup: {
@@ -68,7 +68,7 @@ export const sampleBlocks = {
       {
         label: 'Install in your project',
         language: 'sh',
-        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.2.2',
+        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.3.0',
       },
       {
         label: 'Work from source',
@@ -207,22 +207,8 @@ export const sampleBlocks = {
 export const samples = Object.entries(variants).flatMap(([type, layouts]) =>
   layouts.map((layout) => {
     const block = structuredClone(sampleBlocks[type]);
-    if (type === 'features')
-      Object.assign(block, structuredClone(project.blocks.find((b) => b.type === 'features')));
-    if (type === 'hero' && ['canvas', 'console', 'journal', 'pipeline'].includes(layout)) {
+    if (type === 'hero' && ['canvas', 'console', 'journal', 'pipeline'].includes(layout))
       Object.assign(block, structuredClone(project.blocks.find((b) => b.type === 'hero')));
-      if (layout === 'console') {
-        block.preview = 'README.preview.md\nassets/open-readme/\n  hero-light.svg\n  hero-dark.svg';
-        block.previewLabel = 'FILES AFTER RENDER';
-      }
-      if (layout === 'journal') {
-        delete block.preview;
-        delete block.previewLabel;
-      }
-      if (layout === 'pipeline') {
-        block.preview = 'open-readme.json\nREADME.md\nSVG assets';
-      }
-    }
     if (type === 'diagram' && layout === 'hub') {
       block.title = 'A reader’s route through the README';
       block.center = 'README';

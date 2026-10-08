@@ -1,10 +1,11 @@
+import { sectionDesigns } from './section-designs.js';
 import { designs } from './designs.js';
 
 export const compositionReferences = {
   canvas: {
     name: 'Canvas',
     description:
-      'Show the output first. A layered README preview leads into illustrated, unequal feature cells.',
+      'A product README with an open masthead, illustrated feature cells, a compact options table and rounded diagram nodes.',
     references: [
       {
         name: 'Product Hero with Demo Panel',
@@ -25,7 +26,7 @@ export const compositionReferences = {
   console: {
     name: 'Console',
     description:
-      'A compact command manual. Mono typography, thin partitions, useful commands and the files they produce.',
+      'A command manual with prompt headings, a mono feature grid, an aligned text reference and a file-tree diagram.',
     references: [
       {
         name: 'TerminalBentoGrid',
@@ -46,7 +47,7 @@ export const compositionReferences = {
   journal: {
     name: 'Journal',
     description:
-      'A readable field guide. Serif hierarchy, margin labels and connected fine-rule partitions give facts different weights.',
+      'An editorial README with serif section headings, connected feature partitions, definition lists and unframed diagrams.',
     references: [
       {
         name: 'Feature Overview Bento',
@@ -67,7 +68,7 @@ export const compositionReferences = {
   pipeline: {
     name: 'Pipeline',
     description:
-      'Explain a system through its path. The cover and architecture section show inputs, processing and separate outputs.',
+      'A technical README with numbered rails, illustrated rows, a transposed configuration matrix and orthogonal connectors.',
     references: [
       {
         name: 'Animated Beam',
@@ -96,8 +97,8 @@ export function createComposition(base, design) {
   delete config.style.accent;
   delete config.style.font;
   for (const block of config.blocks) {
-    if (block.type === 'features') block.layout = designs[design].features;
-    if (block.type === 'code') block.layout = design === 'console' ? 'terminal' : 'native';
+    const layout = sectionDesigns[block.design || design][block.type];
+    if (layout) block.layout = layout;
   }
   return config;
 }

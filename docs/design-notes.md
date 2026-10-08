@@ -1,39 +1,42 @@
-# Component design notes
+# Section design systems
 
-The designs study specific components inside 21st.dev: their hierarchy, spacing, layout and demonstration patterns. The SVG renderer here is an original implementation. No third-party component source, screenshots or artwork is bundled.
+Design the sections first, then compose a complete README. A system defines a shared type hierarchy, alignment grid, accent, line weight and framing. The website shows complete documents; there is no separate component gallery.
 
-## Four complete compositions
+## Four coordinated systems
 
-| Design   | Specific reference                                                                        | What was studied                                                              | Applied to this README                                                                      |
-| -------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| Canvas   | [Product Hero with Demo Panel](https://21st.dev/@felipemenezes098/components/hero-14)     | Centered headline, broad visual field, overlapping demo panel                 | Overview shows the actual README preview with a renderer command layered over it            |
-| Canvas   | [Bento Product Features](https://21st.dev/@kavikatiyar/components/bento-product-features) | Unequal priority and a different functional visual in each cell               | Features show a document flow, actual JSON accent, copyable command and generated file tree |
-| Console  | [TerminalBentoGrid](https://21st.dev/@dhileepkumargm/components/terminal-bento-grid)      | Shared mono rhythm, prompt markers and thin partitions                        | Compact command cover, output files and a terminal feature grid                             |
-| Console  | [Code Block — Manu Arora](https://21st.dev/@manuarora700/components/code-block)           | File label, original line numbers, emphasis and copyable source               | Terminal code preview with exact native source in a disclosure                              |
-| Journal  | [Feature Overview Bento](https://21st.dev/@mohammadshehadeh/components/feature-10)        | Large serif statement, smaller supporting facts, continuous fine-rule lattice | Editorial cover and connected feature partitions with different information weights         |
-| Journal  | [Editorial Collage Hero](https://21st.dev/@felipemenezes098/components/hero-04)           | Asymmetric type scale and supporting copy beside the headline                 | Short serif statement beside an explanatory sentence; compact margin labels                 |
-| Pipeline | [Animated Beam](https://21st.dev/@dillionverma/components/animated-beam)                  | Small distinct nodes, curved anchored connectors, central processor           | Cover and architecture show config → renderer → Markdown + SVG outputs                      |
-| Pipeline | [Animated Card Diagram](https://21st.dev/@badtzx0/components/animated-card-diagram)       | A useful relationship is the main visual                                      | Illustrated feature rows put explanation beside the actual flow/config/code/files           |
+| System   | Overview and section headings            | Features                    | Configuration            | Architecture                          |
+| -------- | ---------------------------------------- | --------------------------- | ------------------------ | ------------------------------------- |
+| Canvas   | Open sans masthead, small accent markers | Illustrated bento cells     | Compact native table     | Rounded nodes, curved connections     |
+| Console  | Mono project name and prompt headings    | Compact terminal grid       | Aligned text reference   | File-tree diagram                     |
+| Journal  | Serif masthead and folio headings        | Connected fine-rule lattice | Definition lists         | Unframed nodes with fine connectors   |
+| Pipeline | Technical masthead and numbered rails    | Open illustrated rows       | Transposed native matrix | Sharp nodes and orthogonal connectors |
 
-[Preview all four complete READMEs](https://luc3xhj.github.io/open-readme/), or read their [exported Markdown and SVGs](../examples/designs/). The same renderer generates the website previews and committed GitHub examples.
+Every semantic section has four system variants. License, credits and explanatory prose use the matching section heading with selectable text. Installation, usage and API examples use the matching heading/context with native code-copy behavior. Demo, metrics and roadmap figures inherit the system's font, colors and frame treatment. Do not include a section merely to fill a template.
 
-The adaptation uses static vector layouts plus GitHub's native interactions. Curved connections remain visual relationships; JavaScript animation is not exported. Long commands and examples remain exact selectable text below visual previews. No decorative statistics, testimonials or unsupported performance claims are added.
+[Preview complete READMEs](https://luc3xhj.github.io/open-readme/), or inspect the [GitHub exports](../examples/designs/). The same renderer generates both. The Customize dialog permits a section override; by default every section inherits the selected complete system. Dark, compact and narrow vector assets are generated locally.
 
-## Additional component references
+## Specific component research
 
-| Reference                                                                               | README adaptation                                                     |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Code Block — Prompt Kit](https://21st.dev/@ibelick/components/code-block)              | Restrained native code and separate disclosures for multiple examples |
-| [Timeline](https://21st.dev/@kuratlielia/components/timeline)                           | A vertical status rail and readable checklist                         |
-| [Animated Status Badge](https://21st.dev/@isaiahbjork/components/animated-status-badge) | Static linked facts in dot, split and outline variants                |
-| [Hero 03](https://21st.dev/@designali-in/components/hero-03)                            | Swiss and Studio cover compositions                                   |
+Research used components inside 21st.dev to study hierarchy, spacing and functional illustrations. The SVG implementation is original. No component source, screenshots or artwork is bundled.
 
-References credit the designs studied, without claiming affiliation or source reuse. Research used publicly visible component previews and usage examples.
+| Reference                                                                                 | Principle used                                              |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [Bento Product Features](https://21st.dev/@kavikatiyar/components/bento-product-features) | Give related capabilities different weights within one grid |
+| [TerminalBentoGrid](https://21st.dev/@dhileepkumargm/components/terminal-bento-grid)      | A shared mono rhythm, prompt markers and thin partitions    |
+| [Feature Overview Bento](https://21st.dev/@mohammadshehadeh/components/feature-10)        | Serif hierarchy and connected fine-rule partitions          |
+| [Editorial Collage Hero](https://21st.dev/@felipemenezes098/components/hero-04)           | Contrast a display title with readable explanatory copy     |
+| [Code Block](https://21st.dev/@manuarora700/components/code-block)                        | Exact, copyable source with restrained context              |
+| [Animated Beam](https://21st.dev/@dillionverma/components/animated-beam)                  | Connect actual inputs, a processor and parallel outputs     |
+| [Animated Card Diagram](https://21st.dev/@badtzx0/components/animated-card-diagram)       | Let a real relationship carry the feature illustration      |
 
-## Design rules
+Static relationships replace browser animation in GitHub exports. A beam always keeps its actual topology. Full commands, prose and table facts remain available in native Markdown. Explanatory feature illustrations may omit a duplicate source disclosure when the alternative text already preserves the facts.
 
-1. Start with the reader's question. Overview, a working start, actual usage and license are essential for software; other sections must earn their place.
-2. Show a feature's actual function. Use real source, output, media or relationships instead of repeating a box with a generic icon and paragraph.
-3. Change information hierarchy when changing layouts. Four complete designs coordinate cover, features and code presentation; component layouts and block-level styles remain editable.
-4. Preserve facts and relationships. Recomposition does not rewrite commands, sources or a diagram's topology. Beam is input → processor → parallel outputs; flow is a sequential chain.
-5. Preserve usable content. Native code, links, anchor navigation and disclosures work on GitHub. Assets have light, dark and narrow-screen variants; supplied metrics need actual sources.
+## Whole-document review
+
+1. Choose a system and apply it across the useful sections.
+2. Keep one alignment grid, a small type hierarchy and consistent borders/corners.
+3. Show actual capabilities, source, media or relationships instead of decorating generic copy.
+4. Remove repeated explanations, decorative badges and unnecessary disclosures.
+5. Review adjacent sections, light/dark assets, compact and narrow layouts together.
+
+References credit designs studied without claiming affiliation or source reuse.

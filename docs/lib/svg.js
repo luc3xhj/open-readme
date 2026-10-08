@@ -1,8 +1,10 @@
-import { tokens } from './themes.js?v=0.2.2';
-import { designFor } from './designs.js?v=0.2.2';
-import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.2.2';
-import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.2.2';
-export { xml, wrap } from './drawing.js?v=0.2.2';
+import { sectionHeading } from './section-visuals.js?v=0.3.0';
+import { designs } from './designs.js?v=0.3.0';
+import { tokens } from './themes.js?v=0.3.0';
+import { designFor } from './designs.js?v=0.3.0';
+import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.3.0';
+import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.3.0';
+export { xml, wrap } from './drawing.js?v=0.3.0';
 
 function hero(block, config, t, w, mobile) {
   const composed = compositionHero(block, t, w, mobile, designFor(config).hero);
@@ -228,7 +230,7 @@ function diagram(block, t, w, mobile) {
         rh = 42 + title.length * 24 + desc.length * 20;
       if (i) body += line(w / 2, y - 20, w / 2, y, t.accent, 2);
       body +=
-        rect(p, y, inner, rh, t.surface, t.border, 4) +
+        rect(p, y, inner, rh, t.surface, t.border, t.radius) +
         label(String(i + 1).padStart(2, '0'), p + 16, y + 37, 12, t.accent, 'mono') +
         label(title, p + 58, y + 37, 21, t.fg, t.font, 500, 1.15);
       if (desc.length)
@@ -259,7 +261,7 @@ function diagram(block, t, w, mobile) {
           line(x - gap, y + max / 2, x, y + max / 2, t.accent, 2) +
           `<path d="M${x - 5} ${y + max / 2 - 4}l5 4-5 4" stroke="${t.accent}" fill="none"/>`;
       body +=
-        rect(x, y, cw - gap, max, t.surface, t.border, 4) +
+        rect(x, y, cw - gap, max, t.surface, t.border, t.radius) +
         label(String(i + 1).padStart(2, '0'), x + 12, y + 23, 10, t.accent, 'mono') +
         label(title, x + 12, y + 57, 20, t.fg, t.font, 500, 1.2);
       if (desc.length)
@@ -339,11 +341,19 @@ function rail(block, t, w) {
   );
 }
 export function renderSvg(block, config, mode = 'light', mobile = false) {
-  config = { ...config, style: { ...config.style, ...block.style } };
-  const t = tokens(config, mode),
-    w = mobile ? 560 : t.width,
+  config = {
+    ...config,
+    design: block.design || config.design,
+    theme: block.design ? designs[block.design].theme : config.theme,
+    style: { ...config.style, ...block.style },
+  };
+  const compact = mobile === 'compact';
+  mobile = mobile === true;
+  const t = { ...tokens(config, mode), scale: compact ? 1.2 : 1 },
+    w = compact ? 760 : mobile ? 480 : t.width,
     p = t.pad,
     inner = w - 2 * p;
+  if (block.type === 'heading') return sectionHeading(block, t, w, mobile);
   if (block.type === 'hero') return hero(block, config, t, w, mobile);
   if (block.type === 'features') return features(block, t, w, mobile, designFor(config).features);
   if (block.type === 'feature')
@@ -437,7 +447,7 @@ export function renderSvg(block, config, mode = 'light', mobile = false) {
     return svg(
       w,
       36,
-      rect(0.5, 0.5, w - 1, 35, t.surface, t.border, 5) +
+      rect(0.5, 0.5, w - 1, 35, t.surface, t.border, t.radius) +
         circle(17, 18, 3, t.muted) +
         circle(30, 18, 3, t.border) +
         circle(43, 18, 3, t.border) +

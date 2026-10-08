@@ -182,7 +182,8 @@ test('ZIP export uses UTF-8 filenames and refuses traversal', async (t) => {
 
 test('all public component variants validate and export deterministic assets', async () => {
   const { samples } = await import('../scripts/samples.js');
-  assert.equal(samples.length, 49);
+  const { variants } = await import('../src/index.js');
+  assert.equal(samples.length, Object.values(variants).flat().length);
   const seen = new Set();
   for (const sample of samples) {
     assert.deepEqual(validateConfig(sample.config), [], sample.id);
@@ -430,8 +431,9 @@ test('beam text alternatives describe parallel outputs rather than a sequential 
   assert.ok(!markdown.includes('Input → Renderer → Markdown → SVG'));
 });
 
-test('complete designs honor explicit font, density and frame customization', async () => {
+test('masthead controls and optional feature frames honor explicit SVG customization', async () => {
   const base = JSON.parse(await readFile(resolve(root, 'examples/designs/canvas.json'), 'utf8'));
+
   const original = render(base).assets;
   const changed = render({
     ...base,
@@ -444,4 +446,78 @@ test('complete designs honor explicit font, density and frame customization', as
   assert.notEqual(changed.get('features-light.svg'), original.get('features-light.svg'));
   assert.ok(changed.get('features-light.svg').includes('rx="0"'));
   assert.ok(changed.get('features-light.svg').includes('Consolas'));
+});
+
+test('complete design systems style every section while preserving copyable instructions', async () => {
+  const { createComposition, compositionReferences, sectionDesigns, styleSection, sections } =
+    await import('../src/index.js');
+  const base = JSON.parse(await readFile(resolve(root, 'open-readme.json'), 'utf8'));
+  for (const section of Object.values(sections))
+    assert.deepEqual(Object.keys(section.designs), Object.keys(sectionDesigns));
+  for (const id of Object.keys(compositionReferences)) {
+    const { markdown, assets } = render(createComposition(base, id));
+    assert.ok(!markdown.includes('<details>'));
+    for (const block of base.blocks.filter((b) => b.title && b.type !== 'hero')) {
+      assert.ok(assets.has(block.id + '__heading-light.svg'));
+      assert.ok(markdown.includes(`alt="${block.title.replace(/&/g, '&amp;')}"`));
+    }
+    for (const block of base.blocks.filter((b) => b.type === 'code'))
+      assert.ok(markdown.includes(block.code));
+    for (const name of markdown.matchAll(/(?:src|srcset)="assets\/open-readme\/([^"]+)"/g))
+      assert.ok(assets.has(name[1]));
+    const config = createComposition(base, id),
+      original = structuredClone(config.blocks[4]),
+      changed = styleSection(original, id === 'journal' ? 'console' : 'journal');
+    assert.deepEqual(changed.rows, original.rows);
+    assert.deepEqual(changed.columns, original.columns);
+    assert.equal(changed.layout, id === 'journal' ? 'reference' : 'definitions');
+    config.blocks[4] = changed;
+    assert.deepEqual(validateConfig(config), []);
+    assert.notEqual(
+      render(config).assets.get('configuration__heading-light.svg'),
+      assets.get('configuration__heading-light.svg'),
+    );
+  }
+});
+
+test('reference variants preserve every table fact without changing relationships', async () => {
+  const { comparisonView } = await import('../src/index.js');
+  const block = {
+    id: 'options',
+    type: 'comparison',
+    columns: ['Option', 'Default', 'Use'],
+    rows: [
+      ['accent', '#6657D8', 'Color'],
+      ['density', 'compact', 'Spacing'],
+    ],
+  };
+  assert.deepEqual(comparisonView({ ...block, layout: 'matrix' }), {
+    kind: 'table',
+    columns: ['Option', 'accent', 'density'],
+    rows: [
+      ['Default', '#6657D8', 'compact'],
+      ['Use', 'Color', 'Spacing'],
+    ],
+  });
+  for (const layout of ['table', 'definitions', 'reference', 'matrix']) {
+    const { markdown } = render({ version: 1, theme: 'minimal', blocks: [{ ...block, layout }] });
+    for (const value of [...block.columns, ...block.rows.flat()])
+      assert.ok(markdown.includes(value), layout + ': ' + value);
+  }
+});
+
+test('section heading assets cannot collide with a valid block filename', () => {
+  const { assets, markdown } = render({
+    version: 1,
+    theme: 'minimal',
+    design: 'canvas',
+    blocks: [
+      { id: 'guide', type: 'markdown', title: 'Guide', body: 'Actual instructions.' },
+      { id: 'guide-heading', type: 'hero', title: 'Demo', subtitle: 'Actual result.' },
+    ],
+  });
+  assert.ok(assets.has('guide__heading-light.svg'));
+  assert.ok(assets.has('guide-heading-light.svg'));
+  assert.ok(assets.get('guide__heading-light.svg').includes('<title id="title">Guide</title>'));
+  assert.ok(markdown.includes('guide__heading-light.svg'));
 });

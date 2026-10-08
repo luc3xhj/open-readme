@@ -20,6 +20,7 @@ const block = (type, properties, required) =>
     {
       id: { ...short, maxLength: 48, pattern: '^[a-z][a-z0-9-]*$' },
       type: { const: type },
+      design: { type: 'string', enum: ['canvas', 'console', 'journal', 'pipeline'] },
       section: { type: 'string', enum: Object.keys(sections) },
       style: object(
         {
@@ -71,6 +72,7 @@ export const blocks = {
   features: block(
     'features',
     {
+      examples: { type: 'string', enum: ['details', 'none'] },
       title: short,
       layout: {
         type: 'string',
@@ -132,7 +134,10 @@ export const blocks = {
   comparison: block(
     'comparison',
     {
-      layout: { type: 'string', enum: ['table', 'scorecard'] },
+      layout: {
+        type: 'string',
+        enum: ['table', 'scorecard', 'definitions', 'reference', 'matrix'],
+      },
       title: short,
       columns: array(short, 8),
       rows: array(array({ type: 'string', maxLength: 1000 }, 8), 30),

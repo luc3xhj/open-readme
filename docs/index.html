@@ -3,268 +3,131 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>open-readme — Designed GitHub READMEs for agents</title>
+    <title>open-readme — GitHub READMEs for agents</title>
     <meta
       name="description"
-      content="An open-source README component library for coding agents. Browse, customize and compose headers, badges, code, diagrams, metrics, timelines and more."
+      content="Choose a complete README design. Edit its content and download Markdown, configuration and local SVG assets."
     />
-    <meta name="theme-color" content="#fafaf8" />
+    <meta name="theme-color" content="#f6f7f9" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./style.css?v=0.2.2" />
+    <link rel="stylesheet" href="./style.css?v=0.3.0" />
   </head>
-  <body>
+  <body data-mode="light">
     <header class="masthead">
       <a class="wordmark" href="./"
-        ><span class="brand-icon" aria-hidden="true">↗</span> open-readme</a
+        >open-readme<span class="brand-dot" aria-hidden="true">.</span></a
       >
-      <nav aria-label="Main navigation">
-        <button data-page="designs" aria-pressed="true">README designs</button>
-        <button data-page="components">Components <span id="component-count"></span></button
-        ><button data-page="compose">Compose <span id="basket-count"></span></button
-        ><button data-page="sections">Sections</button>
+      <nav aria-label="Project links">
+        <a href="https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md"
+          >Agent skill ↗</a
+        >
+        <a href="https://github.com/luc3xhj/open-readme">GitHub ↗</a>
       </nav>
-      <a class="github" href="https://github.com/luc3xhj/open-readme">GitHub ↗</a>
     </header>
-    <div class="layout">
-      <aside class="library-nav">
-        <p class="nav-label">COMPONENT LIBRARY</p>
-        <div id="categories"></div>
-        <div class="sidebar-bottom">
-          <span class="tiny">FOR CODING AGENTS</span
-          ><a href="https://github.com/luc3xhj/open-readme/tree/main/skills/open-readme"
-            >Get the skill ↗</a
+    <main class="workspace">
+      <div class="toolbar">
+        <div class="design-control">
+          <span class="control-label">README style</span>
+          <div id="design-picker" class="segmented" aria-label="README design"></div>
+        </div>
+        <div class="actions">
+          <button id="mode" type="button">Dark</button>
+          <button id="narrow" type="button" aria-pressed="false">Narrow</button>
+          <button id="edit" type="button">Customize</button>
+          <button id="download" type="button" class="primary">Download ↓</button>
+        </div>
+      </div>
+      <section id="document-frame" class="document-frame" aria-label="README preview">
+        <div class="filebar"><span>README.md</span><span>GitHub preview</span></div>
+        <article id="readme" class="document"></article>
+      </section>
+      <p id="status" class="status" role="status"></p>
+      <footer>
+        <span>Every section. One design system.</span>
+        <div>
+          <a href="https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
+            >Configuration</a
+          ><a href="https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md"
+            >Section guide</a
           >
-          <p>Choose the parts.<br />Keep the files.</p>
         </div>
-      </aside>
-      <main>
-        <section id="page-designs">
-          <div class="design-heading">
-            <div>
-              <p class="eyebrow">COMPLETE READMES / SAME PROJECT FACTS</p>
-              <h1>Choose a design.</h1>
-            </div>
-            <p>Preview the entire README, then make it yours.</p>
-          </div>
-          <div id="design-picker" class="design-picker" aria-label="Complete README designs"></div>
-          <div class="design-workspace">
-            <aside class="design-context">
-              <p class="eyebrow">THE DESIGN</p>
-              <h2 id="design-name"></h2>
-              <p id="design-description"></p>
-              <p class="eyebrow">COMPONENTS STUDIED</p>
-              <div id="design-references"></div>
-              <button id="use-design" class="primary">Customize this README ↗</button>
-              <p class="hint">
-                The export contains Markdown and local SVGs. Code, links and disclosures remain
-                usable on GitHub.
-              </p>
-            </aside>
-            <section class="design-result">
-              <div class="design-result-toolbar">
-                <span>README.md</span>
-                <div class="segmented">
-                  <button data-design-mode="light" aria-pressed="true">Light</button
-                  ><button data-design-mode="dark">Dark</button>
-                </div>
-                <button id="design-phone" aria-pressed="false">Phone</button>
-                <button id="export-design">Export README ↓</button>
-              </div>
-              <article id="design-preview" class="document"></article>
-              <p id="design-status" role="status"></p>
-            </section>
-          </div>
-        </section>
-        <section id="page-components" hidden>
-          <div class="page-heading">
-            <p class="eyebrow">MERIDIAN STARTUPS / OPEN SOURCE</p>
-            <h1>The parts of a<br />better README.</h1>
-            <p>
-              Headers. Code. Diagrams. The useful details.<br />Pick a component, make it yours, let
-              your agent compose.
-            </p>
-          </div>
-          <div class="catalog-toolbar">
-            <h2 id="collection-title">All components</h2>
-            <div>
-              <label class="search"
-                ><span aria-hidden="true">⌕</span
-                ><input
-                  id="search"
-                  type="search"
-                  placeholder="Find a component…"
-                  aria-label="Search components"
-              /></label>
-              <div class="segmented">
-                <button data-gallery-mode="light" aria-pressed="true">Light</button
-                ><button data-gallery-mode="dark">Dark</button>
-              </div>
-            </div>
-          </div>
-          <div id="gallery" class="gallery-grid"></div>
-          <p id="empty-gallery" hidden>No matching components.</p>
-        </section>
-        <section id="page-compose" hidden>
-          <div class="compact-heading">
-            <p class="eyebrow">YOUR COMPOSITION</p>
-            <h1>Make the sections count.</h1>
-            <p>Add components from the library, arrange them, and export one README.</p>
-          </div>
-          <div class="workbench">
-            <aside class="controls">
-              <label class="field"
-                >Starting content<select id="example">
-                  <option value="repository">open-readme</option>
-                  <option value="directory">Startup accelerators</option>
-                  <option value="components">Component sampler</option>
-                </select></label
-              ><label class="field">Header design<select id="design"></select></label
-              ><label class="field">Project type<select id="project"></select></label
-              ><button id="new-starter" class="text-button">Create a section starter ↗</button
-              ><label class="field"
-                >Accent<input id="accent" type="color" aria-label="Accent color" /></label
-              ><label class="field"
-                >Density<select id="density">
-                  <option value="compact">Compact</option>
-                  <option value="comfortable">Comfortable</option>
-                </select></label
-              >
-              <div class="segmented">
-                <button data-compose-mode="light" aria-pressed="true">Light</button
-                ><button data-compose-mode="dark">Dark</button>
-              </div>
-              <h3 class="nav-label">SECTION ORDER</h3>
-              <div id="blocks"></div>
-              <p class="hint" id="audit"></p>
-              <button data-page="components" class="text-button">+ Add a component</button>
-            </aside>
-            <section class="canvas">
-              <div class="canvas-toolbar">
-                <div class="tabs" role="tablist">
-                  <button id="tab-preview" role="tab" data-tab="preview" aria-selected="true">
-                    Preview</button
-                  ><button id="tab-markdown" role="tab" data-tab="markdown">Markdown</button
-                  ><button id="tab-config" role="tab" data-tab="config">Config</button>
-                </div>
-                <button id="phone" aria-pressed="false">Phone</button>
-              </div>
-              <div class="preview-backdrop">
-                <article
-                  id="preview"
-                  class="document"
-                  role="tabpanel"
-                  aria-labelledby="tab-preview"
-                ></article>
-                <pre
-                  id="markdown"
-                  class="source"
-                  role="tabpanel"
-                  aria-labelledby="tab-markdown"
-                  hidden
-                ></pre>
-                <div id="config-panel" hidden>
-                  <textarea
-                    id="config"
-                    spellcheck="false"
-                    aria-label="README configuration"
-                  ></textarea
-                  ><button id="apply-config">Apply configuration</button>
-                  <p id="config-error" role="alert"></p>
-                </div>
-              </div>
-              <div class="export-toolbar">
-                <span id="status" role="status"></span>
-                <div>
-                  <button id="copy">Copy config</button
-                  ><button id="download" class="primary">Export README ↓</button>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-        <section id="page-sections" hidden>
-          <div class="compact-heading">
-            <p class="eyebrow">CONTENT BEFORE DECORATION</p>
-            <h1>What belongs in a README?</h1>
-            <p>
-              Answer the questions your reader needs answered. Skip sections that add no useful
-              information.
-            </p>
-          </div>
-          <label class="section-project"
-            >Project type
-            <select id="section-project"></select
-          ></label>
-          <div id="section-guide"></div>
-        </section>
-        <section class="agent-note">
-          <div>
-            <p class="eyebrow">USE WITH YOUR AGENT</p>
-            <h2>Good components.<br />Your project’s facts.</h2>
-            <p>
-              Give the skill to your agent. It reads the project, chooses useful sections and
-              renders a reviewable README.
-            </p>
-            <a href="https://github.com/luc3xhj/open-readme/tree/main/skills/open-readme"
-              >Read the agent skill ↗</a
-            >
-          </div>
-          <div class="command">
-            <code
-              >npm install --save-dev github:luc3xhj/open-readme#v0.2.2<br />npx open-readme catalog
-              --json<br />npx open-readme init --project cli --design canvas<br />npx open-readme
-              render --out README.preview.md --json</code
-            >
-          </div>
-        </section>
-        <footer>
-          <a href="https://meridianstartups.com">Meridian Startups ↗</a
-          ><span>MIT · Local assets · No account</span
-          ><a href="https://github.com/luc3xhj/open-readme/issues">Suggest a component ↗</a>
-        </footer>
-      </main>
-    </div>
-    <dialog id="component-dialog">
-      <div class="modal-heading">
+      </footer>
+    </main>
+    <dialog id="editor" aria-labelledby="editor-title">
+      <div class="editor-heading">
+        <h1 id="editor-title">Edit README</h1>
+        <button id="close-editor" aria-label="Close editor" type="button">×</button>
+      </div>
+      <div class="editor-tabs" role="tablist" aria-label="Source">
+        <button
+          data-editor-tab="sections"
+          role="tab"
+          aria-selected="true"
+          aria-controls="sections-panel"
+          id="tab-sections"
+        >
+          Sections</button
+        ><button
+          data-editor-tab="config"
+          role="tab"
+          aria-selected="false"
+          aria-controls="config-panel"
+          id="tab-config"
+        >
+          Config</button
+        ><button
+          data-editor-tab="markdown"
+          role="tab"
+          aria-selected="false"
+          aria-controls="markdown-panel"
+          id="tab-markdown"
+        >
+          Markdown
+        </button>
+      </div>
+      <div id="sections-panel" role="tabpanel" aria-labelledby="tab-sections">
+        <p class="editor-note">
+          Each section has four design variants. Inherit the complete style, or override a section
+          below.
+        </p>
+        <div id="section-controls"></div>
+      </div>
+      <div id="config-panel" role="tabpanel" aria-labelledby="tab-config">
+        <div class="style-controls">
+          <label>Accent<input type="color" id="accent" /></label>
+          <label
+            >Density<select id="density">
+              <option value="compact">Compact</option>
+              <option value="comfortable">Comfortable</option>
+            </select></label
+          >
+          <label
+            >Display font<select id="font">
+              <option value="">Design default</option>
+              <option value="sans">Sans</option>
+              <option value="mono">Mono</option>
+              <option value="serif">Serif</option>
+            </select></label
+          >
+        </div>
+        <label class="source-label" for="config-source"
+          >open-readme.json <span>Edit the content and ordered sections below.</span></label
+        >
+        <textarea id="config-source" spellcheck="false" aria-describedby="editor-status"></textarea>
+      </div>
+      <div id="markdown-panel" hidden role="tabpanel" aria-labelledby="tab-markdown">
+        <label class="source-label" for="markdown-source">README.md</label
+        ><textarea id="markdown-source" readonly spellcheck="false"></textarea>
+      </div>
+      <p id="editor-status" class="status" role="status"></p>
+      <div class="editor-actions">
+        <button id="copy-source" type="button">Copy source</button>
         <div>
-          <p class="eyebrow" id="modal-type"></p>
-          <h2 id="modal-name"></h2>
-        </div>
-        <button id="close-modal" aria-label="Close component preview">×</button>
-      </div>
-      <div class="modal-controls">
-        <label
-          >Variant
-          <select id="variant"></select></label
-        ><label
-          >Accent <input id="modal-accent" type="color" aria-label="Component accent"
-        /></label>
-        <div class="segmented">
-          <button data-modal-mode="light" aria-pressed="true">Light</button
-          ><button data-modal-mode="dark">Dark</button>
-        </div>
-      </div>
-      <div class="modal-grid">
-        <div class="modal-preview">
-          <article id="component-preview" class="document"></article>
-          <p id="modal-purpose"></p>
-        </div>
-        <div class="modal-source">
-          <label for="component-config">EDITABLE CONFIGURATION</label
-          ><textarea id="component-config" spellcheck="false"></textarea
-          ><button id="apply-component">Update preview</button>
-          <p id="component-error" role="alert"></p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <span id="component-status" role="status">Ready</span>
-        <div>
-          <button id="copy-component">Copy config</button
-          ><button id="download-component">Export component ↓</button
-          ><button id="add-component" class="primary">Add to README +</button>
+          <button id="cancel" type="button">Close</button
+          ><button id="apply" type="button" class="primary">Apply changes</button>
         </div>
       </div>
     </dialog>
-    <script type="module" src="./app.js?v=0.2.2"></script>
+    <script type="module" src="./app.js?v=0.3.0"></script>
   </body>
 </html>

@@ -100,6 +100,15 @@
               "type": {
                 "const": "hero"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -233,6 +242,15 @@
               "type": {
                 "const": "badges"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -346,6 +364,15 @@
               "type": {
                 "const": "links"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -453,6 +480,15 @@
               "type": {
                 "const": "features"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -504,6 +540,13 @@
                 },
                 "required": [],
                 "additionalProperties": false
+              },
+              "examples": {
+                "type": "string",
+                "enum": [
+                  "details",
+                  "none"
+                ]
               },
               "title": {
                 "type": "string",
@@ -599,6 +642,15 @@
               },
               "type": {
                 "const": "code"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -717,6 +769,15 @@
               },
               "type": {
                 "const": "steps"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -841,6 +902,15 @@
               "type": {
                 "const": "comparison"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -897,7 +967,10 @@
                 "type": "string",
                 "enum": [
                   "table",
-                  "scorecard"
+                  "scorecard",
+                  "definitions",
+                  "reference",
+                  "matrix"
                 ]
               },
               "title": {
@@ -951,6 +1024,15 @@
               },
               "type": {
                 "const": "toc"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -1028,6 +1110,15 @@
               },
               "type": {
                 "const": "codegroup"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -1138,6 +1229,15 @@
               },
               "type": {
                 "const": "gallery"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -1263,6 +1363,15 @@
               "type": {
                 "const": "markdown"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -1346,6 +1455,15 @@
               },
               "type": {
                 "const": "media"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -1461,6 +1579,15 @@
               },
               "type": {
                 "const": "diagram"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",
@@ -1587,6 +1714,15 @@
               "type": {
                 "const": "metrics"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -1712,6 +1848,15 @@
               "type": {
                 "const": "timeline"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -1833,6 +1978,15 @@
               "type": {
                 "const": "callout"
               },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
+              },
               "section": {
                 "type": "string",
                 "enum": [
@@ -1927,6 +2081,15 @@
               },
               "type": {
                 "const": "details"
+              },
+              "design": {
+                "type": "string",
+                "enum": [
+                  "canvas",
+                  "console",
+                  "journal",
+                  "pipeline"
+                ]
               },
               "section": {
                 "type": "string",

@@ -3,7 +3,7 @@ export const designs = {
   canvas: {
     name: 'Canvas',
     description:
-      'A layered README demonstration, with illustrated feature cells and a branching workflow.',
+      'Sans section headings, illustrated bento, a compact table and rounded diagram nodes.',
     for: 'Developer products · agent tools',
     theme: 'minimal',
     font: 'sans',
@@ -11,10 +11,12 @@ export const designs = {
     darkAccent: '#B5AAFF',
     features: 'bento',
     hero: 'canvas',
+    radius: 6,
   },
   console: {
     name: 'Console',
-    description: 'A compact terminal masthead, command examples and a file-oriented feature grid.',
+    description:
+      'Prompt headings, a mono feature grid, aligned references and a file-tree diagram.',
     for: 'CLI tools · local utilities',
     theme: 'terminal',
     font: 'mono',
@@ -22,11 +24,11 @@ export const designs = {
     darkAccent: '#A4E7BE',
     features: 'terminal-grid',
     hero: 'console',
+    radius: 0,
   },
   journal: {
     name: 'Journal',
-    description:
-      'An editorial masthead and a fine-rule lattice, with a clear hierarchy of facts and examples.',
+    description: 'Serif folios, connected feature partitions, definitions and unframed diagrams.',
     for: 'Libraries · research · directories',
     theme: 'editorial',
     font: 'serif',
@@ -34,11 +36,11 @@ export const designs = {
     darkAccent: '#DBA185',
     features: 'lattice',
     hero: 'journal',
+    radius: 0,
   },
   pipeline: {
     name: 'Pipeline',
-    description:
-      'A technical cover with a real input/output path and open, annotated feature rows.',
+    description: 'Numbered rails, illustrated rows, a reference matrix and orthogonal diagrams.',
     for: 'SDKs · infrastructure · data tools',
     theme: 'minimal',
     font: 'sans',
@@ -46,6 +48,7 @@ export const designs = {
     darkAccent: '#90BAFF',
     features: 'rows',
     hero: 'pipeline',
+    radius: 2,
   },
   plain: {
     darkAccent: '#D2D8CD',

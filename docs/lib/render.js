@@ -1,6 +1,8 @@
-import { validateConfig } from './schema.js?v=0.2.2';
-import { designFor } from './designs.js?v=0.2.2';
-import { renderSvg, xml } from './svg.js?v=0.2.2';
+import { sectionDesign } from './section-designs.js?v=0.3.0';
+import { comparisonView } from './reference.js?v=0.3.0';
+import { validateConfig } from './schema.js?v=0.3.0';
+import { designFor } from './designs.js?v=0.3.0';
+import { renderSvg, xml } from './svg.js?v=0.3.0';
 export const md = (value) =>
   String(value)
     .replace(/\\/g, '\\\\')
@@ -22,18 +24,23 @@ export function render(config, options = {}) {
     output = [];
   if (!selected.length) throw new Error(`Unknown block id: ${options.block}.`);
   function picture(block, stem, alt) {
+    const responsive = Boolean(sectionDesign(config, block)),
+      variants = responsive ? [false, 'compact', true] : [false, true],
+      suffix = (variant) => (variant === 'compact' ? '-compact' : variant ? '-mobile' : '');
     for (const mode of ['light', 'dark'])
-      for (const mobile of [false, true])
+      for (const variant of variants)
         assets.set(
-          `${stem}-${mode}${mobile ? '-mobile' : ''}.svg`,
-          renderSvg(block, config, mode, mobile),
+          `${stem}-${mode}${suffix(variant)}.svg`,
+          renderSvg(block, config, mode, variant),
         );
-    const url = (mode, mobile = false) =>
-        xml(`${prefix}/${stem}-${mode}${mobile ? '-mobile' : ''}.svg`),
+    const url = (mode, variant = false) => xml(`${prefix}/${stem}-${mode}${suffix(variant)}.svg`),
       dimension = ['badge', 'link'].includes(block.type)
         ? ''
-        : ` width="${config.style?.width || 960}"`;
-    const image = `<picture>\n  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="${url('dark', true)}">\n  <source media="(max-width: 840px)" srcset="${url('light', true)}">\n  <source media="(prefers-color-scheme: dark)" srcset="${url('dark')}">\n  <img src="${url('light')}" alt="${xml(alt)}"${dimension}>\n</picture>`;
+        : ` width="${config.style?.width || 960}"`,
+      sources = responsive
+        ? `<source media="(prefers-color-scheme: dark) and (max-width: 520px)" srcset="${url('dark', true)}">\n  <source media="(max-width: 520px)" srcset="${url('light', true)}">\n  <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="${url('dark', 'compact')}">\n  <source media="(max-width: 840px)" srcset="${url('light', 'compact')}">`
+        : `<source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="${url('dark', true)}">\n  <source media="(max-width: 840px)" srcset="${url('light', true)}">`;
+    const image = `<picture>\n  ${sources}\n  <source media="(prefers-color-scheme: dark)" srcset="${url('dark')}">\n  <img src="${url('light')}" alt="${xml(alt)}"${dimension}>\n</picture>`;
     return block.url ? `<a href="${xml(block.url)}">${image.replace(/>\n\s*</g, '><')}</a>` : image;
   }
   const disclosure = (summary, body) =>
@@ -42,10 +49,21 @@ export function render(config, options = {}) {
     const img = `<img src="${xml(item.src)}" alt="${xml(item.alt)}" width="${width}">`;
     return item.url ? `<a href="${xml(item.url)}">${img}</a>` : img;
   };
-  const table = (block) =>
-    [block.columns, block.columns.map(() => '---'), ...block.rows]
+  const table = (block) => {
+    const view = comparisonView(block);
+    if (view.kind === 'reference') return fence(view.text, 'text');
+    if (view.kind === 'definitions')
+      return view.entries
+        .map(
+          (entry) =>
+            `**${md(view.label)}: ${md(entry.term)}**\n\n` +
+            entry.fields.map((field) => `${md(field.label)}: ${md(field.value)}`).join(' · '),
+        )
+        .join('\n\n');
+    return [view.columns, view.columns.map(() => '---'), ...view.rows]
       .map((row) => '| ' + row.map(md).join(' | ') + ' |')
       .join('\n');
+  };
   const steps = (block) =>
     block.items
       .map(
@@ -74,7 +92,12 @@ export function render(config, options = {}) {
       headingSlugs.set(b.id, stem + (n ? '-' + n : ''));
     }
   for (const block of selected) {
-    const heading = block.title ? `## ${md(block.title)}\n\n` : '';
+    const heading =
+      block.title && block.type !== 'hero'
+        ? sectionDesign(config, block)
+          ? `<a id="${xml(headingSlugs.get(block.id) || 'contents')}"></a>\n<h2>\n${picture({ type: 'heading', title: block.title, design: block.design, style: block.style, ordinal: config.blocks.filter((b) => b.title && b.type !== 'hero').findIndex((b) => b.id === block.id) + 1 }, block.id + '__heading', block.title)}\n</h2>\n\n`
+          : `## ${md(block.title)}\n\n`
+        : '';
     switch (block.type) {
       case 'hero':
         output.push(
@@ -124,19 +147,20 @@ export function render(config, options = {}) {
         break;
       case 'features': {
         const layout = block.layout || designFor(config).features;
-        const examples = block.items.some((item) => item.example)
-          ? '\n\n' +
-            disclosure(
-              'Feature examples',
-              block.items
-                .map(
-                  (item) =>
-                    `**${md(item.title)}** — ${md(item.description)}` +
-                    (item.example ? '\n\n' + fence(item.example, 'text') : ''),
-                )
-                .join('\n\n'),
-            )
-          : '';
+        const examples =
+          block.examples !== 'none' && block.items.some((item) => item.example)
+            ? '\n\n' +
+              disclosure(
+                'Feature examples',
+                block.items
+                  .map(
+                    (item) =>
+                      `**${md(item.title)}** — ${md(item.description)}` +
+                      (item.example ? '\n\n' + fence(item.example, 'text') : ''),
+                  )
+                  .join('\n\n'),
+              )
+            : '';
         if (layout === 'native')
           output.push(
             heading +
@@ -154,7 +178,11 @@ export function render(config, options = {}) {
               picture(
                 { ...block, layout },
                 block.id,
-                block.items.map((i) => `${i.title}: ${i.description}`).join('; '),
+                block.items
+                  .map((i) =>
+                    [i.title, i.description, i.example, i.value].filter(Boolean).join(': '),
+                  )
+                  .join('; '),
               ) +
               (block.items.some((i) => i.url)
                 ? '\n\n' +
@@ -262,19 +290,30 @@ export function render(config, options = {}) {
             : block.items.map((i) => i.title).join(block.layout === 'hub' ? ' · ' : ' → ');
         output.push(
           heading +
-            picture(block, block.id, relationship) +
-            '\n\n' +
-            disclosure(
-              'Diagram description',
-              (block.layout === 'beam' && block.items.length >= 3
-                ? md(relationship) + '\n\n'
-                : '') +
+            picture(
+              block,
+              block.id,
+              relationship +
+                '; ' +
                 block.items
-                  .map(
-                    (i) => `- **${md(i.title)}**${i.description ? ' — ' + md(i.description) : ''}`,
-                  )
-                  .join('\n'),
+                  .map((i) => [i.title, i.description].filter(Boolean).join(': '))
+                  .join('; '),
             ) +
+            (sectionDesign(config, block)
+              ? ''
+              : '\n\n' +
+                disclosure(
+                  'Diagram description',
+                  (block.layout === 'beam' && block.items.length >= 3
+                    ? md(relationship) + '\n\n'
+                    : '') +
+                    block.items
+                      .map(
+                        (i) =>
+                          `- **${md(i.title)}**${i.description ? ' — ' + md(i.description) : ''}`,
+                      )
+                      .join('\n'),
+                )) +
             (block.caption ? '\n\n' + md(block.caption) : ''),
         );
         break;

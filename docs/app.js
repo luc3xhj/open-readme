@@ -10,8 +10,8 @@ import {
   createStarter,
   createZip,
   schema,
-} from './lib/index.js?v=0.2.0';
-import { renderSvg } from './lib/svg.js?v=0.2.0';
+} from './lib/index.js?v=0.2.1';
+import { renderSvg } from './lib/svg.js?v=0.2.1';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);
@@ -382,6 +382,7 @@ $('design-phone').addEventListener('click', () => {
 });
 $('use-design').addEventListener('click', () => {
   config = structuredClone(selectedDesign.config);
+  $('example').value = 'repository';
   disabled = new Set();
   composeMode = designMode;
   blockControls();

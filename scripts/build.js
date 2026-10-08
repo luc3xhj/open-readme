@@ -25,8 +25,28 @@ async function output(config, folder) {
       await copyFile(resolve(root, 'assets', file), resolve(folder, 'assets', file));
 }
 const config = JSON.parse(await readFile(resolve(root, 'open-readme.json'), 'utf8'));
+// Curated examples render in nested folders and downloadable bundles. Their
+// documentation links must keep pointing to this project's actual source.
+const exampleLinks = (value) => {
+  if (typeof value === 'string')
+    return value.replace(
+      /\]\(\.\/([^\s)]+)\)/g,
+      '](' + 'https://github.com/luc3xhj/open-readme/blob/main/$1)',
+    );
+  if (Array.isArray(value)) return value.map(exampleLinks);
+  if (value && typeof value === 'object')
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        key,
+        key === 'url' && typeof item === 'string' && item.startsWith('./')
+          ? 'https://github.com/luc3xhj/open-readme/blob/main/' + item.slice(2)
+          : exampleLinks(item),
+      ]),
+    );
+  return value;
+};
 const completeDesigns = Object.entries(compositionReferences).map(([id, info]) => {
-  const composed = createComposition(config, id),
+  const composed = exampleLinks(createComposition(config, id)),
     hero = composed.blocks.find((b) => b.type === 'hero');
   const start = composed.blocks.find((b) => b.id === 'quickstart');
   start.code = start.code.replace('--design canvas', '--design ' + id);

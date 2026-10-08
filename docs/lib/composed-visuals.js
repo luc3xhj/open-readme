@@ -1,4 +1,4 @@
-import { xml, wrap, label, line, rect, circle, svg } from './drawing.js?v=0.2.0';
+import { xml, wrap, label, line, rect, circle, svg } from './drawing.js?v=0.2.1';
 
 const paragraph = (text, x, y, width, size, color, font = 'sans', weight = 400, leading = 1.35) => {
   const rows = wrap(text, width, size, font);

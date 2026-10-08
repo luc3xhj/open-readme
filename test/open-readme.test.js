@@ -412,3 +412,20 @@ test('long composed previews and beam labels remain inside SVG height', () => {
     }
   }
 });
+
+test('beam text alternatives describe parallel outputs rather than a sequential chain', () => {
+  const { markdown } = render({
+    version: 1,
+    theme: 'minimal',
+    blocks: [
+      {
+        id: 'beam',
+        type: 'diagram',
+        layout: 'beam',
+        items: [{ title: 'Input' }, { title: 'Renderer' }, { title: 'Markdown' }, { title: 'SVG' }],
+      },
+    ],
+  });
+  assert.ok(markdown.includes('Input → Renderer; parallel outputs: Markdown, SVG'));
+  assert.ok(!markdown.includes('Input → Renderer → Markdown → SVG'));
+});

@@ -1,6 +1,6 @@
-import { validateConfig } from './schema.js?v=0.2.0';
-import { designFor } from './designs.js?v=0.2.0';
-import { renderSvg, xml } from './svg.js?v=0.2.0';
+import { validateConfig } from './schema.js?v=0.2.1';
+import { designFor } from './designs.js?v=0.2.1';
+import { renderSvg, xml } from './svg.js?v=0.2.1';
 export const md = (value) =>
   String(value)
     .replace(/\\/g, '\\\\')
@@ -248,24 +248,37 @@ export function render(config, options = {}) {
                   .join('\n\n')),
         );
         break;
-      case 'diagram':
+      case 'diagram': {
+        const relationship =
+          block.layout === 'beam' && block.items.length >= 3
+            ? block.items[0].title +
+              ' → ' +
+              block.items[1].title +
+              '; parallel outputs: ' +
+              block.items
+                .slice(2)
+                .map((i) => i.title)
+                .join(', ')
+            : block.items.map((i) => i.title).join(block.layout === 'hub' ? ' · ' : ' → ');
         output.push(
           heading +
-            picture(
-              block,
-              block.id,
-              block.items.map((i) => i.title).join(block.layout === 'hub' ? ' · ' : ' → '),
-            ) +
+            picture(block, block.id, relationship) +
             '\n\n' +
             disclosure(
               'Diagram description',
-              block.items
-                .map((i) => `- **${md(i.title)}**${i.description ? ' — ' + md(i.description) : ''}`)
-                .join('\n'),
+              (block.layout === 'beam' && block.items.length >= 3
+                ? md(relationship) + '\n\n'
+                : '') +
+                block.items
+                  .map(
+                    (i) => `- **${md(i.title)}**${i.description ? ' — ' + md(i.description) : ''}`,
+                  )
+                  .join('\n'),
             ) +
             (block.caption ? '\n\n' + md(block.caption) : ''),
         );
         break;
+      }
       case 'metrics':
         output.push(
           heading +

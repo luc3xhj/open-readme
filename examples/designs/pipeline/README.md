@@ -19,10 +19,10 @@ SVG assets
 
 </details>
 
-[README designs](<https://luc3xhj.github.io/open-readme/>) · [Agent skill](<./skills/open-readme/SKILL.md>) · [Section guide](<./docs/sections.md>) · [Configuration](<./docs/configuration.md>)
+[README designs](<https://luc3xhj.github.io/open-readme/>) · [Agent skill](<https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md>) · [Section guide](<https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md>) · [Configuration](<https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md>)
 
 <p>
-<a href="./LICENSE"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-1-dark.svg"><img src="assets/open-readme/status-1-light.svg" alt="license: MIT"></picture></a>
+<a href="https://github.com/luc3xhj/open-readme/blob/main/LICENSE"><picture><source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-1-dark-mobile.svg"><source media="(max-width: 840px)" srcset="assets/open-readme/status-1-light-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/status-1-dark.svg"><img src="assets/open-readme/status-1-light.svg" alt="license: MIT"></picture></a>
 <picture>
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/status-2-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/status-2-light-mobile.svg">
@@ -40,7 +40,7 @@ SVG assets
 ## Quick start
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.2.0
+npm install --save-dev github:luc3xhj/open-readme#v0.2.1
 npx open-readme init --project cli --design pipeline
 npx open-readme render --out README.preview.md --json
 ```
@@ -91,7 +91,7 @@ assets/open-readme/
 
 ## Use with your agent
 
-Load [skills/open-readme/SKILL.md](./skills/open-readme/SKILL.md), then ask:
+Load [skills/open-readme/SKILL.md](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:
 
 > Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.
 
@@ -111,11 +111,13 @@ npx open-readme render --block hero --section header --out README.md
   <source media="(prefers-color-scheme: dark) and (max-width: 840px)" srcset="assets/open-readme/architecture-dark-mobile.svg">
   <source media="(max-width: 840px)" srcset="assets/open-readme/architecture-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/open-readme/architecture-dark.svg">
-  <img src="assets/open-readme/architecture-light.svg" alt="Project config → Renderer → README.md → SVG assets" width="960">
+  <img src="assets/open-readme/architecture-light.svg" alt="Project config → Renderer; parallel outputs: README.md, SVG assets" width="960">
 </picture>
 
 <details>
 <summary>Diagram description</summary>
+
+Project config → Renderer; parallel outputs: README.md, SVG assets
 
 - **Project config** — Facts + chosen sections
 - **Renderer** — Validate and compose
@@ -131,14 +133,14 @@ Links, anchor navigation, expandable details, GitHub’s code-copy controls and 
 
 Designed SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.
 
-The [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](./docs/design-notes.md) document the inspiration and GitHub adaptations.
+The [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](https://github.com/luc3xhj/open-readme/blob/main/docs/design-notes.md) document the inspiration and GitHub adaptations.
 
 </details>
 
 ## Contributing
 
-[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](./CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README.
+[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README.
 
 ## License
 
-MIT. See [LICENSE](./LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com).
+MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com).

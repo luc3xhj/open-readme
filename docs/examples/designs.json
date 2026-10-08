@@ -50,15 +50,15 @@
             },
             {
               "label": "Agent skill",
-              "url": "./skills/open-readme/SKILL.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md"
             },
             {
               "label": "Section guide",
-              "url": "./docs/sections.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md"
             },
             {
               "label": "Configuration",
-              "url": "./docs/configuration.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
             }
           ]
         },
@@ -70,7 +70,7 @@
             {
               "label": "license",
               "value": "MIT",
-              "url": "./LICENSE"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
             },
             {
               "label": "runtime",
@@ -88,7 +88,7 @@
           "section": "quickstart",
           "title": "Quick start",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --project cli --design canvas\nnpx open-readme render --out README.preview.md --json",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.1\nnpx open-readme init --project cli --design canvas\nnpx open-readme render --out README.preview.md --json",
           "caption": "Requires Node.js 22+. Edit the starter with your project’s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published.",
           "layout": "native"
         },
@@ -130,7 +130,7 @@
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load [skills/open-readme/SKILL.md](./skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
+          "body": "Load [skills/open-readme/SKILL.md](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
         },
         {
           "id": "commands",
@@ -169,21 +169,21 @@
           "type": "details",
           "section": "compatibility",
           "summary": "What works inside a GitHub README?",
-          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](./docs/design-notes.md) document the inspiration and GitHub adaptations."
+          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](https://github.com/luc3xhj/open-readme/blob/main/docs/design-notes.md) document the inspiration and GitHub adaptations."
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contributing",
-          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](./CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
+          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License",
-          "body": "MIT. See [LICENSE](./LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
+          "body": "MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
         }
       ]
     }
@@ -239,15 +239,15 @@
             },
             {
               "label": "Agent skill",
-              "url": "./skills/open-readme/SKILL.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md"
             },
             {
               "label": "Section guide",
-              "url": "./docs/sections.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md"
             },
             {
               "label": "Configuration",
-              "url": "./docs/configuration.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
             }
           ]
         },
@@ -259,7 +259,7 @@
             {
               "label": "license",
               "value": "MIT",
-              "url": "./LICENSE"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
             },
             {
               "label": "runtime",
@@ -277,7 +277,7 @@
           "section": "quickstart",
           "title": "Quick start",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --project cli --design console\nnpx open-readme render --out README.preview.md --json",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.1\nnpx open-readme init --project cli --design console\nnpx open-readme render --out README.preview.md --json",
           "caption": "Requires Node.js 22+. Edit the starter with your project’s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published.",
           "layout": "terminal"
         },
@@ -319,7 +319,7 @@
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load [skills/open-readme/SKILL.md](./skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
+          "body": "Load [skills/open-readme/SKILL.md](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
         },
         {
           "id": "commands",
@@ -358,21 +358,21 @@
           "type": "details",
           "section": "compatibility",
           "summary": "What works inside a GitHub README?",
-          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](./docs/design-notes.md) document the inspiration and GitHub adaptations."
+          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](https://github.com/luc3xhj/open-readme/blob/main/docs/design-notes.md) document the inspiration and GitHub adaptations."
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contributing",
-          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](./CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
+          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License",
-          "body": "MIT. See [LICENSE](./LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
+          "body": "MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
         }
       ]
     }
@@ -427,15 +427,15 @@
             },
             {
               "label": "Agent skill",
-              "url": "./skills/open-readme/SKILL.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md"
             },
             {
               "label": "Section guide",
-              "url": "./docs/sections.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md"
             },
             {
               "label": "Configuration",
-              "url": "./docs/configuration.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
             }
           ]
         },
@@ -447,7 +447,7 @@
             {
               "label": "license",
               "value": "MIT",
-              "url": "./LICENSE"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
             },
             {
               "label": "runtime",
@@ -465,7 +465,7 @@
           "section": "quickstart",
           "title": "Quick start",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --project cli --design journal\nnpx open-readme render --out README.preview.md --json",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.1\nnpx open-readme init --project cli --design journal\nnpx open-readme render --out README.preview.md --json",
           "caption": "Requires Node.js 22+. Edit the starter with your project’s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published.",
           "layout": "native"
         },
@@ -507,7 +507,7 @@
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load [skills/open-readme/SKILL.md](./skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
+          "body": "Load [skills/open-readme/SKILL.md](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
         },
         {
           "id": "commands",
@@ -546,21 +546,21 @@
           "type": "details",
           "section": "compatibility",
           "summary": "What works inside a GitHub README?",
-          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](./docs/design-notes.md) document the inspiration and GitHub adaptations."
+          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](https://github.com/luc3xhj/open-readme/blob/main/docs/design-notes.md) document the inspiration and GitHub adaptations."
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contributing",
-          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](./CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
+          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License",
-          "body": "MIT. See [LICENSE](./LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
+          "body": "MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
         }
       ]
     }
@@ -616,15 +616,15 @@
             },
             {
               "label": "Agent skill",
-              "url": "./skills/open-readme/SKILL.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md"
             },
             {
               "label": "Section guide",
-              "url": "./docs/sections.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/sections.md"
             },
             {
               "label": "Configuration",
-              "url": "./docs/configuration.md"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/docs/configuration.md"
             }
           ]
         },
@@ -636,7 +636,7 @@
             {
               "label": "license",
               "value": "MIT",
-              "url": "./LICENSE"
+              "url": "https://github.com/luc3xhj/open-readme/blob/main/LICENSE"
             },
             {
               "label": "runtime",
@@ -654,7 +654,7 @@
           "section": "quickstart",
           "title": "Quick start",
           "language": "sh",
-          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.0\nnpx open-readme init --project cli --design pipeline\nnpx open-readme render --out README.preview.md --json",
+          "code": "npm install --save-dev github:luc3xhj/open-readme#v0.2.1\nnpx open-readme init --project cli --design pipeline\nnpx open-readme render --out README.preview.md --json",
           "caption": "Requires Node.js 22+. Edit the starter with your project’s facts, then commit the preview and its assets. Installation is from GitHub; the npm package is not published.",
           "layout": "native"
         },
@@ -696,7 +696,7 @@
           "type": "markdown",
           "section": "usage",
           "title": "Use with your agent",
-          "body": "Load [skills/open-readme/SKILL.md](./skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
+          "body": "Load [skills/open-readme/SKILL.md](https://github.com/luc3xhj/open-readme/blob/main/skills/open-readme/SKILL.md), then ask:\n\n> Use open-readme for this repository. Inspect the project, choose useful sections, and show me two complete README designs. Keep commands copyable, use a real demo image if available, and omit unsupported claims. Render to README.preview.md first.\n\nThe agent can inspect the catalog and section guide through the CLI:"
         },
         {
           "id": "commands",
@@ -735,21 +735,21 @@
           "type": "details",
           "section": "compatibility",
           "summary": "What works inside a GitHub README?",
-          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](./docs/design-notes.md) document the inspiration and GitHub adaptations."
+          "markdown": "Links, anchor navigation, expandable details, GitHub’s code-copy controls and automatic light / dark images work. Browser-style JavaScript tabs, hover effects, forms and embedded apps do not run inside GitHub Markdown. Code groups therefore export as native disclosures.\n\nDesigned SVGs keep their text in accessible descriptions; commands, prose and reference tables remain available as selectable Markdown. Metrics are supplied values with sources, not live statistics.\n\nThe [component library](https://luc3xhj.github.io/open-readme/) previews individual variants, supports editable JSON, and exports components or complete README bundles. [Design notes](https://github.com/luc3xhj/open-readme/blob/main/docs/design-notes.md) document the inspiration and GitHub adaptations."
         },
         {
           "id": "contributing",
           "type": "markdown",
           "section": "contributing",
           "title": "Contributing",
-          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](./CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
+          "body": "[Suggest a component](https://github.com/luc3xhj/open-readme/issues) or read [CONTRIBUTING.md](https://github.com/luc3xhj/open-readme/blob/main/CONTRIBUTING.md). A component should solve a reader’s problem, expose meaningful configuration and work in the exported README."
         },
         {
           "id": "license",
           "type": "markdown",
           "section": "license",
           "title": "License",
-          "body": "MIT. See [LICENSE](./LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
+          "body": "MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com)."
         }
       ]
     }

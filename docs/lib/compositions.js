@@ -1,4 +1,4 @@
-import { designs } from './designs.js?v=0.2.0';
+import { designs } from './designs.js?v=0.2.1';
 
 export const compositionReferences = {
   canvas: {

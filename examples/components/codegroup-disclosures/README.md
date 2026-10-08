@@ -6,7 +6,7 @@
 <summary>Install in your project</summary>
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.2.0
+npm install --save-dev github:luc3xhj/open-readme#v0.2.1
 ```
 
 </details>

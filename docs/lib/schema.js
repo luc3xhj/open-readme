@@ -1,5 +1,5 @@
-import { designs } from './designs.js?v=0.4.0';
-import { sections, projects } from './sections.js?v=0.4.0';
+import { designs } from './designs.js?v=0.5.0';
+import { sections, projects } from './sections.js?v=0.5.0';
 const text = { type: 'string', minLength: 1, maxLength: 10000, pattern: '\\S' };
 const short = { ...text, maxLength: 160 };
 const href = {
@@ -66,8 +66,8 @@ export const blocks = {
   links: block(
     'links',
     {
-      layout: { type: 'string', enum: ['inline', 'buttons', 'index'] },
-      items: array(item({ label: short, url: href }, ['label', 'url']), 12),
+      layout: { type: 'string', enum: ['inline', 'buttons', 'index', 'directory'] },
+      items: array(item({ label: short, url: href, description: short }, ['label', 'url']), 12),
     },
     ['items'],
   ),
@@ -105,7 +105,8 @@ export const blocks = {
     {
       filename: short,
       highlight: array({ type: 'integer', minimum: 1, maximum: 1000 }, 30),
-      layout: { type: 'string', enum: ['native', 'terminal'] },
+      layout: { type: 'string', enum: ['native', 'terminal', 'annotated'] },
+      annotations: array(item({ line: { type: 'integer', minimum: 1, maximum: 1000 }, label: short, description: short }, ['line', 'label']), 24),
       title: short,
       language: { type: 'string', maxLength: 30, pattern: '^[a-zA-Z0-9_+-]*$' },
       code: text,
@@ -116,7 +117,7 @@ export const blocks = {
   steps: block(
     'steps',
     {
-      layout: { type: 'string', enum: ['ordered', 'flow'] },
+      layout: { type: 'string', enum: ['ordered', 'flow', 'guide', 'journey'] },
       title: short,
       items: array(
         item(
@@ -124,6 +125,9 @@ export const blocks = {
             title: short,
             description: text,
             code: text,
+            result: short,
+            fields: array(item({ label: short, value: short }, ['label', 'value']), 6),
+            visual: { type: 'string', enum: ['filters', 'comparison', 'collection', 'output'] },
             language: { type: 'string', maxLength: 30, pattern: '^[a-zA-Z0-9_+-]*$' },
           },
           ['title', 'description'],
@@ -138,7 +142,7 @@ export const blocks = {
     {
       layout: {
         type: 'string',
-        enum: ['table', 'scorecard', 'definitions', 'reference', 'matrix'],
+        enum: ['table', 'scorecard', 'definitions', 'reference', 'matrix', 'tiles', 'map'],
       },
       title: short,
       columns: array(short, 8),
@@ -199,6 +203,23 @@ export const blocks = {
     },
     ['items'],
   ),
+  topology: block('topology', {
+    layout: { type: 'string', enum: ['branches'] },
+    caption: text,
+    items: array(item({
+      title: short, description: text, meta: short,
+      outputs: array(item({title: short, description: short, via: short, icon: {type:'string',enum:['layers','cloud','database','lock','file','folder','people','code']}}, ['title','description']), 6),
+    }, ['title','description','outputs']), 6),
+  }, ['items']),
+  sequence: block('sequence', {
+    layout: { type: 'string', enum: ['actors'] },
+    caption: text,
+    actors: array(item({title:short,description:short}, ['title']), 5),
+    messages: array(item({
+      from: {type:'integer',minimum:0,maximum:4}, to: {type:'integer',minimum:0,maximum:4},
+      label:short, description:short, gate:short, kind:{type:'string',enum:['request','reply']},
+    }, ['from','to','label']), 12),
+  }, ['actors','messages']),
   metrics: block(
     'metrics',
     {
@@ -250,6 +271,7 @@ export const schema = {
       version: { const: 1 },
       design: { type: 'string', enum: Object.keys(designs) },
       project: { type: 'string', enum: Object.keys(projects) },
+      presentation: { type: 'string', enum: ['native', 'visual'] },
       theme: { type: 'string', enum: ['terminal', 'minimal', 'editorial'] },
       style: object(
         {
@@ -271,7 +293,7 @@ export const catalog = Object.fromEntries(
   Object.entries(blocks).map(([name, definition]) => [
     name,
     {
-      format: ['hero', 'badges', 'features', 'diagram', 'metrics'].includes(name)
+      format: ['hero', 'badges', 'features', 'diagram', 'topology', 'sequence', 'metrics'].includes(name)
         ? 'SVG + Markdown'
         : 'native Markdown / HTML',
       required: definition.required,
@@ -359,6 +381,20 @@ export function validateConfig(config) {
               path: `$.blocks[${i}].rows[${r}]`,
               message: 'Cell count must match columns.',
             });
+        });
+      }
+      if (b?.type === 'code' && Array.isArray(b.annotations) && typeof b.code === 'string') {
+        const used = new Set();
+        b.annotations.forEach((note, a) => {
+          if (note.line > b.code.split('\n').length || used.has(note.line))
+            errors.push({ path: `$.blocks[${i}].annotations[${a}].line`, message: 'Annotations must reference distinct existing source lines.' });
+          used.add(note.line);
+        });
+      }
+      if (b?.type === 'sequence' && Array.isArray(b.actors) && Array.isArray(b.messages)) {
+        b.messages.forEach((message, m) => {
+          if (message.from >= b.actors.length || message.to >= b.actors.length || message.from === message.to)
+            errors.push({path:`$.blocks[${i}].messages[${m}]`,message:'Messages must reference two distinct declared actors.'});
         });
       }
     });

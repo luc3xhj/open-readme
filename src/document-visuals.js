@@ -193,7 +193,7 @@ export function featureBoard(block, t, w, mobile, layout) {
     y = p + 2;
   if (layout === 'bento' && !mobile) {
     // A shared baseline and open columns make the section scan as one unit.
-    const cols = Math.min(3, block.items.length),
+    const cols = block.items.length === 4 ? 2 : Math.min(3, block.items.length),
       gap = 30,
       cw = (w - gap * (cols - 1) - p * 2 - 2) / cols;
     for (let start = 0; start < block.items.length; start += cols) {

@@ -9,10 +9,11 @@ import {
   sectionDesigns,
   styleSection,
   comparisonView,
-} from './lib/index.js?v=0.4.0';
-import { renderSvg } from './lib/svg.js?v=0.4.0';
-import { sectionImportance } from './lib/design-scale.js?v=0.4.0';
-import { sectionAnchors } from './lib/section-designs.js?v=0.4.0';
+} from './lib/index.js?v=0.5.0';
+import { renderSvg } from './lib/svg.js?v=0.5.0';
+import { sectionImportance } from './lib/design-scale.js?v=0.5.0';
+import { sectionAnchors } from './lib/section-designs.js?v=0.5.0';
+import { topologyDescription, sequenceDescription } from './lib/relationship-visuals.js?v=0.5.0';
 const $ = (id) => document.getElementById(id),
   node = (tag, text, cls) => {
     const el = document.createElement(tag);
@@ -177,7 +178,11 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
       continue;
     }
     heading(b);
-    if (b.type === 'links' && b.layout === 'index') {
+    if (b.type === 'links' && b.layout === 'directory') {
+      const directory = node('div', undefined, 'resource-directory');
+      b.items.forEach((item, i) => directory.append(visualBlock({ ...item, type: 'resource', ordinal: i, design: b.design, style: b.style })));
+      el.append(directory);
+    } else if (b.type === 'links' && b.layout === 'index') {
       const ol = node('ol');
       for (const item of b.items) {
         const li = node('li');
@@ -185,6 +190,10 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
         ol.append(li);
       }
       el.append(ol);
+    } else if (b.type === 'links' && b.layout === 'inline' && b.items.some(item => item.description)) {
+      const list = node('ul');
+      b.items.forEach(item => { const li = node('li'); li.append(anchor(item.label, item.url)); if (item.description) li.append(' — '+item.description); list.append(li); });
+      el.append(list);
     } else if (b.type === 'badges' || b.type === 'links') {
       const row = node(
         'div',
@@ -222,23 +231,39 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
       }
     }
     if (b.type === 'code') {
-      if (b.layout === 'terminal')
-        el.append(visualBlock(b), details('Copyable command / source', nativeCode(b.code)));
-      else el.append(nativeCode(b.code));
+      if (['terminal', 'annotated'].includes(b.layout)) {
+        el.append(visualBlock(b), details('Code', nativeCode(b.code)));
+      }
+      else {
+        el.append(nativeCode(b.code));
+        if (b.annotations?.length) b.annotations.forEach(a => el.append(inline(node('p'), '**'+a.label+'**'+(a.description ? ' — '+a.description : ''))));
+      }
       if (b.caption) el.append(node('p', b.caption, 'caption'));
     }
     if (b.type === 'codegroup')
       b.items.forEach((item, i) => el.append(details(item.label, nativeCode(item.code), i === 0)));
     if (b.type === 'steps') {
+      const illustrated = ['guide', 'journey'].includes(b.layout);
+      if (illustrated) el.append(visualBlock(b));
       if (b.layout === 'flow') el.append(visualBlock({ ...b, type: 'diagram', layout: 'flow' }));
-      const ol = node('ol');
-      for (const item of b.items) {
-        const li = node('li');
-        li.append(node('strong', item.title), node('p', item.description));
-        if (item.code) li.append(nativeCode(item.code));
-        ol.append(li);
+      if (illustrated && b.items.some(i => i.code)) {
+        el.append(details('Commands', nativeCode(b.items.filter(i => i.code).map(i => i.code).join('\n'))));
+      } else {
+        const ol = node('ol');
+        for (const item of b.items) {
+          const li = node('li');
+          li.append(node('strong', item.title), node('p', item.description));
+          if (item.result) li.append(node('p', 'Result: '+item.result));
+          if (item.fields?.length) {
+            const fields = node('ul');
+            item.fields.forEach(field => fields.append(node('li', field.label + ' — ' + field.value)));
+            li.append(fields);
+          }
+          if (item.code && !illustrated) li.append(nativeCode(item.code));
+          ol.append(li);
+        }
+        el.append(illustrated ? details('Read the workflow as text', ol) : ol);
       }
-      el.append(ol);
     }
     if (b.type === 'comparison') {
       const view = comparisonView(b);
@@ -263,7 +288,7 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
           body.append(row);
         }
         table.append(head, body);
-        if (b.layout === 'scorecard')
+        if (['scorecard', 'tiles', 'map'].includes(b.layout))
           el.append(visualBlock(b), details('View the table as text', table));
         else el.append(table);
       }
@@ -275,6 +300,14 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
       q.append(node('strong', b.kind.toUpperCase()));
       prose(q, b.body);
       el.append(q);
+    }
+    if (b.type === 'topology' || b.type === 'sequence') {
+      el.append(visualBlock(b));
+      const description = b.type === 'topology' ? topologyDescription(b) : sequenceDescription(b);
+      const ul = node('ul');
+      description.split('\n').filter(Boolean).forEach(row => ul.append(node('li', row)));
+      el.append(details('Read the diagram as text', ul));
+      if (b.caption) el.append(node('p', b.caption, 'caption'));
     }
     if (b.type === 'diagram') {
       el.append(visualBlock(b));
@@ -317,6 +350,7 @@ function renderDocument(el, cfg, mode = 'light', narrow = false, thumbnail = fal
         const img = node('img');
         img.src = item.src;
         img.alt = item.alt;
+        if (b.width) img.width = b.width;
         if (item.url) {
           const a = anchor(undefined, item.url);
           a.append(img);
@@ -384,8 +418,18 @@ $('narrow').addEventListener('click', () => {
   narrow = !narrow;
   preview();
 });
-const resize = new ResizeObserver(() => renderDocument($('readme'), config, mode, narrow));
+let previewWidth;
+const resize = new ResizeObserver(([entry]) => {
+  const width = entry.contentRect.width;
+  if (width === previewWidth) return;
+  previewWidth = width;
+  renderDocument($('readme'), config, mode, narrow);
+});
 resize.observe($('document-frame'));
+const toolbarResize = new ResizeObserver(([entry]) => {
+  document.documentElement.style.setProperty('--toolbar-offset', `${Math.ceil(entry.target.getBoundingClientRect().height) + 16}px`);
+});
+toolbarResize.observe(document.querySelector('.toolbar'));
 function editorTab(tab) {
   editingTab = tab;
   document
@@ -405,6 +449,7 @@ function editorTab(tab) {
   }
 }
 function syncControls(draft) {
+  $('presentation').value = draft.presentation || 'native';
   $('accent').value =
     draft.style?.accent ||
     { canvas: '#6657D8', console: '#24764C', journal: '#9B583D', pipeline: '#256DCE' }[
@@ -442,13 +487,8 @@ function sectionControls() {
         const next = JSON.parse($('config-source').value),
           i = next.blocks.findIndex((b) => b.id === block.id);
         let changed;
-        if (select.value) changed = styleSection(next.blocks[i], select.value);
-        else {
-          changed = structuredClone(next.blocks[i]);
-          delete changed.design;
-          const layout = sectionDesigns[next.design]?.[changed.type];
-          if (layout) changed.layout = layout;
-        }
+        changed = styleSection(next.blocks[i], select.value || next.design, next.presentation);
+        if (!select.value) delete changed.design;
         next.blocks[i] = changed;
         $('config-source').value = JSON.stringify(next, null, 2);
       });
@@ -515,6 +555,15 @@ for (const id of ['accent', 'density', 'font'])
       $('editor-status').textContent = 'Fix the JSON before changing its style.';
     }
   });
+$('presentation').addEventListener('change', () => {
+  try {
+    const draft = JSON.parse($('config-source').value);
+    draft.presentation = $('presentation').value;
+    const composed = createComposition(draft, draft.design);
+    composed.style = draft.style;
+    $('config-source').value = JSON.stringify(composed, null, 2);
+  } catch { $('editor-status').textContent = 'Fix the JSON before changing its presentation.'; }
+});
 $('apply').addEventListener('click', () => {
   try {
     const draft = JSON.parse($('config-source').value),
@@ -555,10 +604,10 @@ $('download').addEventListener('click', async () => {
     for (const block of config.blocks) {
       const media = block.type === 'media' ? [block] : block.type === 'gallery' ? block.items : [];
       for (const item of media) {
-        if (/^\.\/assets\/[a-z0-9-]+\.svg$/.test(item.src)) {
+        if (/^\.\/assets\/[a-z0-9-]+\.(?:svg|png|webp|jpe?g|gif)$/.test(item.src)) {
           const response = await fetch(item.src);
           if (!response.ok) throw new Error('Example image is unavailable.');
-          files.set(item.src.slice(2), await response.text());
+          files.set(item.src.slice(2), new Uint8Array(await response.arrayBuffer()));
         } else if (!/^https?:\/\//.test(item.src))
           throw new Error(
             'Include your local media in the repository, or use an https URL before exporting here.',

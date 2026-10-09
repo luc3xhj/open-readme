@@ -56,7 +56,7 @@ export const sampleBlocks = {
     title: 'Quick start',
     language: 'sh',
     filename: 'terminal',
-    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
+    code: 'npm install --save-dev github:luc3xhj/open-readme#v0.5.0\nnpx open-readme init --design swiss\nnpx open-readme render --out README.preview.md',
     highlight: [3],
   },
   codegroup: {
@@ -68,7 +68,7 @@ export const sampleBlocks = {
       {
         label: 'Install in your project',
         language: 'sh',
-        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.4.0',
+        code: 'npm install --save-dev github:luc3xhj/open-readme#v0.5.0',
       },
       {
         label: 'Work from source',
@@ -203,6 +203,15 @@ export const sampleBlocks = {
     body: 'MIT. See [LICENSE](https://github.com/luc3xhj/open-readme/blob/main/LICENSE).',
   },
   toc: { id: 'contents', type: 'toc', title: 'On this page' },
+  topology: {
+    id:'system',type:'topology',section:'architecture',title:'From config to repository',
+    items:[{title:'Renderer',meta:'LOCAL FILES',description:'Read supplied content; generate portable Markdown and vectors.',outputs:[{title:'README.md',description:'Native links, commands and disclosures.',icon:'file'},{title:'SVG assets',description:'Coordinated light, dark and narrow variants.',icon:'layers'}]}],
+  },
+  sequence: {
+    id:'interaction',type:'sequence',section:'usage',title:'Review before writing',
+    actors:[{title:'Agent',description:'Inspects repository facts'},{title:'Renderer',description:'Generates local output'}],
+    messages:[{from:0,to:1,label:'Supply verified JSON',description:'Use real commands, paths and capabilities.'},{from:1,to:0,label:'Return a preview',description:'Keep referenced assets with the Markdown.',kind:'reply'},{from:0,to:1,label:'Render final files',gate:'Reviewed configuration'}],
+  },
 };
 export const samples = Object.entries(variants).flatMap(([type, layouts]) =>
   layouts.map((layout) => {

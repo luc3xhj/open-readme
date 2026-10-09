@@ -1,5 +1,5 @@
-import { sectionDesigns } from './section-designs.js?v=0.4.0';
-import { designs } from './designs.js?v=0.4.0';
+import { sectionDesigns, visualSectionLayout } from './section-designs.js?v=0.5.0';
+import { designs } from './designs.js?v=0.5.0';
 
 export const compositionReferences = {
   canvas: {
@@ -97,7 +97,7 @@ export function createComposition(base, design) {
   delete config.style.accent;
   delete config.style.font;
   for (const block of config.blocks) {
-    const layout = sectionDesigns[block.design || design][block.type];
+    const layout = (config.presentation === 'visual' && visualSectionLayout(block)) || sectionDesigns[block.design || design][block.type];
     if (layout) block.layout = layout;
   }
   return config;

@@ -1,5 +1,5 @@
-import { wrap, label, line, rect, circle, svg } from './drawing.js?v=0.4.0';
-import { typeScale, sectionImportance, glyph, arrow } from './design-scale.js?v=0.4.0';
+import { wrap, label, line, rect, circle, svg } from './drawing.js?v=0.5.0';
+import { typeScale, sectionImportance, glyph, arrow } from './design-scale.js?v=0.5.0';
 
 export function sectionHeading(block, t, w, mobile) {
   const s = typeScale(t, mobile),

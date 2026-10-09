@@ -197,7 +197,7 @@ test('all public component variants validate and export deterministic assets', a
     }
     seen.add(sample.type);
   }
-  assert.equal(seen.size, 17);
+  assert.equal(seen.size, Object.keys(variants).length);
 });
 test('project starters expose essential sections; audit reports a removed license', async () => {
   const { createStarter, projects, auditConfig } = await import('../src/index.js');
@@ -449,9 +449,10 @@ test('masthead controls and optional feature frames honor explicit SVG customiza
 });
 
 test('complete design systems style every section while preserving copyable instructions', async () => {
-  const { createComposition, compositionReferences, sectionDesigns, styleSection, sections } =
+  const { createComposition, compositionReferences, sectionDesigns, styleSection, sections, fence } =
     await import('../src/index.js');
   const base = JSON.parse(await readFile(resolve(root, 'open-readme.json'), 'utf8'));
+  base.presentation = 'native';
   for (const section of Object.values(sections))
     assert.deepEqual(Object.keys(section.designs), Object.keys(sectionDesigns));
   for (const id of Object.keys(compositionReferences)) {
@@ -463,6 +464,11 @@ test('complete design systems style every section while preserving copyable inst
     }
     for (const block of base.blocks.filter((b) => b.type === 'code'))
       assert.ok(markdown.includes(block.code));
+    const visual = render(createComposition({ ...base, presentation: 'visual' }, id));
+    const sources = [...visual.markdown.matchAll(/<summary>Code<\/summary>\n\n([\s\S]*?)\n\n<\/details>/g)];
+    assert.equal(sources.length, base.blocks.filter((b) => b.type === 'code').length);
+    for (const [i, block] of base.blocks.filter((b) => b.type === 'code').entries())
+      assert.equal(sources[i][1], fence(block.code, block.language));
     for (const name of markdown.matchAll(/(?:src|srcset)="assets\/open-readme\/([^"]+)"/g))
       assert.ok(assets.has(name[1]));
     const config = createComposition(base, id),

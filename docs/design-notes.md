@@ -33,7 +33,7 @@ Static relationships replace browser animation in GitHub exports. A beam always 
 
 ## Document-scale hierarchy
 
-The complete systems share size roles: project name 30–38 SVG units, primary section 23, supporting section 18, figure title 18, explanation 15 and annotation 11. Compact/mobile assets compensate for the narrower column without using landing-page display sizes. Native Markdown uses GitHub's own typography. Captions are italic native text, not another display headline.
+The complete systems share size roles: project name 30–38 SVG units, primary section 23, supporting section 18, figure title 18, explanation 15 and annotation 11. Compact/mobile assets compensate for the narrower column without using landing-page display sizes. Native Markdown uses GitHub's own typography. Captions use GitHub-supported small text; service descriptions use body size, while paths and adapters use annotation size.
 
 `section` supplies the default hierarchy: overview, features, quick start and usage lead; configuration, API, architecture, compatibility and project housekeeping are supporting. `importance: "primary"` or `"supporting"` explicitly overrides a titled section. The workbench exposes both emphasis and section design. Density changes whitespace, not project facts.
 
@@ -49,6 +49,10 @@ The implementation is original SVG code. We inspected rendered examples and read
 The beam renderer measures labels before positioning nodes. Input → processor → parallel outputs is a preserved topology; output files never become a sequential chain when changing themes. Connections terminate on node boundaries, share a branch junction and stay out of unrelated node interiors. Narrow assets reflow into a tree. The small router is limited to this topology; it is not a replacement for D2 or Mermaid on arbitrary graphs. No upstream source, screenshots or artwork is bundled.
 
 ## Whole-document review
+
+For independent runtime paths, the topology component separates source-owned branches, names each destination, and attaches adapters to the relationship they belong to. The interaction sequence keeps actor columns and message order separate from privacy gates. Both provide exact native descriptions. These patterns follow [Mermaid's named services and groups](https://mermaid.js.org/syntax/architecture.html), [21st's File Tree](https://21st.dev/@jatin-yadav05/components/file-tree) for a legible hierarchy, and [Animated Card Diagram](https://21st.dev/@badtzx0/components/animated-card-diagram) for making explanatory graphics lead the content. Original static SVG replaces browser motion.
+
+Comparison illustrations identify the fields a reader needs to verify; they do not draw empty A/B score dots. Saved-work illustrations name the retained record and distinguish private notes. Four Canvas features use an aligned two-by-two grid; runtime annotations stay smaller than service names. Requirements use quieter values than headline metrics.
 
 1. Choose a system and apply it across the useful sections.
 2. Keep one alignment grid, a small type hierarchy and consistent borders/corners.

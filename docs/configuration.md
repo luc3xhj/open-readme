@@ -39,18 +39,24 @@ Start with [Canvas](../examples/designs/canvas/README.md), [Console](../examples
 
 For an existing config, `createComposition(config, 'journal')` clones it and sets a coherent palette, section heading treatment and matching feature/reference/metric/timeline layouts. Source code stays native Markdown. It preserves project claims, section order, links, source code and diagram relationships. Preset-supported layouts are replaced; explicit section design overrides and diagram topology are preserved; block-level style overrides remain available.
 
+Set `presentation: "visual"` before calling `createComposition` to design the section bodies as well as their headings. Quick-start steps become a command recipe; usage steps become an illustrated journey; annotated code pairs original lines with their purpose; requirements become fact tiles; repository paths become a directory map; and documentation links become clickable rows with descriptions. Every visual has light, dark, compact and mobile variants. Exact commands and reference data stay available in native disclosures. Omit the field, or set `"native"`, for the earlier native-body presentation.
+
+Use `steps.items[].result` for a factual expected destination or artifact. Optional `visual` is `filters`, `comparison`, `collection` or `output`; these draw conceptual diagrams, not fabricated screenshots or populated example data. `code.annotations` contains `{ "line": 1, "label": "Types", "description": "TypeScript check" }`; line numbers must point to distinct lines in the original source. Documentation links accept a short `description`.
+
+Visual command guides export a `Commands` disclosure containing only their exact commands. Illustrated code exports a `Code` disclosure containing only the original source. Step descriptions, results and annotations remain in the visual above instead of repeating inside the copy area. Workflows without commands retain their text alternative.
+
 ## Components and variants
 
 | Type       | Layout / variant                                            | Required content                                                                             |
 | ---------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | hero       | Twelve compositions, chosen by `design`                     | title, subtitle; optional headline, eyebrow, mark, command, meta, url, preview, previewLabel |
 | badges     | dot, split, outline                                         | items: label, value, optional url                                                            |
-| links      | inline, buttons, index                                      | items: label, url                                                                            |
+| links      | inline, buttons, index, directory                           | items: label, url; optional description                                                     |
 | features   | native, rows, columns, index, bento, lattice, terminal-grid | items: title, description; optional url, visual, example, value                              |
-| code       | native, terminal                                            | code; optional language, filename, highlighted original line numbers, caption                |
+| code       | native, terminal, annotated                                 | code; optional language, filename, highlight, caption and line annotations                  |
 | codegroup  | Native disclosures                                          | items: label, code, optional language                                                        |
-| steps      | ordered, flow                                               | items: title, description, optional code and language                                        |
-| comparison | table, definitions, reference, matrix, scorecard            | columns, rows; row width must match columns                                                  |
+| steps      | ordered, flow, guide, journey                                | items: title, description; optional code, language, result and visual                        |
+| comparison | table, definitions, reference, matrix, scorecard, tiles, map | columns, rows; row width must match columns                                                  |
 | diagram    | flow, stack, hub, beam                                      | items: title, optional description; `center` labels a hub                                    |
 | metrics    | strip, columns, scoreboard                                  | items: label, value, optional source; caption for date/method                                |
 | timeline   | checklist, rail                                             | items: title, description, status (shipped, in-progress, planned)                            |
@@ -129,7 +135,30 @@ const zip = createZip(
 );
 ```
 
-The API preserves media URLs as supplied; callers moving the output must resolve local media paths. Browser exports include this library’s example media; user-supplied local media files must be included by the caller.
+The API preserves media URLs as supplied; callers moving the output must resolve and include local media files. Browser exports include SVG, PNG, JPEG, WebP and GIF files served under the preview's `./assets/` directory. Files from another repository must first be available there; remote URLs remain links.
+
+## Relationship diagrams
+
+`topology` describes independent sources and their actual outputs. Each source has `title`, `description`, optional `meta`, and `outputs`. An output has `title`, `description`, optional `via` and `icon`. Repeated destinations remain repeated rather than suggesting an unverified shared processor. Every source reflows into its own branch on narrow layouts.
+
+`sequence` describes declared `actors` and ordered `messages`. Each message uses zero-based `from` and `to` actor indices, a `label`, optional `description`, optional `gate`, and `kind: "reply"` for a dashed response. Indices must refer to different declared actors. Gates display conditions, not live status. Narrow layouts use a readable ordered sender → recipient trace.
+
+```json
+{
+  "id": "consent",
+  "type": "sequence",
+  "section": "usage",
+  "title": "Share after acceptance",
+  "actors": [{ "title": "Sender" }, { "title": "Recipient" }],
+  "messages": [
+    { "from": 0, "to": 1, "label": "Request a connection" },
+    { "from": 1, "to": 0, "label": "Accept the request", "kind": "reply" },
+    { "from": 0, "to": 1, "label": "Share selected details", "gate": "Explicit consent" }
+  ]
+}
+```
+
+Journey steps can supply `fields: [{ "label": "Timing", "value": "Deadline + timezone" }]`. These values appear in both the illustration and its native disclosure. Describe what a reader should inspect; do not fill a comparison with invented statistics. Topology and sequence diagrams always include a native text version.
 
 ## GitHub compatibility
 
@@ -138,7 +167,7 @@ Light/dark/mobile SVG variants use `<picture>`. Links wrap visual assets. Comman
 ## Install
 
 ```sh
-npm install --save-dev github:luc3xhj/open-readme#v0.4.0
+npm install --save-dev github:luc3xhj/open-readme#v0.5.0
 npx open-readme --help
 ```
 

@@ -1,14 +1,16 @@
-import { sectionDesign, sectionAnchors } from './section-designs.js?v=0.4.0';
-import { comparisonView } from './reference.js?v=0.4.0';
-import { validateConfig } from './schema.js?v=0.4.0';
-import { designFor } from './designs.js?v=0.4.0';
-import { renderSvg, xml } from './svg.js?v=0.4.0';
+import { sectionDesign, sectionAnchors } from './section-designs.js?v=0.5.0';
+import { comparisonView } from './reference.js?v=0.5.0';
+import { validateConfig } from './schema.js?v=0.5.0';
+import { designFor } from './designs.js?v=0.5.0';
+import { renderSvg, xml } from './svg.js?v=0.5.0';
+import { topologyDescription, sequenceDescription } from './relationship-visuals.js?v=0.5.0';
 export const md = (value) =>
   String(value)
     .replace(/\\/g, '\\\\')
     .replace(/([\[\]*_`#<>|])/g, '\\$1')
     .replace(/\r?\n/g, ' ');
 export const link = (label, url) => `[${md(label)}](<${url.replace(/>/g, '%3E')}>)`;
+const caption = (value) => value ? '\n\n<sub>' + xml(value) + '</sub>' : '';
 export function fence(code, language = '') {
   const longest = Math.max(0, ...(code.match(/`+/g) || []).map((s) => s.length));
   const delimiter = '`'.repeat(Math.max(3, longest + 1));
@@ -76,7 +78,7 @@ export function render(config, options = {}) {
                   .map((line) => '   ' + line)
                   .join('\n')
               : ''
-          }`,
+          }${step.result ? '\n\n   Result: ' + md(step.result) : ''}${step.fields?.length ? '\n\n' + step.fields.map(field => '   - **' + md(field.label) + '** — ' + md(field.value)).join('\n') : ''}`,
       )
       .join('\n\n');
   const headingSlugs = sectionAnchors(config.blocks);
@@ -119,7 +121,9 @@ export function render(config, options = {}) {
       case 'links':
         output.push(
           heading +
-            (block.layout === 'buttons'
+            (block.layout === 'directory'
+              ? block.items.map((item, i) => picture({ ...item, type: 'resource', ordinal: i, style: block.style, design: block.design }, `${block.id}-${i + 1}`, [item.label, item.description].filter(Boolean).join(' — '))).join('\n\n')
+              : block.layout === 'buttons'
               ? '<p>\n' +
                 block.items
                   .map((item, i) =>
@@ -133,7 +137,9 @@ export function render(config, options = {}) {
                 '\n</p>'
               : block.layout === 'index'
                 ? block.items.map((item, i) => `${i + 1}. ${link(item.label, item.url)}`).join('\n')
-                : block.items.map((item) => link(item.label, item.url)).join(' · ')),
+                : block.items.some(item => item.description)
+                  ? block.items.map(item => `- ${link(item.label, item.url)}${item.description ? ' — ' + md(item.description) : ''}`).join('\n')
+                  : block.items.map((item) => link(item.label, item.url)).join(' · ')),
         );
         break;
       case 'features': {
@@ -190,12 +196,12 @@ export function render(config, options = {}) {
         const source = fence(block.code, block.language);
         output.push(
           heading +
-            (block.layout === 'terminal'
-              ? picture(block, block.id, block.code) +
+            (['terminal', 'annotated'].includes(block.layout)
+              ? picture(block, block.id, block.code + (block.annotations?.length ? '\n' + block.annotations.map(a => `${a.line}: ${a.label}${a.description ? ' — ' + a.description : ''}`).join('\n') : '')) +
                 '\n\n' +
-                disclosure('Copyable command / source', source)
-              : source) +
-            (block.caption ? `\n\n_${md(block.caption)}_` : ''),
+                disclosure('Code', source)
+              : source + (block.annotations?.length ? '\n\n' + block.annotations.map(a => `- **${md(a.label)}**${a.description ? ' — ' + md(a.description) : ''}`).join('\n') : '')) +
+            caption(block.caption),
         );
         break;
       }
@@ -213,21 +219,25 @@ export function render(config, options = {}) {
       case 'steps':
         output.push(
           heading +
-            (block.layout === 'flow'
+            (['guide', 'journey'].includes(block.layout)
+              ? picture(block, block.id, block.items.map(i => [i.title, i.description, i.code, i.result].filter(Boolean).join(' — ')).join('; ')) + '\n\n' +
+                (block.items.some(i => i.code)
+                  ? disclosure('Commands', fence(block.items.filter(i => i.code).map(i => i.code).join('\n'), block.items.find(i => i.code)?.language || 'sh'))
+                  : disclosure('Read the workflow as text', steps(block)))
+              : (block.layout === 'flow'
               ? picture(
                   { ...block, type: 'diagram', layout: 'flow' },
                   block.id,
                   block.items.map((i) => i.title).join(' → '),
                 ) + '\n\n'
-              : '') +
-            steps(block),
+              : '') + steps(block)),
         );
         break;
       case 'comparison':
         output.push(
           heading +
-            (block.layout === 'scorecard'
-              ? picture(block, block.id, block.title || 'Comparison') +
+            (['scorecard', 'tiles', 'map'].includes(block.layout)
+              ? picture(block, block.id, block.rows.map(row => row.map((cell, i) => `${block.columns[i]}: ${cell}`).join('; ')).join('\n')) +
                 '\n\n' +
                 disclosure('View the table as text', table(block))
               : table(block)),
@@ -244,7 +254,7 @@ export function render(config, options = {}) {
                 '\n\n'
               : '') +
             media(block, block.width || config.style?.width || 960) +
-            (block.caption ? '\n\n_' + md(block.caption) + '_' : ''),
+            caption(block.caption),
         );
         break;
       case 'gallery':
@@ -262,11 +272,17 @@ export function render(config, options = {}) {
                   .map(
                     (item) =>
                       media(item, config.style?.width || 960) +
-                      (item.caption ? '\n\n_' + md(item.caption) + '_' : ''),
+                      caption(item.caption),
                   )
                   .join('\n\n')),
         );
         break;
+      case 'topology':
+      case 'sequence': {
+        const description = block.type === 'topology' ? topologyDescription(block) : sequenceDescription(block);
+        output.push(heading + picture(block, block.id, description) + '\n\n' + disclosure('Read the diagram as text', description.split('\n').filter(Boolean).map(row => '- ' + md(row)).join('\n')) + caption(block.caption));
+        break;
+      }
       case 'diagram': {
         const relationship =
           block.layout === 'beam' && block.items.length >= 3
@@ -305,7 +321,7 @@ export function render(config, options = {}) {
                       )
                       .join('\n'),
                 )) +
-            (block.caption ? '\n\n_' + md(block.caption) + '_' : ''),
+            caption(block.caption),
         );
         break;
       }
@@ -320,7 +336,7 @@ export function render(config, options = {}) {
                   `${md(i.value)} ${md(i.label)}${i.source ? ' (' + link('source', i.source) + ')' : ''}`,
               )
               .join(' · ') +
-            (block.caption ? '\n\n_' + md(block.caption) + '_' : ''),
+            caption(block.caption),
         );
         break;
       case 'timeline': {

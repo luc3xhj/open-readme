@@ -1,4 +1,4 @@
-import { designFor } from './designs.js?v=0.4.0';
+import { designFor } from './designs.js?v=0.5.0';
 export const themes = {
   terminal: {
     name: 'Terminal',

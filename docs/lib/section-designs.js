@@ -1,4 +1,4 @@
-import { designs } from './designs.js?v=0.4.0';
+import { designs } from './designs.js?v=0.5.0';
 
 // One coordinated system for every section. Functional code stays native on
 // GitHub; these presets control its masthead, context and surrounding layout.
@@ -77,10 +77,17 @@ export function sectionAnchors(blocks) {
   }
   return anchors;
 }
-export function styleSection(block, design) {
+export function visualSectionLayout(block) {
+  if (block.type === 'steps') return block.section === 'usage' ? 'journey' : 'guide';
+  if (block.type === 'comparison') return block.section === 'architecture' ? 'map' : 'tiles';
+  if (block.type === 'code') return block.annotations?.length ? 'annotated' : 'terminal';
+  if (block.type === 'links') return block.section === 'contributing' ? 'directory' : 'inline';
+}
+
+export function styleSection(block, design, presentation = 'native') {
   if (!sectionDesigns[design]) throw new Error('Unknown section design.');
   const styled = structuredClone(block),
-    layout = sectionDesigns[design][block.type];
+    layout = (presentation === 'visual' && visualSectionLayout(block)) || sectionDesigns[design][block.type];
   styled.design = design;
   if (layout) styled.layout = layout;
   // Diagrams keep their actual topology. Their visual treatment follows the

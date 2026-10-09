@@ -1,11 +1,13 @@
-import { systemMetrics, systemTimeline } from './supporting-visuals.js?v=0.4.0';
-import { sectionHeading } from './section-visuals.js?v=0.4.0';
-import { designs } from './designs.js?v=0.4.0';
-import { tokens } from './themes.js?v=0.4.0';
-import { designFor } from './designs.js?v=0.4.0';
-import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.4.0';
-import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.4.0';
-export { xml, wrap } from './drawing.js?v=0.4.0';
+import { systemMetrics, systemTimeline } from './supporting-visuals.js?v=0.5.0';
+import { sectionHeading } from './section-visuals.js?v=0.5.0';
+import { designs } from './designs.js?v=0.5.0';
+import { tokens } from './themes.js?v=0.5.0';
+import { designFor } from './designs.js?v=0.5.0';
+import { xml, wrap, label, line, rect, circle, measure, svg } from './drawing.js?v=0.5.0';
+import { compositionHero, featureBoard, beamDiagram } from './composed-visuals.js?v=0.5.0';
+import { guide, journey, factTiles, repositoryMap, annotatedCode, resourceLink } from './functional-visuals.js?v=0.5.0';
+import { topology, sequence } from './relationship-visuals.js?v=0.5.0';
+export { xml, wrap } from './drawing.js?v=0.5.0';
 
 function hero(block, config, t, w, mobile) {
   const composed = compositionHero(block, t, w, mobile, designFor(config).hero);
@@ -355,10 +357,18 @@ export function renderSvg(block, config, mode = 'light', mobile = false) {
     p = t.pad,
     inner = w - 2 * p;
   if (block.type === 'heading') return sectionHeading(block, t, w, mobile);
+  if (block.type === 'steps' && block.layout === 'guide') return guide(block, t, w, mobile);
+  if (block.type === 'steps' && block.layout === 'journey') return journey(block, t, w, mobile);
+  if (block.type === 'comparison' && block.layout === 'tiles') return factTiles(block, t, w, mobile);
+  if (block.type === 'comparison' && block.layout === 'map') return repositoryMap(block, t, w, mobile);
+  if (block.type === 'code' && block.layout === 'annotated') return annotatedCode(block, t, w, mobile);
+  if (block.type === 'resource') return resourceLink(block, t, w, mobile);
   if (block.type === 'hero') return hero(block, config, t, w, mobile);
   if (block.type === 'features') return features(block, t, w, mobile, designFor(config).features);
   if (block.type === 'feature')
     return features({ items: [block], layout: 'rows' }, t, w, mobile, 'rows');
+  if (block.type === 'topology') return topology(block, t, w, mobile);
+  if (block.type === 'sequence') return sequence(block, t, w, mobile);
   if (block.type === 'diagram' || block.type === 'steps') return diagram(block, t, w, mobile);
   if (block.type === 'metrics')
     return ['canvas', 'console', 'journal', 'pipeline'].includes(t.designId)

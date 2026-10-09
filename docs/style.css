@@ -109,6 +109,10 @@ footer a {
   margin: 0 auto;
 }
 .toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--page);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -181,6 +185,7 @@ footer a {
   margin-bottom: 0;
 }
 .document h2 {
+  scroll-margin-top: var(--toolbar-offset, 74px);
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.35px;
@@ -213,6 +218,9 @@ footer a {
   max-width: 100%;
   height: auto;
 }
+.resource-directory { display: grid; gap: 7px; margin-bottom: 16px; }
+.resource-directory a { display: block; }
+.resource-directory img { width: 100%; }
 .document ul,
 .document ol {
   padding-left: 24px;
@@ -241,8 +249,9 @@ footer a {
   border-radius: 4px;
 }
 .document .caption {
-  font-size: 16px;
-  font-style: italic;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
 }
 .document blockquote {
   border-left: 3px solid var(--border);

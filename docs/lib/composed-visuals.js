@@ -1,6 +1,6 @@
-import { systemBeam } from './section-visuals.js?v=0.4.0';
-import { xml, wrap, label, line, rect, circle, svg } from './drawing.js?v=0.4.0';
-export { compositionHero, featureBoard } from './document-visuals.js?v=0.4.0';
+import { systemBeam } from './section-visuals.js?v=0.5.0';
+import { xml, wrap, label, line, rect, circle, svg } from './drawing.js?v=0.5.0';
+export { compositionHero, featureBoard } from './document-visuals.js?v=0.5.0';
 const curve = (x1, y1, x2, y2, color, width = 1.5) => {
   const mid = (x1 + x2) / 2;
   return `<path d="M${x1} ${y1}C${mid} ${y1} ${mid} ${y2} ${x2} ${y2}" fill="none" stroke="${color}" stroke-width="${width}"/>`;

@@ -1,6 +1,6 @@
 {
   "name": "@luc3xhj/open-readme",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Designed GitHub READMEs for coding agents. Complete compositions, editable JSON, Markdown and local SVG.",
   "type": "module",
   "license": "MIT",

@@ -50,9 +50,9 @@
       "type": "code",
       "section": "quickstart",
       "title": "Get started",
-      "layout": "native",
+      "layout": "terminal",
       "language": "sh",
-      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.4.0\nnpx open-readme init --project cli --design journal\nnpx open-readme render --out README.preview.md --json",
+      "code": "npm install --save-dev github:luc3xhj/open-readme#v0.5.0\nnpx open-readme init --project cli --design journal\nnpx open-readme render --out README.preview.md --json",
       "caption": "Node.js 22+. Fill in your project’s facts, then render a preview.",
       "importance": "primary"
     },
@@ -69,7 +69,7 @@
       "type": "comparison",
       "section": "configuration",
       "title": "Configuration",
-      "layout": "definitions",
+      "layout": "tiles",
       "columns": [
         "Option",
         "Default",
@@ -95,6 +95,11 @@
           "block.design",
           "Inherited",
           "One section’s design variant"
+        ],
+        [
+          "presentation",
+          "native",
+          "Native text or designed section bodies"
         ]
       ],
       "importance": "supporting"
@@ -104,7 +109,7 @@
       "type": "code",
       "section": "configuration",
       "language": "json",
-      "layout": "native",
+      "layout": "terminal",
       "code": "{\n  \"design\": \"journal\",\n  \"style\": {\n    \"accent\": \"#9B583D\",\n    \"density\": \"compact\"\n  }\n}",
       "caption": "Override the complete system or one block. Your content stays in the same config."
     },
@@ -140,7 +145,7 @@
       "section": "api",
       "title": "JavaScript API",
       "language": "js",
-      "layout": "native",
+      "layout": "terminal",
       "code": "import { render } from \"@luc3xhj/open-readme\";\n\nconst { markdown, assets } = render(config);\n// assets is a Map of local SVG filenames and contents.",
       "caption": "The CLI and browser use this same renderer. The output has no runtime dependency.",
       "importance": "supporting"
@@ -169,5 +174,6 @@
       "body": "[MIT](https://github.com/luc3xhj/open-readme/blob/main/LICENSE). Built by [Lucas](https://github.com/luc3xhj) at [Meridian Startups](https://meridianstartups.com). [Preview the complete designs](https://luc3xhj.github.io/open-readme/).",
       "importance": "supporting"
     }
-  ]
+  ],
+  "presentation": "visual"
 }

@@ -16,7 +16,13 @@ Use `open-readme` from the installed package or `node <checkout>/bin/open-readme
 
 ## Use visual primitives selectively
 
+When the user wants designed bodies across the whole README, use `presentation: "visual"` and `createComposition`. Structure the verified content as command-guide steps, usage journeys with factual results, requirement tiles, annotated code, repository maps and described documentation links. The four systems give these bodies different compositions. Keep exact commands and table data in their native disclosures. A conceptual filter/comparison/collection illustration must not masquerade as a live screenshot or invent program data. Avoid turning an unchanged paragraph into a decorative image; the composition should clarify sequence, prerequisites, paths or the next action.
+
+Use `topology` for separate sources with explicit destination branches; include `via` for actual adapters. Use `sequence` for named actors, ordered interactions and explicit `gate` conditions. Actor indices must reference declared actors. Both preserve native descriptions. Use journey `fields` to show concrete inspection criteria or retained artifacts; avoid empty A/B placeholders. For a real product image, use a verified capture, give its date, and keep historical record values distinct from current availability.
+
 `open-readme catalog --json` exposes advanced primitives to agents. Use them only when a reader needs a real demo, comparison, relationship diagram or sourced result. Do not assemble a sampler of unrelated styles. Prefer native feature lists, copyable commands and ordinary links. Avoid duplicate preview/source sections, decorative badges, fake terminal windows, generic statistics, empty roadmaps and repeated framed cards.
+
+Command and code disclosures contain only the copyable command or source. Keep labels short (`Commands`, `Code`); do not repeat step descriptions, outcomes or annotations already shown in the visual above.
 
 The four complete designs use matching mastheads, accessible SVG section headings, feature layouts, reference formats and diagrams. These align with native Markdown. `createComposition` applies a complete system; `styleSection` styles one section without rewriting facts. Add `preview` only for exact, useful source not already explained below. An optional visual feature takes a real `example`, not a generic icon. A `beam` diagram means input → processor → parallel outputs; `flow` means a sequence. Changing a design must preserve the actual relationship. Measure labels, align nodes by stage, attach arrows to boundaries, and preserve shared branch junctions. Keep annotations smaller than titles and avoid ambiguous crossing lines. Eight additional cover styles remain in the API for specific needs.
 

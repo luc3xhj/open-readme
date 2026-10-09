@@ -10,7 +10,7 @@
     />
     <meta name="theme-color" content="#f6f7f9" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./style.css?v=0.4.0" />
+    <link rel="stylesheet" href="./style.css?v=0.5.0" />
   </head>
   <body data-mode="light">
     <header class="masthead">
@@ -94,6 +94,7 @@
       </div>
       <div id="config-panel" role="tabpanel" aria-labelledby="tab-config">
         <div class="style-controls">
+          <label>Presentation<select id="presentation"><option value="native">Native text</option><option value="visual">Designed sections</option></select></label>
           <label>Accent<input type="color" id="accent" /></label>
           <label
             >Density<select id="density">
@@ -128,6 +129,6 @@
         </div>
       </div>
     </dialog>
-    <script type="module" src="./app.js?v=0.4.0"></script>
+    <script type="module" src="./app.js?v=0.5.0"></script>
   </body>
 </html>
